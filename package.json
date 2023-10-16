@@ -3,7 +3,9 @@
     "type": "module",
     "scripts": {
         "dev": "vite",
-        "build": "vite build"
+        "build": "vite build",
+        "clear": "php artisan view:clear && php artisan config:clear && php artisan cache:clear && php artisan schedule:clear-cache && php artisan route:clear && php artisan optimize:clear && php artisan event:clear",
+        "cache": "php artisan view:cache && php artisan config:cache && php artisan route:cache && php artisan event:cache"
     },
     "devDependencies": {
         "axios": "^1.1.2",
@@ -12,6 +14,7 @@
     },
     "dependencies": {
         "autoprefixer": "^10.4.16",
+        "flowbite": "^1.8.1",
         "postcss": "^8.4.31",
         "tailwindcss": "^3.3.3"
     }

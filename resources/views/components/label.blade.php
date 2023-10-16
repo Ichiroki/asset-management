@@ -1,7 +1,1 @@
-<?php
-
-    $styles = "dark:text-slate-100"
-
-?>
-
-<label {{ $attributes->merge(['class' => $styles, "for" => ""]) }}>{{ $slot }}</label>
+<label class="block text-sm font-medium text-gray-900 dark:text-white" for="{{ $for }}">{{ $slot }}</label>

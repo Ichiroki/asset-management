@@ -6,15 +6,15 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class Label extends Component
+class Alert extends Component
 {
-    public string $for;
+    public string $color;
     /**
      * Create a new component instance.
      */
-    public function __construct($for)
+    public function __construct($color)
     {
-        $this->for = $for;
+        $this->color = $color;
     }
 
     /**
@@ -22,6 +22,6 @@ class Label extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.label');
+        return view('components.alert');
     }
 }

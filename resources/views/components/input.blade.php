@@ -1,7 +1,1 @@
-<?php
-
-$styles = "outline-none focus:border focus:border-red-500 p-3 rounded-xl dark:bg-slate-100"
-
-?>
-
-<input {{ $attributes->merge(['class' => $styles, "type" => "text", "placeholder" => "", "name" => "", "id" => ""])}}>
+<input {{ $attributes->merge(['class' => 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500', 'type' => "$type", "id" => "$id", "placeholder" => "$placeholder", "name" => "$name"]) }}

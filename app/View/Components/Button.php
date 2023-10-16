@@ -8,13 +8,14 @@ use Illuminate\View\Component;
 
 class Button extends Component
 {
-    public string $color;
+    public string $color, $type;
     /**
      * Create a new component instance.
      */
-    public function __construct($color)
+    public function __construct($color, $type)
     {
         $this->color = $color;
+        $this->type = $type;
     }
 
     /**
