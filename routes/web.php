@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\Asset\{LaptopController, VehicleController};
+use App\Http\Controllers\Asset\LaptopController;
+use App\Http\Controllers\Asset\VehicleController;
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\{DashboardController, DepartmentController, UserController};
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,14 +19,23 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 
-Route::prefix('/')->group(function() {
+Route::prefix('/')->group(function () {
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-    Route::prefix('vehicle')->group(function() {
-        Route::get('/', [VehicleController::class, 'index'])->name('vehicle');
+    Route::controller(VehicleController::class)->group(function () {
+        Route::get('/vehicle', 'index')->name('vehicle');
+        Route::post('/', 'store')->name('vehicle.store');
     });
 
-    Route::prefix('laptop')->group(function() {
-        Route::get('/', [LaptopController::class, 'index'])->name('laptop');
+    Route::controller(LaptopController::class)->group(function () {
+        Route::get('/laptop', 'index')->name('laptop');
+    });
+
+    Route::controller(UserController::class)->group(function () {
+        Route::get('/user', 'index')->name('users');
+    });
+
+    Route::controller(DepartmentController::class)->group(function () {
+        Route::get('/department', 'index')->name('department');
     });
 });

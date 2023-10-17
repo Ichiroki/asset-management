@@ -10,7 +10,11 @@
 <body class="dark:bg-slate-800">
         @include('layout.utils.sidebar')
 
-        @yield('main')
+        <div class="p-4 sm:ml-64 mt-24">
+            <div class="container mx-auto">
+                @yield('main')
+            </div>
+        </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js"></script>
 </body>
 </html>

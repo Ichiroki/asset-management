@@ -8,7 +8,14 @@ use Illuminate\View\Component;
 
 class Input extends Component
 {
-    public $type, $name, $id, $placeholder;
+    public $type;
+
+    public $name;
+
+    public $id;
+
+    public $placeholder;
+
     /**
      * Create a new component instance.
      */
