@@ -23,52 +23,23 @@
                                     </button>
                                     <div class="px-6 py-6 lg:px-8">
                                         <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white text-center">User Modal</h3>
-                                        <form class="space-y-6" action="#">
+                                        <form class="space-y-6" action="{{ route('department.store') }}" novalidate>
                                             @method("post")
                                             <div>
                                                 <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama</label>
                                                 <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required>
+                                                @error('name')
+                                                    <p id="outlined_error_help" class="mt-2 text-xs text-red-600 dark:text-red-400"><span class="font-medium">{{ $message }}</p>
+                                                @enderror
                                             </div>
-                                            <div class="flex justify-between items-center gap-3">
-                                                <div class="w-1/2">
-                                                    <label for="department" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Department</label>
-                                                    <select id="department" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="department">
-                                                        <option>United States</option>
-                                                        <option>Canada</option>
-                                                        <option>France</option>
-                                                        <option>Germany</option>
-                                                    </select>
-                                                </div>
-                                                <div class="w-1/2">
-                                                    <label for="position" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Position</label>
-                                                    <select id="position" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="position">
-                                                        <option>United States</option>
-                                                        <option>Canada</option>
-                                                        <option>France</option>
-                                                        <option>Germany</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="flex justify-between items-center gap-3">
-                                                <div class="w-1/2">
-                                                    <label for="role-asset" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Role Asset</label>
-                                                    <select id="role-asset" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="role-asset">
-                                                        <option>United States</option>
-                                                        <option>Canada</option>
-                                                        <option>France</option>
-                                                        <option>Germany</option>
-                                                    </select>
-                                                </div>
-                                                <div class="w-1/2">
-                                                    <label for="role-permission" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Role Permission Room</label>
-                                                    <select id="role-permission" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="role-permission">
-                                                        <option>United States</option>
-                                                        <option>Canada</option>
-                                                        <option>France</option>
-                                                        <option>Germany</option>
-                                                    </select>
-                                                </div>
-                                            </div>
+                                                <label for="status" class="block text-sm font-medium text-gray-900 dark:text-white">Status</label>
+                                                <select id="status" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="status">
+                                                    <option value="active">Active</option>
+                                                    <option value="inactive">Inactive</option>
+                                                </select>
+                                                @error('status')
+                                                    <p id="outlined_error_help" class="mt-2 text-xs text-red-600 dark:text-red-400"><span class="font-medium">{{ $message }}</p>
+                                                @enderror
                                             <button type="submit" class="w-full text-green-700 transition hover:text-white border border-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:border-green-500 dark:text-green-500 dark:hover:text-white dark:hover:bg-green-600 dark:focus:ring-green-800">Submit</button>
                                         </form>
                                     </div>

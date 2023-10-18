@@ -13,4 +13,14 @@ class DepartmentController extends Controller
             'departments' => $departments
         ]);
     }
+
+    public function store(Request $request, Department $department) {
+        $validate = $request->validate([
+
+        ]);
+
+        $depart = Department::create($validate);
+
+        return response()->json($depart, 201);
+    }
 }

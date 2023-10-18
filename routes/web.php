@@ -29,6 +29,7 @@ Route::prefix('/')->group(function () {
 
     Route::controller(LaptopController::class)->group(function () {
         Route::get('/laptop', 'index')->name('laptop');
+
     });
 
     Route::controller(UserController::class)->group(function () {
@@ -37,5 +38,6 @@ Route::prefix('/')->group(function () {
 
     Route::controller(DepartmentController::class)->group(function () {
         Route::get('/department', 'index')->name('department');
+        Route::post('/department', 'store')->name('department.store');
     });
 });

@@ -17,7 +17,7 @@
 <body class="dark:bg-slate-800">
         @include('layout.utils.sidebar')
 
-        <div class="p-4 sm:ml-64 mt-24">
+        <div class="p-4 sm:ml-64 lg:mt-18 mt-24">
             <div class="container mx-auto">
                 @yield('main')
             </div>
