@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->unsignedBigInteger('users')->nullable();
-            $table->enum('is_active', ['active', 'inactive']);
+            $table->enum('status', ['active', 'inactive']);
             $table->timestamps();
 
             $table->foreign('users')->references('id')->on('users');

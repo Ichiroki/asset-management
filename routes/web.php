@@ -3,7 +3,8 @@
 use App\Http\Controllers\Asset\LaptopController;
 use App\Http\Controllers\Asset\VehicleController;
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\{DashboardController, DepartmentController, UserController};
+use App\Http\Controllers\{DashboardController, UserController};
+use App\Http\Controllers\Office\DepartmentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,9 +36,5 @@ Route::prefix('/')->group(function () {
     Route::controller(UserController::class)->group(function () {
         Route::get('/user', 'index')->name('users');
     });
-
-    Route::controller(DepartmentController::class)->group(function () {
-        Route::get('/department', 'index')->name('department');
-        Route::post('/department', 'store')->name('department.store');
-    });
+    Route::resource('department', DepartmentController::class);
 });

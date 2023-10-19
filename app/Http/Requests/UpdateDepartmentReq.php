@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreDepartmentReq extends FormRequest
+class UpdateDepartmentReq extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,18 +22,17 @@ class StoreDepartmentReq extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => "required|string|max:255|unique:departments,name",
-            'status' => "required"
+            'name' => 'sometimes|required|string|max:255|unique:departments,name'
         ];
     }
 
-    public function messages() {
+    public function messages() : array
+    {
         return [
-            "name.required" => "Name is required",
-            "name.string" => "Name must use alphabet character",
-            "name.unique" => "This department is already exist",
-            "name.max" => "Maximal Name is 255 characters",
-            "status.required" => "Status is required"
+            'name.required' => 'Name is required',
+            'name.string' => 'Number is not allowed to type in Name',
+            'name.max' => 'Maximum character for name is 255',
+            'name.unique' => 'This Name is already exist'
         ];
     }
 }
