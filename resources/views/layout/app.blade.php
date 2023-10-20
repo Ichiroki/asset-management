@@ -14,10 +14,10 @@
 </script>
   @vite(['resources/css/app.css','resources/js/app.js'])
 </head>
-<body class="dark:bg-slate-800">
+<body class="dark:bg-slate-800 bg-slate-100">
         @include('layout.utils.sidebar')
 
-        <div class="p-4 sm:ml-64 lg:mt-18 mt-24">
+        <div class="p-4 mt-24 sm:ml-64 lg:mt-18">
             <div class="container mx-auto">
                 @yield('main')
             </div>

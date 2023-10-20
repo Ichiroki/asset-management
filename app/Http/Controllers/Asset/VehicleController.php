@@ -13,7 +13,18 @@ class VehicleController extends Controller
      */
     public function index()
     {
-        return view('pages/vehicle/index');
+        $vehicle = Vehicle::paginate(5);
+        return view('pages/vehicle/index', [
+            'vehicles' => $vehicle
+        ]);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        return view('pages/vehicle/create');
     }
 
     /**
@@ -28,6 +39,14 @@ class VehicleController extends Controller
      * Display the specified resource.
      */
     public function show(Vehicle $vehicle)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(Vehicle $vehicle)
     {
         //
     }

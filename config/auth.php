@@ -18,6 +18,8 @@ return [
         'passwords' => 'users',
     ],
 
+    'remember' => true,
+    'remember_for' => 60 * 60 * 24 * 7,
     /*
     |--------------------------------------------------------------------------
     | Authentication Guards

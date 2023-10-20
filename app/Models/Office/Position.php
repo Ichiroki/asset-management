@@ -6,14 +6,14 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Department extends Model
+class Position extends Model
 {
-    protected $fillable = [
-        'name', 'status'
-    ];
-
-    public function user() {
+    public function users() {
         return $this->hasMany(User::class);
+    }
+
+    public function departments() {
+        return $this->hasMany(Department::class);
     }
 
     use HasFactory;

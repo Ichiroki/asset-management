@@ -1,10 +1,10 @@
 <?php
 
+use App\Http\Controllers\{DashboardController};
 use App\Http\Controllers\Asset\LaptopController;
 use App\Http\Controllers\Asset\VehicleController;
-use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\{DashboardController, UserController};
-use App\Http\Controllers\Office\DepartmentController;
+use App\Http\Controllers\Auth\AuthenticationController;
+use App\Http\Controllers\Office\{DepartmentController, PositionController, UserController};
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,23 +18,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/login', [LoginController::class, 'index'])->name('login');
+Route::get('/login', [AuthenticationController::class, 'index'])->name('login.index');
+Route::post('/login', [AuthenticationController::class, 'login'])->name('login');
 
-Route::prefix('/')->group(function () {
+Route::prefix('/')->middleware('auth')->group(function () {
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-    Route::controller(VehicleController::class)->group(function () {
-        Route::get('/vehicle', 'index')->name('vehicle');
-        Route::post('/', 'store')->name('vehicle.store');
-    });
+    Route::resource('vehicle', VehicleController::class);
 
     Route::controller(LaptopController::class)->group(function () {
         Route::get('/laptop', 'index')->name('laptop');
 
     });
 
-    Route::controller(UserController::class)->group(function () {
-        Route::get('/user', 'index')->name('users');
-    });
+    Route::resource('user', UserController::class);
     Route::resource('department', DepartmentController::class);
+    Route::resource('position', PositionController::class);
+
+    Route::get('logout', [AuthenticationController::class, 'logout'])->name('logout');
 });
