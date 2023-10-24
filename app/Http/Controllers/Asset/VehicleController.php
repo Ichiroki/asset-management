@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Asset;
 
 use App\Http\Controllers\Controller;
 use App\Models\Asset\Vehicle;
+use App\Models\Office\Department;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class VehicleController extends Controller
@@ -13,9 +15,11 @@ class VehicleController extends Controller
      */
     public function index()
     {
-        $vehicle = Vehicle::paginate(5);
+
+        $vehicle = Vehicle::with('user', 'department')->get();
         return view('pages/vehicle/index', [
-            'vehicles' => $vehicle
+            'vehicles' => $vehicle,
+
         ]);
     }
 
@@ -24,7 +28,12 @@ class VehicleController extends Controller
      */
     public function create()
     {
-        return view('pages/vehicle/create');
+        $user = User::all();
+        $dep = Department::all();
+        return view('pages/vehicle/create', [
+            'user' => $user,
+            'department' => $dep
+        ]);
     }
 
     /**

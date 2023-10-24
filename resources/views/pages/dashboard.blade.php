@@ -16,5 +16,7 @@
                     </svg>
                 </button>
             </div> --}}
-            <x-alert color="blue">You are logged in now</x-alert>
+            @if(session('success'))
+                <x-alert color="blue">{{ session('success') }}</x-alert>
+            @endif
 @endsection
