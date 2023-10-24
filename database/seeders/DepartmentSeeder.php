@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Department;
+use App\Models\Office\Department as OfficeDepartment;
 use Illuminate\Database\Seeder;
 
 class DepartmentSeeder extends Seeder
@@ -12,23 +12,23 @@ class DepartmentSeeder extends Seeder
      */
     public function run(): void
     {
-        Department::create([
+        OfficeDepartment::create([
             'name' => 'BOD',
             'status' => 'active'
         ]);
-        Department::create([
+        OfficeDepartment::create([
             'name' => 'GM',
             'status' => 'active'
         ]);
-        Department::create([
+        OfficeDepartment::create([
             'name' => 'IT Support',
             'status' => 'active'
         ]);
-        Department::create([
+        OfficeDepartment::create([
             'name' => 'Operation',
             'status' => 'active'
         ]);
-        Department::create([
+        OfficeDepartment::create([
             'name' => 'Sekuritas',
             'status' => 'active'
         ]);

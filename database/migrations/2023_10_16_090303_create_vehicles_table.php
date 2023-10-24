@@ -16,8 +16,10 @@ return new class extends Migration
             $table->string('jenis');
             $table->string('nomorPol');
             $table->integer('capacity');
-            $table->string('pic');
+            $table->unsignedBigInteger('pic');
             $table->timestamps();
+
+            $table->foreign('pic')->references('id')->on('users');
         });
     }
 

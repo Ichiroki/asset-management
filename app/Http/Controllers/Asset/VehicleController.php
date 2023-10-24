@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Asset;
 
 use App\Http\Controllers\Controller;
 use App\Models\Asset\Vehicle;
+use App\Models\Office\Department;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class VehicleController extends Controller
@@ -13,7 +15,25 @@ class VehicleController extends Controller
      */
     public function index()
     {
-        return view('pages/vehicle/index');
+
+        $vehicle = Vehicle::with('user', 'department')->get();
+        return view('pages/vehicle/index', [
+            'vehicles' => $vehicle,
+
+        ]);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        $user = User::all();
+        $dep = Department::all();
+        return view('pages/vehicle/create', [
+            'user' => $user,
+            'department' => $dep
+        ]);
     }
 
     /**
@@ -28,6 +48,14 @@ class VehicleController extends Controller
      * Display the specified resource.
      */
     public function show(Vehicle $vehicle)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(Vehicle $vehicle)
     {
         //
     }
