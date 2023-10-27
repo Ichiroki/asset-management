@@ -38,10 +38,16 @@
                             No
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Name
+                            Jenis
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Is Active
+                            Nomor Polisi
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Kapasitas
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            PIC
                         </th>
                         <th scope="col" class="px-6 py-3">
                             Action
@@ -58,10 +64,16 @@
                             {{ $i = $i + 1 }}
                         </th>
                         <td class="px-6 py-4">
-                            {{ $vehicle->name }}
+                            {{ $vehicle->type }}
                         </td>
                         <td class="px-6 py-4">
-                            {{ $vehicle->status }}
+                            {{ $vehicle->nomorPol }}
+                        </td>
+                        <td class="px-6 py-4">
+                            {{ $vehicle->capacity }}
+                        </td>
+                        <td class="px-6 py-4">
+                            {{ $vehicle->pic }}
                         </td>
                         <td class="px-6 py-4">
                             <div class="flex items-center">

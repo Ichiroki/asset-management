@@ -25,12 +25,7 @@ Route::prefix('/')->middleware('auth')->group(function () {
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::resource('vehicle', VehicleController::class);
-
-    Route::controller(LaptopController::class)->group(function () {
-        Route::get('/laptop', 'index')->name('laptop');
-
-    });
-
+    Route::resource('laptop', LaptopController::class);
     Route::resource('user', UserController::class);
     Route::resource('department', DepartmentController::class);
     Route::resource('position', PositionController::class);

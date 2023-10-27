@@ -12,17 +12,9 @@ class Vehicle extends Model
     protected $fillable = [
         'jenis',
         'nomorPol',
-        'kapasitas',
+        'capacity',
         'pic'
     ];
-
-    public function user() {
-        return $this->belongsTo(User::class);
-    }
-
-    public function department() {
-        return $this->belongsTo(Department::class);
-    }
 
     use HasFactory;
 }

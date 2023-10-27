@@ -5,16 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.1/dist/cdn.min.js"></script>
-  <script>
-    if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-    document.documentElement.classList.add('dark');
-    } else {
-        document.documentElement.classList.remove('dark')
-    }
-</script>
-  @vite(['resources/css/app.css','resources/js/app.js'])
+  @vite(['resources/css/app.css','resources/js/app.js', 'resources/js/head.js'])
 </head>
-<body class="dark:bg-slate-800 bg-slate-100">
+<body class="dark:bg-slate-800 bg-slate-100 dark:text-slate-200 text-slate-800">
         @include('layout.utils.sidebar')
 
         <div class="p-4 mt-24 sm:ml-64 lg:mt-18">

@@ -23,6 +23,7 @@ class AuthenticationController extends Controller
         ]);
 
         if(Auth::attempt($credentials, true)) {
+
             Session::flash('success', 'Login success');
             return redirect()->route('dashboard');
         }
