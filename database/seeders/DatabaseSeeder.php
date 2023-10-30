@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             DepartmentSeeder::class,
             VehicleSeeder::class,
+            RoleAssetSeeder::class,
         ]);
     }
 }
