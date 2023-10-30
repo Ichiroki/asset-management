@@ -4,6 +4,7 @@ use App\Http\Controllers\{DashboardController};
 use App\Http\Controllers\Asset\LaptopController;
 use App\Http\Controllers\Asset\VehicleController;
 use App\Http\Controllers\Auth\AuthenticationController;
+use App\Http\Controllers\Loans\VehicleController as LoansVehicleController;
 use App\Http\Controllers\Office\{DepartmentController, PositionController, RoleAssetController, RoleMeetingRoomController, UserController};
 use Illuminate\Support\Facades\Route;
 
@@ -31,6 +32,10 @@ Route::prefix('/')->middleware('auth')->group(function () {
     Route::resource('position', PositionController::class);
     Route::resource('role-asset', RoleAssetController::class);
     Route::resource('role-meeting', RoleMeetingRoomController::class);
+
+    Route::prefix('/loans')->group(function() {
+        Route::resource('vehicle', LoansVehicleController::class)->names('vehicleLoans');
+    });
 
     Route::get('logout', [AuthenticationController::class, 'logout'])->name('logout');
 });

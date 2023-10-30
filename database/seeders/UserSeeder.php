@@ -18,8 +18,6 @@ class UserSeeder extends Seeder
             'position' => 1,
             'email' => "fahrezi@gmail.com",
             'password' => Hash::make('password'),
-            'role-asset' => 'User',
-            'role-meeting' => 'User'
         ]);
     }
 }

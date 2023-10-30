@@ -16,8 +16,6 @@ return new class extends Migration
             $table->string('avatar')->default('person.png');
             $table->string('name');
             $table->string('position');
-            $table->string('role-asset');
-            $table->string('role-meeting');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
