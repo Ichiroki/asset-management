@@ -22,22 +22,17 @@
             </div>
             <div class="flex justify-evenly">
                 <div class="flex items-center mb-4">
-                    <input id="laptop" type="radio" value="" name="asset_type" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                    <label for="laptop" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Laptop</label>
+                    <input id="laptopLoans" type="radio" value="" name="asset_type" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                    <label for="laptopLoans" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Laptop</label>
                 </div>
                 <div class="flex items-center mb-4">
-                    <input id="vehicle" type="radio" value="" name="asset_type" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                    <label for="vehicle" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Vehicle</label>
+                    <input id="vehicleLoans" type="radio" value="" name="asset_type" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                    <label for="vehicleLoans" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Vehicle</label>
                 </div>
             </div>
             <div class="mb-6">
                 <label for="assets" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select an option</label>
                 <select id="assets" name="assets" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" disabled>
-                    <option selected>Choose an Asset</option>
-                    <option value="US">United States</option>
-                    <option value="CA">Canada</option>
-                    <option value="FR">France</option>
-                    <option value="DE">Germany</option>
                 </select>
             </div>
             <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
