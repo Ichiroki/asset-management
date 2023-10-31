@@ -33,6 +33,8 @@ Route::prefix('/')->middleware('auth')->group(function () {
     Route::resource('role-asset', RoleAssetController::class);
     Route::resource('role-meeting', RoleMeetingRoomController::class);
 
+    Route::get('/department/search', [DepartmentController::class, 'search'])->name('department.search');
+
     Route::prefix('/loans')->group(function() {
         Route::resource('vehicle', LoansVehicleController::class)->names('vehicleLoans');
     });

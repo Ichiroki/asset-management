@@ -53,7 +53,7 @@
                         $i = 0
                     @endphp
                     @foreach ($departments as $department)
-                    <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                    <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700" id="table-data">
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             {{ $i = $i + 1 }}
                         </th>
@@ -101,4 +101,27 @@
             {{ $departments->links() }}
         </div>
 
+        <script>
+            $(document).ready(function() {
+                $('#searchBar').on('input', async function() {
+                    let query = await $(this).val()
+                    if(query.length >= 3) {
+                        await $.ajax({
+                            url : "{{ route('departmentAPI') }}",
+                            method: "GET",
+                            data: {query}
+                        })
+                    } else {
+                        $("#table-data").empty()
+                    }
+                })
+
+                function displayResults(dep) {
+                    $('#table-data').empty()
+                    dep.forEach(d => {
+                        $('#table-data').append('<td>' + dep.name + '</td>')
+                    });
+                }
+            })
+        </script>
 @endsection

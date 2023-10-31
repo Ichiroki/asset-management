@@ -22,6 +22,14 @@ class DepartmentController extends Controller
         ]);
     }
 
+    public function search(Request $request)
+    {
+        $query = $request->input('searchBar');
+        $department = Department::where('name','LIKE','%'.$query.'%')->get();
+
+        return response()->json($department);
+    }
+
     /**
      * Show the form for creating a new resource.
      */

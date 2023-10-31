@@ -19,6 +19,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('department', [APIController::class, 'departmentAPI']);
+Route::get('department', [APIController::class, 'departmentAPI'])->name('departmentAPI');
 Route::get('laptop', [APIController::class, 'laptopAPI']);
 Route::get('vehicle', [APIController::class, 'vehicleAPI']);

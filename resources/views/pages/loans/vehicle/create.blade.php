@@ -39,4 +39,50 @@
         </form>
     </x-slot>
 </x-card>
+
+<script>
+
+// create on vehicle
+const laptopRadio = document.querySelector('#laptopLoans')
+const vehicleRadio = document.querySelector('#vehicleLoans')
+const assetSelect = document.getElementById('assets')
+
+laptopRadio.addEventListener('change', async function() {
+    if(laptopRadio.checked) {
+        await fetch("/api/laptop").then(res => res.json()).then(data => {
+            assetSelect.innerHTML = ""
+
+            data.forEach(laptop => {
+                let option = document.createElement('option')
+                option.value = laptop.id
+                option.text = laptop.name;
+                assetSelect.appendChild(option)
+            });
+
+            console.log(data)
+            assetSelect.disabled = false
+        }).catch(e => console.error(e))
+    }
+})
+
+vehicleRadio.addEventListener('change', async function() {
+    if(vehicleRadio.checked) {
+        await fetch("/api/vehicle").then(res => res.json()).then(data => {
+            assetSelect.innerHTML = ""
+
+            data.forEach(vehicle => {
+                console.log(vehicle)
+                let option = document.createElement('option')
+                option.value = vehicle.id
+                option.text = vehicle.type;
+                assetSelect.appendChild(option)
+            });
+
+            console.log(data)
+            assetSelect.disabled = false
+        }).catch(e => console.error(e))
+    }
+})
+
+</script>
 @endsection
