@@ -41,7 +41,10 @@
                             Name
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Is Active
+                            Role Asset
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Role Meeting Room
                         </th>
                         <th scope="col" class="px-6 py-3">
                             Action
@@ -57,8 +60,15 @@
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             {{ $i = $i + 1 }}
                         </th>
+                        <th scope="row" class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
+                            <img class="w-10 h-10 rounded-full bg-slate-200" src="/storage/img/{{ $user->avatar }}" alt="Jese image">
+                            <div class="pl-3">
+                                <div class="text-base font-semibold">{{ $user->name }}</div>
+                                <div class="font-normal text-gray-500">{{ $user->email }}</div>
+                            </div>
+                        </th>
                         <td class="px-6 py-4">
-                            {{ $user->name }}
+                            {{ $user->status }}
                         </td>
                         <td class="px-6 py-4">
                             {{ $user->status }}

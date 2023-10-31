@@ -9,7 +9,7 @@
                     Create Department
                 </a>
 
-                <x-input type="text" name="search" id="search" placeholder="search here" class="w-3/5 lg:w-4/12"/>
+                <x-input type="text" name="searchBar" id="searchBar" placeholder="search here" class="w-3/5 lg:w-4/12"/>
             </div>
         </div>
 
