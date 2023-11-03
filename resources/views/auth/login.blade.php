@@ -2,8 +2,8 @@
 
 @section('main')
     <div class="flex flex-col items-center justify-center w-full h-screen">
-        <div class="px-12 py-2.5 bg-slate-300 dark:bg-slate-600 rounded-xl lg:w-6/12 w-9/12">
-            <h1 class="mt-2 mb-6 pb-2 text-3xl font-semibold text-center uppercase dark:text-slate-200 border-b-2 dark:border-slate-200">Login</h1>
+        <div class="backdrop-blur-md px-12 py-2.5 bg-slate-300 dark:bg-slate-600 rounded-xl lg:w-5/12 w-8/12">
+            <h1 class="pb-2 mt-2 mb-6 text-3xl font-semibold text-center uppercase dark:text-slate-200">Login</h1>
             <form action="{{ route('login') }}" method="POST">
             @csrf
                 <div class="flex flex-col gap-3">

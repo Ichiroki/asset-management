@@ -14,11 +14,8 @@ return new class extends Migration
         Schema::create('positions', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->unsignedBigInteger('users')->nullable();
             $table->enum('status', ['active', 'inactive']);
             $table->timestamps();
-
-            $table->foreign('users')->references('id')->on('users');
         });
     }
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Loans;
 use App\Http\Controllers\Controller;
 use App\Models\Office\Vehicle;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class VehicleController extends Controller
 {
@@ -15,7 +16,7 @@ class VehicleController extends Controller
     {
         $vehicles = Vehicle::paginate(5);
         return view('pages.loans.vehicle.index', [
-            'vehicles' => $vehicles
+            'vehicles' => $vehicles,
         ]);
     }
 
@@ -24,7 +25,13 @@ class VehicleController extends Controller
      */
     public function create()
     {
-        return view('pages.loans.vehicle.create');
+        $user = Auth::user();
+
+        $department = $user->department;
+        return view('pages.loans.vehicle.create', [
+            'user' => $user,
+            'department' => $department
+        ]);
     }
 
     /**
