@@ -33,5 +33,12 @@ class UserSeeder extends Seeder
             'email' => "dedi@astronacci.net",
             'password' => Hash::make('password'),
         ]);
+
+        User::create([
+            'name' => "Desta Arifta",
+            'department_id' => 10,
+            'email' => "desta@astronacci.net",
+            'password' => Hash::make('password'),
+        ]);
     }
 }

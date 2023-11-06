@@ -25,6 +25,8 @@ class VehicleLoans extends Model
         'notes'
     ];
 
+    protected $dates = ['loan_date', 'return_date'];
+
     protected $with = ['user', 'vehicle'];
 
     public function user() {

@@ -59,8 +59,7 @@ class VehicleController extends Controller
             'number_plate' => 'required|string',
             'capacity' => 'required|integer',
             'purpose' => 'required|string',
-            'loan_status' => 'nullable|string',
-            'notes' => 'required|string',
+            'information' => 'nullable|string',
         ]);
 
         VehicleLoans::create([
@@ -73,8 +72,7 @@ class VehicleController extends Controller
             'number_plate' => $validate['number_plate'],
             'capacity' => $validate['capacity'],
             'purpose' => $validate['purpose'],
-            'loan_status' => $validate['loan_status'],
-            'notes' => $validate['notes'],
+            'information' => $validate['information']
         ]);
 
         return redirect()->route('vehicleLoans.index')->with('success', 'Your submission to loan vehicle successfully sended, please wait to accept the submission');
@@ -91,22 +89,59 @@ class VehicleController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Vehicle $vehicle)
+    public function edit(VehicleLoans $vehicle)
     {
+        $approve = ["Waiting Approval", "Approve", "Rejected"];
+        $vehicle->get();
         $vehicles = Vehicle::all();
-        dd($vehicle, $vehicles);
         return view('pages.loans.vehicle.edit', [
-            'veh' => $vehicle,
-            'vehicles' => $vehicles
+            'vehicle' => $vehicle,
+            'vehicles' => $vehicles,
+            'approve' => $approve
         ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Vehicle $vehicle)
+    public function update(Request $request, VehicleLoans $vehicle)
     {
-        //
+        $user = $vehicle->user;
+        $department = $vehicle->department;
+        $validate = $request->validate([
+            'user_id' => [
+                `required|integer|in:$user->name`,
+            ],
+            'department' => [
+                `required|in:$department`
+            ],
+            'vehicle_id' => 'required|integer',
+            'loan_date' => 'required|date',
+            'return_date' => 'required|date',
+            'status' => 'required|string',
+            'number_plate' => 'required|string',
+            'capacity' => 'required|integer',
+            'purpose' => 'required|string',
+            'information' => 'nullable|string',
+            'loan_status' => 'required|string',
+            'notes' => 'nullable|string',
+        ]);
+
+        $vehicle->update([
+            'user_id' => $vehicle->user->id,
+            'department' => $validate['department'],
+            'vehicle_id' => (int) $validate['vehicle_id'],
+            'loan_date' => $validate['loan_date'],
+            'return_date' => $validate['return_date'],
+            'status' => $validate['status'],
+            'number_plate' => $validate['number_plate'],
+            'capacity' => $validate['capacity'],
+            'purpose' => $validate['purpose'],
+            'loan_status' => $validate['loan_status'],
+            'information' => $validate['information']
+        ]);
+
+        return redirect()->route('vehicleLoans.index')->with('success', 'Ticket successfully edited');
     }
 
     /**

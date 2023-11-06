@@ -22,7 +22,8 @@ return new class extends Migration
             $table->string('number_plate');
             $table->integer('capacity');
             $table->text('purpose')->nullable();
-            $table->string('loan_status')->nullable();
+            $table->text('information')->nullable();
+            $table->string('loan_status')->nullable()->default('Waiting Approval');
             $table->text('notes')->nullable();
             $table->timestamps();
 
