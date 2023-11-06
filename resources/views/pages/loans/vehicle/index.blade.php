@@ -30,26 +30,47 @@
             </button>
           </div>
         @endif
-        <div class="relative mt-6 overflow-x-auto shadow-md sm:rounded-lg">
+        <div class="relative mt-6 shadow-md sm:rounded-lg overflow-x-scroll">
             <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
-                        <th scope="col" class="px-6 py-3">
+                        <th scope="col" class="pl-6 py-3">
                             No
                         </th>
-                        <th scope="col" class="px-6 py-3">
-                            Jenis
+                        <th scope="col" class="pl-6 py-3">
+                            Data Peminjam
                         </th>
-                        <th scope="col" class="px-6 py-3">
-                            Nomor Polisi
+                        <th scope="col" class="pl-6 py-3">
+                            Tanggal Peminjaman
                         </th>
-                        <th scope="col" class="px-6 py-3">
+                        <th scope="col" class="pl-6 py-3">
+                            Tanggal Pengembalian
+                        </th>
+                        <th scope="col" class="pl-6 py-3">
+                            Status Asset
+                        </th>
+                        <th scope="col" class="pl-6 py-3">
+                            Nama Asset
+                        </th>
+                        <th scope="col" class="pl-6 py-3">
+                            Plat Nomor
+                        </th>
+                        <th scope="col" class="pl-6 py-3">
+                            Tujuan
+                        </th>
+                        <th scope="col" class="pl-6 py-3">
                             Kapasitas
                         </th>
-                        <th scope="col" class="px-6 py-3">
-                            PIC
+                        <th scope="col" class="pl-6 py-3">
+                            Keterangan
                         </th>
-                        <th scope="col" class="px-6 py-3">
+                        <th scope="col" class="pl-6 py-3">
+                            Status Pengajuan
+                        </th>
+                        <th scope="col" class="pl-6 py-3">
+                            Note
+                        </th>
+                        <th scope="col" class="pl-6 py-3">
                             Action
                         </th>
                     </tr>
@@ -63,45 +84,74 @@
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             {{ $i = $i + 1 }}
                         </th>
-                        <td class="px-6 py-4">
-                            {{ $vehicle->type }}
+                        <td class="py-4">
+                            {{ $vehicle->user->name }}
                         </td>
-                        <td class="px-6 py-4">
-                            {{ $vehicle->nomorPol }}
+                        <td class="pl-6 py-4">
+                            {{ $vehicle->loan_date }}
                         </td>
-                        <td class="px-6 py-4">
+                        <td class="pl-6 py-4">
+                            {{ $vehicle->return_date }}
+                        </td>
+                        <td class="pl-6 py-4">
+                            {{ $vehicle->status }}
+                        </td>
+                        <td class="pl-6 py-4">
+                            {{ $vehicle->vehicle->type }}
+                        </td>
+                        <td class="pl-6 py-4">
+                            {{ $vehicle->number_plate }}
+                        </td>
+                        <td class="pl-6 py-4">
+                            {{ $vehicle->purpose }}
+                        </td>
+                        <td class="pl-6 py-4">
                             {{ $vehicle->capacity }}
                         </td>
-                        <td class="px-6 py-4">
-                            {{ $vehicle->pic }}
+                        <td class="pl-6 py-4">
+                            {{ $vehicle->purpose }}
                         </td>
-                        <td class="px-6 py-4">
+                        <td class="pl-6 py-4">
+                            @if($vehicle->loan_status === null)
+                                Waiting Approval
+                            @else
+                                {{ $vehicle->loan_status }}
+                            @endif
+                        </td>
+                        <td class="pl-6 py-4">
+                            {{ $vehicle->notes }}
+                        </td>
+                        <td class="pl-6 py-4">
                             <div class="flex items-center">
-                                <a href="{{ route('vehicle.show', ['vehicle' => $vehicle->id]) }}" class="px-3 py-2 mb-2 mr-2 text-sm font-medium text-center text-green-700 transition border border-green-700 rounded-lg hover:text-white hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:border-green-500 dark:text-green-500 dark:hover:text-white dark:hover:bg-green-600 dark:focus:ring-green-800" type="button">
+                                <a href="{{ route('vehicleLoans.show', ['vehicle' => $vehicle->id]) }}" class="px-3 py-2 mb-2 mr-2 text-sm font-medium text-center text-green-700 transition border border-green-700 rounded-lg hover:text-white hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:border-green-500 dark:text-green-500 dark:hover:text-white dark:hover:bg-green-600 dark:focus:ring-green-800">
                                     Read
                                 </a>
-                                <a href="{{ route('vehicle.edit', ['vehicle' => $vehicle->id]) }}" class="px-3 py-2 mb-2 mr-2 text-sm font-medium text-center text-blue-700 transition border border-blue-700 rounded-lg hover:text-white hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-600 dark:focus:ring-blue-800">Edit</a>
-                                <button data-modal-target="popup-modal-{{ $vehicle->id }}" data-modal-toggle="popup-modal-{{ $vehicle->id }}" class="px-3 py-2 mb-2 mr-2 text-sm font-medium text-center transition border rounded-lg text-rose-700 hover:text-white border-rose-700 hover:bg-rose-800 focus:ring-4 focus:outline-none focus:ring-rose-300 dark:border-rose-500 dark:text-rose-500 dark:hover:text-white dark:hover:bg-rose-600 dark:focus:ring-rose-800" type="button">
-                                    Delete
-                                </button>
-                                <x-modal-box value="{{ $vehicle->id }}">
-                                    <x-slot name="logo">
-                                        <svg class="w-12 h-12 mx-auto mb-4 text-gray-400 dark:text-gray-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
-                                        </svg>
-                                    </x-slot>
-                                    <x-slot name="title">
-                                        <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Are you sure you want to delete this vehicle ?</h3>
-                                    </x-slot>
-                                    <form action="{{ route('vehicle.destroy', ['vehicle' => $vehicle->id]) }}" class="inline" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2">
-                                            Yes, I'm sure
-                                        </button>
-                                        <button data-modal-hide="popup-modal-{{ $vehicle->id }}" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">No, cancel</button>
-                                    </form>
-                                </x-modal-box>
+                                @can('edit vehicle loans')
+                                    <a href="{{ route('vehicleLoans.edit', ['vehicle' => $vehicle->id]) }}" class="px-3 py-2 mb-2 mr-2 text-sm font-medium text-center text-blue-700 transition border border-blue-700 rounded-lg hover:text-white hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-600 dark:focus:ring-blue-800">Edit</a>
+                                @endcan
+                                @can('delete vehicle loans')
+                                    <button data-modal-target="popup-modal-{{ $vehicle->id }}" data-modal-toggle="popup-modal-{{ $vehicle->id }}" class="px-3 py-2 mb-2 mr-2 text-sm font-medium text-center transition border rounded-lg text-rose-700 hover:text-white border-rose-700 hover:bg-rose-800 focus:ring-4 focus:outline-none focus:ring-rose-300 dark:border-rose-500 dark:text-rose-500 dark:hover:text-white dark:hover:bg-rose-600 dark:focus:ring-rose-800" type="button">
+                                        Delete
+                                    </button>
+                                    <x-modal-box value="{{ $vehicle->id }}">
+                                        <x-slot name="logo">
+                                            <svg class="w-12 h-12 mx-auto mb-4 text-gray-400 dark:text-gray-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+                                            </svg>
+                                        </x-slot>
+                                        <x-slot name="title">
+                                            <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Are you sure you want to delete this ticket ? <br><span class="text-sm text-gray-300">Make sure to confirm to people whom make the ticket</span></h3>
+                                        </x-slot>
+                                        <form action="{{ route('vehicleLoans.destroy', ['vehicle' => $vehicle->id]) }}" class="inline" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2">
+                                                Yes, I'm sure
+                                            </button>
+                                            <button data-modal-hide="popup-modal-{{ $vehicle->id }}" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">No, cancel</button>
+                                        </form>
+                                    </x-modal-box>
+                                @endcan
                             </div>
                         </td>
                     </tr>

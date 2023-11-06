@@ -4,6 +4,7 @@ use App\Http\Controllers\{DashboardController};
 use App\Http\Controllers\Asset\LaptopController;
 use App\Http\Controllers\Asset\VehicleController;
 use App\Http\Controllers\Auth\AuthenticationController;
+use App\Http\Controllers\Loans\Ticket\CheckAvailabilityController;
 use App\Http\Controllers\Loans\VehicleController as LoansVehicleController;
 use App\Http\Controllers\Office\{DepartmentController, PositionController, RoleAssetController, RoleMeetingRoomController, UserController};
 use Illuminate\Support\Facades\Route;
@@ -30,8 +31,6 @@ Route::prefix('/')->middleware('auth')->group(function () {
     Route::resource('user', UserController::class);
     Route::resource('department', DepartmentController::class);
     Route::resource('position', PositionController::class);
-    Route::resource('role-asset', RoleAssetController::class);
-    Route::resource('role-meeting', RoleMeetingRoomController::class);
 
     Route::get('/department/search', [DepartmentController::class, 'search'])->name('department.search');
 
@@ -40,4 +39,7 @@ Route::prefix('/')->middleware('auth')->group(function () {
     });
 
     Route::get('logout', [AuthenticationController::class, 'logout'])->name('logout');
+
+    // Vehicle Loans
+    Route::get('/check-vehicle-availability/{vehicle}', [CheckAvailabilityController::class, 'checkVehicleAvailability']);
 });

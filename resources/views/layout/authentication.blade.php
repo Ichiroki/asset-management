@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.css" rel="stylesheet" />
+  <title>Asset | Login</title>
   @vite('resources/css/app.css')
 </head>
 <body class="dark:bg-slate-800 bg-slate-100">

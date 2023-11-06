@@ -47,6 +47,9 @@
                             Kapasitas
                         </th>
                         <th scope="col" class="px-6 py-3">
+                            Status
+                        </th>
+                        <th scope="col" class="px-6 py-3">
                             PIC
                         </th>
                         <th scope="col" class="px-6 py-3">
@@ -71,6 +74,9 @@
                         </td>
                         <td class="px-6 py-4">
                             {{ $vehicle->capacity }}
+                        </td>
+                        <td class="px-6 py-4">
+                            {{ $vehicle->status }}
                         </td>
                         <td class="px-6 py-4">
                             {{ $vehicle->pic }}

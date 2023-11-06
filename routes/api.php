@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\APIController;
+use App\Http\Controllers\Loans\Ticket\CheckAvailabilityController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 

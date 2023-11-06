@@ -4,16 +4,18 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
+use App\Models\Loans\VehicleLoans;
 use App\Models\Office\Department;
 use Illuminate\Database\Eloquent\Concerns\HasRelationships;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, HasRelationships;
+    use HasApiTokens, HasFactory, Notifiable, HasRelationships, HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -53,5 +55,9 @@ class User extends Authenticatable
 
     public function department() {
         return $this->belongsTo(Department::class, 'department_id');
+    }
+
+    public function vehicleLoans() {
+        return $this->hasMany(VehicleLoans::class, 'user_id');
     }
 }

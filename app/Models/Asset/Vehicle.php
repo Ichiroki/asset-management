@@ -2,6 +2,7 @@
 
 namespace App\Models\Asset;
 
+use App\Models\Loans\VehicleLoans;
 use App\Models\Office\Department;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -15,6 +16,10 @@ class Vehicle extends Model
         'capacity',
         'pic'
     ];
+
+    public function vehicleLoans() {
+        return $this->hasMany(VehicleLoans::class, 'vehicle_id');
+    }
 
     use HasFactory;
 }

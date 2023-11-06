@@ -13,16 +13,21 @@ return new class extends Migration
     {
         Schema::create('user_loans_vehicle', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user');
-            $table->unsignedBigInteger('vehicle');
+            $table->unsignedBigInteger('user_id');
+            $table->string('department');
+            $table->unsignedBigInteger('vehicle_id');
             $table->date('loan_date');
             $table->date('return_date');
             $table->string('status');
-            $table->text('loan_notes')->nullable();
+            $table->string('number_plate');
+            $table->integer('capacity');
+            $table->text('purpose')->nullable();
+            $table->string('loan_status')->nullable();
+            $table->text('notes')->nullable();
             $table->timestamps();
 
-            $table->foreign('user')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('vehicle')->references('id')->on('vehicles')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('vehicle_id')->references('id')->on('vehicles')->onDelete('cascade');
         });
     }
 

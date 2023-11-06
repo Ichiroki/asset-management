@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('avatar')->default('person.png');
             $table->string('name');
             $table->string('email')->unique();
-            $table->unsignedBigInteger('department_id')->nullable();
-            $table->unsignedBigInteger('position_id');
+            $table->unsignedBigInteger('department_id');
+            $table->unsignedBigInteger('position_id')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

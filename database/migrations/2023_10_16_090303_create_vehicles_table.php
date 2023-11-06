@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('type');
             $table->string('nomorPol');
             $table->integer('capacity');
+            $table->string('status');
             $table->string('pic');
             $table->timestamps();
         });
