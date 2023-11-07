@@ -37,5 +37,13 @@ class VehicleLoans extends Model
         return $this->belongsTo(Vehicle::class, 'vehicle_id');
     }
 
+    public function approve() {
+        $this->update(['loan_status' => 'Approved']);
+    }
+
+    public function reject() {
+        $this->update(['loan_status' => 'Rejected']);
+    }
+
     use HasFactory;
 }

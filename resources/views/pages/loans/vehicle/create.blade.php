@@ -6,7 +6,7 @@
     <x-slot name="content">
         <form action="{{ route('vehicleLoans.store') }}" method="POST" novalidate>
             @csrf
-            <div class="flex flex-col md:flex-row justify-between gap-3">
+            <div class="flex flex-col justify-between gap-3 md:flex-row">
                 <div class="mb-6 md:w-1/2">
                     <label for="user_id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
                     <input type="text" id="user_id" name="user_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="" value="{{ Auth::user()->name }}" readonly>
@@ -32,7 +32,7 @@
                 </select>
                 <p class="block mt-3" id="avail-text"></p>
             </div>
-            <div class="flex flex-col md:flex-row justify-between gap-3">
+            <div class="flex flex-col justify-between gap-3 md:flex-row">
                 <div class="mb-6 md:w-1/2">
                     <label for="loan_date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal Peminjaman</label>
                     <input type="date" id="loan_date" name="loan_date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="" autocomplete="off" required>
@@ -105,7 +105,7 @@
         .then(response => response.json())
         .then(data => {
             const veh = data.vehicle
-            if(data.available) {
+            if(veh.available) {
                 availText.value = data.message
                 nomorPolText.value = veh.nomorPol
                 capacityText.value = veh.capacity

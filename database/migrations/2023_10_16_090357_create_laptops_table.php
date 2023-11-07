@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('no_asset')->nullable();
+            $table->string('status');
             $table->date('date_used')->nullable();
             $table->string('processor');
             $table->string('ram');

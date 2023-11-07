@@ -4,8 +4,10 @@ use App\Http\Controllers\{DashboardController};
 use App\Http\Controllers\Asset\LaptopController;
 use App\Http\Controllers\Asset\VehicleController;
 use App\Http\Controllers\Auth\AuthenticationController;
+use App\Http\Controllers\Loans\Ticket\ApproveController;
 use App\Http\Controllers\Loans\Ticket\CheckAvailabilityController;
 use App\Http\Controllers\Loans\VehicleController as LoansVehicleController;
+use App\Http\Controllers\Loans\LaptopController as LoansLaptopController;
 use App\Http\Controllers\Office\{DepartmentController, PositionController, UserController};
 use Illuminate\Support\Facades\Route;
 
@@ -36,10 +38,19 @@ Route::prefix('/')->middleware('auth')->group(function () {
 
     Route::prefix('/loans')->group(function() {
         Route::resource('vehicle', LoansVehicleController::class)->names('vehicleLoans');
+
+        Route::group(['middleware' => ['role:approval_bod', 'permission:approve vehicle loans']],function() {
+            Route::patch('vehicle/{vehicle}/approve', [ApproveController::class, 'approveVehicleLoan'])->name('vehicleLoans.approve');
+            Route::patch('vehicle/{vehicle}/reject', [ApproveController::class, 'rejectVehicleLoan'])->name('vehicleLoans.reject');
+        });
+
+        Route::resource('laptop', LoansLaptopController::class)->names('laptopLoans');
     });
 
     Route::get('logout', [AuthenticationController::class, 'logout'])->name('logout');
 
     // Vehicle Loans
     Route::get('/check-vehicle-availability/{vehicle}', [CheckAvailabilityController::class, 'checkVehicleAvailability']);
+
+    Route::get('/check-laptop-availability/{laptop}', [CheckAvailabilityController::class, 'checkLaptopAvailability']);
 });

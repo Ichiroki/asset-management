@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Loans;
 use App\Http\Controllers\Controller;
 use App\Models\Loans\VehicleLoans;
 use App\Models\Office\Vehicle;
+use App\Notifications\VehicleLoanNotification;
 use Illuminate\Http\Request;
+use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 
@@ -75,7 +77,9 @@ class VehicleController extends Controller
             'information' => $validate['information']
         ]);
 
+
         return redirect()->route('vehicleLoans.index')->with('success', 'Your submission to loan vehicle successfully sended, please wait to accept the submission');
+
     }
 
     /**
@@ -151,6 +155,6 @@ class VehicleController extends Controller
     {
         $vehicle->delete();
 
-        return redirect()->route('vehicleLoans.index')->with('success', 'you deleted the Fahrezi Rizqiawan\'s ticket to loan vehicle');
+        return redirect()->route('vehicleLoans.index')->with('success', `you deleted the $vehicle->user->name\'s ticket to loan vehicle`);
     }
 }
