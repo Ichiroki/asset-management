@@ -44,5 +44,13 @@ class UserSeeder extends Seeder
             'phone_number' => '089662690020',
             'password' => Hash::make('password'),
         ]);
+
+        User::create([
+            'name' => "Lery Budi Apriansyah",
+            'department_id' => 10,
+            'email' => "lery@astronacci.net",
+            'phone_number' => '089662690020',
+            'password' => Hash::make('password'),
+        ]);
     }
 }

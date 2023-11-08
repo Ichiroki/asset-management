@@ -2,48 +2,69 @@
 
 @section('main')
 <x-card>
-    <x-slot name="header">Edit Ticket For Loan</x-slot>
+    <x-slot name="header">Create Ticket For Loan</x-slot>
     <x-slot name="content">
         <form action="{{ route('laptopLoans.update', ['laptop' => $laptop->id]) }}" method="POST" novalidate>
             @csrf
-            @method('PUT')
-            <div class="flex flex-col md:flex-row justify-between gap-3">
-                <div class="mb-6 md:w-1/2">
-                    <label for="user_id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
-                    <input type="text" id="user_id" name="user_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="" value="{{ $laptop->user->name }}" readonly>
-                    @error('user_id')
-                        <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</p>
-                    @enderror
-                </div>
-                <div class="mb-6 md:w-1/2">
-                    <label for="department" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Department</label>
-                    <input type="text" id="department" name="department" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="" readonly value="{{ $laptop->department }}">
-                    @error('department')
-                        <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</p>
-                    @enderror
-                </div>
+            @method('PATCH')
+            <div class="mb-6">
+                <label for="user_id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
+                <input type="text" id="user_id" name="user_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="" value="{{ Auth::user()->name }}" readonly>
+                @error('user_id')
+                    <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</p>
+                @enderror
             </div>
             <div class="mb-6">
                 <label for="laptop_id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Asset</label>
                 <select id="laptop_id" name="laptop_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                    <option value="none">Select Vehicle</option>
-                    @foreach ($vehicles as $v)
-                        <option value={{ $v->id }} @if($v->id == $vehicle->id) selected @endif>{{ $v->type }}</option>
+                    <option value="none">Select Laptop</option>
+                    @foreach ($laptops as $l)
+                        <option value={{ $l->id }} @if($laptop->laptop->id === $l->id) selected @endif>{{ $l->name }}</option>
                     @endforeach
                 </select>
                 <p class="block mt-3" id="avail-text"></p>
             </div>
-            <div class="flex flex-col md:flex-row justify-between gap-3">
+            <div id="laptop_detail">
+                <div class="mb-6">
+                    <label for="processor" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Processor</label>
+                    <input type="text" id="processor" name="processor" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="" value="{{ $laptop->laptop->processor }}" autocomplete="off" autofocus required readonly>
+                </div>
+                <div class="mb-6">
+                    <label for="ram" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">RAM</label>
+                    <input type="text" id="ram" name="ram" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="" autocomplete="off" value="{{ $laptop->laptop->ram }}" autofocus required readonly>
+                </div>
+                <div class="flex flex-col justify-between gap-3 md:flex-row">
+                    <div class="w-1/2 mb-6">
+                        <label for="main" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Main Storage</label>
+                        <input type="text" id="main" name="main" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="" value="{{ $laptop->laptop->main_storage }}" autocomplete="off" autofocus required readonly>
+                    </div>
+                    <div class="w-1/2 mb-6">
+                        <label for="extend" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Extend Storage</label>
+                        <input type="text" id="extend" name="extend" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="" value="{{ $laptop->laptop->extend_storage }}" autocomplete="off" autofocus required readonly>
+                    </div>
+                </div>
+                <div class="flex flex-col justify-between gap-3 md:flex-row">
+                    <div class="w-1/2 mb-6">
+                        <label for="vga" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">VGA</label>
+                        <input type="text" id="vga" name="vga" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="" value="{{ $laptop->laptop->vga }}" autocomplete="off" autofocus required readonly>
+                    </div>
+                    <div class="w-1/2 mb-6">
+                        <label for="monitor" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Monitor</label>
+                        <input type="text" id="monitor" name="monitor" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="" value="{{ $laptop->laptop->monitor }}" autocomplete="off" autofocus required readonly>
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-col justify-between gap-3 md:flex-row">
                 <div class="mb-6 md:w-1/2">
                     <label for="loan_date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal Peminjaman</label>
-                    <input type="date" id="loan_date" name="loan_date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="" autocomplete="off" value="{{ $vehicle->loan_date }}" required>
+                    <input type="date" id="loan_date" name="loan_date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="{{ $laptop->loan_date }}" placeholder="" autocomplete="off" required>
                     @error('loan_date')
                         <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</p>
                     @enderror
                 </div>
                 <div class="mb-6 md:w-1/2">
                     <label for="return_date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal Pengembalian</label>
-                    <input type="date" id="return_date" name="return_date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="" autocomplete="off" value="{{ $vehicle->return_date }}" required>
+                    <input type="date" id="return_date" name="return_date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="" value="{{ $laptop->return_date }}" autocomplete="off" required>
                     @error('return_date')
                         <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</p>
                     @enderror
@@ -51,101 +72,79 @@
             </div>
             <div class="mb-6">
                 <label for="status" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Asset Status</label>
-                <input type="text" id="status" name="status" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="" autocomplete="off" value="{{ $vehicle->status }}" autofocus required readonly>
+                <input type="text" id="status" name="status" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="" value="{{ $laptop->status }}" autocomplete="off" autofocus required readonly>
                 @error('status')
                     <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</p>
                 @enderror
             </div>
             <div class="mb-6">
-                <label for="number_plate" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Plate Number</label>
-                <input type="text" id="number_plate" name="number_plate" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="" value="{{ $vehicle->number_plate }}" autocomplete="off" autofocus required readonly>
-                @error('number_plate')
-                    <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</p>
-                @enderror
-            </div>
-            <div class="mb-6">
-                <label for="capacity" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Capacity</label>
-                <input type="number" id="capacity" name="capacity" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="" autocomplete="off" required value="{{ $vehicle->capacity }}" readonly>
-                @error('capacity')
-                    <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</p>
-                @enderror
-            </div>
-            <div class="mb-6">
                 <label for="purpose" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tujuan</label>
-                <textarea id="purpose" name="purpose" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write your description here...">{{ $vehicle->purpose }}</textarea>
+                <textarea id="purpose" name="purpose" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write your description here...">{{ $laptop->purpose }}</textarea>
                 @error('purpose')
                     <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</p>
                 @enderror
             </div>
             <div class="mb-6">
                 <label for="information" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Keterangan</label>
-                <textarea id="information" name="information" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" @can('approve vehicle loan') readonly @endcan>{{ $vehicle->information }}</textarea>
+                <textarea id="information" name="information" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write your description here...">{{ $laptop->information }}</textarea>
                 @error('information')
                     <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</p>
                 @enderror
             </div>
-            @can('approve vehicle loans')
-                <div class="mb-6">
-                    <label for="loan_status" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Asset</label>
-                    <select id="loan_status" name="loan_status" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                        @foreach($approve as $a)
-                        <option value="{{ $a }}" @if($vehicle->loan_status === $a) selected @endif>{{ $a }}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="mb-6 hidden" id="notes-input">
-                    <label for="notes" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Note</label>
-                    <textarea id="notes" name="notes" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write your note here...">{{ $vehicle->notes }}</textarea>
-                    @error('notes')
-                        <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</p>
-                    @enderror
-                </div>
-            @endcan
-            <input type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" value="Submit">
+            <input type="submit" id="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 cursor-pointer" value="Submit">
         </form>
     </x-slot>
 </x-card>
 
 <script>
-    const vehicleDropdown = document.getElementById('vehicle_id')
+    // Form input interaction
+    const laptopDropdown = document.getElementById('laptop_id')
+    const laptopDetail = document.getElementById('laptop_detail')
 
-    vehicleDropdown.addEventListener('change', async function() {
-        let selectedVeh = this.value
-        await checkAvailability(selectedVeh)
+    const availText = document.getElementById('status')
+    const processorText = document.getElementById('processor')
+    const ramText = document.getElementById('ram')
+    const mainText = document.getElementById('main')
+    const extendText = document.getElementById('extend')
+    const vgaText = document.getElementById('vga')
+    const monitorText = document.getElementById('monitor')
+    const statusText = document.getElementById('status')
+    const submit = document.getElementById('submit')
+
+    laptopDropdown.addEventListener('change', async function() {
+        let selectedlaptop = this.value
+        await checkAvailability(selectedlaptop)
     })
 
-    async function checkAvailability(vehId) {
-        const availText = document.getElementById('status')
-        const nomorPolText = document.getElementById('number_plate')
-        const capacityText = document.getElementById('capacity')
+    async function checkAvailability(laptopId) {
+        try {
+            await fetch('/check-laptop-availability/' + laptopId)
+            .then(response => response.json())
+            .then(data => {
+                const laptop = data.laptop
 
-        await fetch('/check-vehicle-availability/' + vehId)
-        .then(response => response.json())
-        .then(data => {
-            const veh = data.vehicle
-            if(data.available) {
-                availText.value = data.message
-                nomorPolText.value = veh.nomorPol
-                capacityText.value = veh.capacity
-            } else {
-                availText.value = data.message
-                nomorPolText.value = veh.nomorPol
-                capacityText.value = veh.capacity
-            }
-        })
-        .catch(err => {console.error(err)})
-    }
-
-    const statusDropdown = document.getElementById('loan_status')
-    statusDropdown.addEventListener('change', async function() {
-        const notes = document.getElementById('notes-input')
-        if(statusDropdown.value === "Rejected") {
-            await notes.classList.remove('hidden')
-        } else {
-            await notes.classList.add('hidden')
+                if(laptop.available) {
+                    processorText.value = laptop.processor || ''
+                    ramText.value = laptop.ram || ''
+                    mainText.value = laptop.main_storage || ''
+                    extendText.value = laptop.extend_storage || ''
+                    vgaText.value = laptop.vga || ''
+                    monitorText.value = laptop.monitor || ''
+                    statusText.value = laptop.status || ''
+                } else {
+                    processorText.value = laptop.processor || ''
+                    ramText.value = laptop.ram || ''
+                    mainText.value = laptop.main_storage || ''
+                    extendText.value = laptop.extend_storage || ''
+                    vgaText.value = laptop.vga || ''
+                    monitorText.value = laptop.monitor || ''
+                    statusText.value = laptop.status || ''
+                }
+            })
+            .catch(e => console.log(e))
+        } catch(e) {
+            console.log(e)
         }
-
-    })
-
+    }
 </script>
 @endsection

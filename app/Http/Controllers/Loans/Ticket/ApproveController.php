@@ -12,6 +12,7 @@ class ApproveController extends Controller
     public function __construct()
     {
         $this->authorizeResource(VehicleLoans::class, 'vehicle');
+        $this->authorizeResource(LaptopLoans::class, 'laptop');
     }
 
     public function approveVehicleLoan(VehicleLoans $vehicle)

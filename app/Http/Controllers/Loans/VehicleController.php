@@ -49,7 +49,7 @@ class VehicleController extends Controller
     {
         $user = Auth::user();
 
-        $validate = $request->validate([
+        $validated = $request->validate([
             'user_id' => [
                 `required|integer|in:$user->id`,
             ],
@@ -71,15 +71,15 @@ class VehicleController extends Controller
 
         VehicleLoans::create([
             'user_id' => $user->id,
-            'department' => $validate['department'],
-            'vehicle_id' => (int) $validate['vehicle_id'],
-            'loan_date' => $validate['loan_date'],
-            'return_date' => $validate['return_date'],
-            'status' => $validate['status'],
-            'number_plate' => $validate['number_plate'],
-            'capacity' => $validate['capacity'],
-            'purpose' => $validate['purpose'],
-            'information' => $validate['information']
+            'department' => $validated['department'],
+            'vehicle_id' => (int) $validated['vehicle_id'],
+            'loan_date' => $validated['loan_date'],
+            'return_date' => $validated['return_date'],
+            'status' => $validated['status'],
+            'number_plate' => $validated['number_plate'],
+            'capacity' => $validated['capacity'],
+            'purpose' => $validated['purpose'],
+            'information' => $validated['information']
         ]);
 
         return redirect()->route('vehicleLoans.index')->with('success', 'Your submission to loan vehicle successfully sended, please wait to accept the submission');

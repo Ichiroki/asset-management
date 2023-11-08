@@ -42,7 +42,9 @@ Route::prefix('/')->middleware('auth')->group(function () {
         Route::group(['middleware' => ['role:approval_bod', 'permission:approve vehicle loans']],function() {
             Route::patch('vehicle/{vehicle}/approve', [ApproveController::class, 'approveVehicleLoan'])->name('vehicleLoans.approve');
             Route::patch('vehicle/{vehicle}/reject', [ApproveController::class, 'rejectVehicleLoan'])->name('vehicleLoans.reject');
+        });
 
+        Route::group(['middleware' => ['role:approval_it', 'permission:approve laptop loans']], function() {
             Route::patch('laptop/{laptop}/approve', [ApproveController::class, 'approveLaptopLoan'])->name('laptopLoans.approve');
             Route::patch('laptop/{laptop}/reject', [ApproveController::class, 'rejectLaptopLoan'])->name('laptopLoans.reject');
         });

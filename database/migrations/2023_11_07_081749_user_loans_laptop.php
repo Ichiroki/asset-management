@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('status');
             $table->string('purpose');
             $table->unsignedBigInteger('laptop_id');
-            $table->string('information');
+            $table->string('information')->nullable();
             $table->string('loan_status')->nullable()->default('Waiting Approval');
             $table->timestamps();
 

@@ -63,39 +63,60 @@ class LaptopController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(LaptopLoans $laptopLoans)
+    public function show(LaptopLoans $laptop)
     {
-        dd($laptopLoans);
-        return view('pages.loans.laptop.show', ['laptop' => $laptopLoans]);
+        return view('pages.loans.laptop.show', compact('laptop'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(LaptopLoans $laptopLoans)
+    public function edit(LaptopLoans $laptop)
     {
-        $laptopLoans->first();
-        dd($laptopLoans);
+        $laptops = Laptop::all();
         return view('pages.loans.laptop.edit', [
-            'laptop' => $laptopLoans
+            'laptop' => $laptop,
+            'laptops' => $laptops
         ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, LaptopLoans $laptopLoans)
+    public function update(Request $request, LaptopLoans $laptop)
     {
-        //
+        $user = Auth::user();
+
+        $validated = $request->validate([
+            'user_id' =>  [`required|integer|in:$user->id`],
+            'loan_date' => 'required|date',
+            'return_date' => 'required|date',
+            'status' => 'required|string',
+            'purpose' => 'nullable|string',
+            'laptop_id' => 'required|integer',
+            'information' => 'nullable|string',
+        ]);
+
+        $laptop->update([
+            'user_id' => $user->id,
+            'loan_date' => $validated['loan_date'],
+            'return_date' => $validated['return_date'],
+            'status' => $validated['status'],
+            'purpose' => $validated['purpose'],
+            'laptop_id' => $validated['laptop_id'],
+            'information' => $validated['information'],
+        ]);
+
+        return redirect()->route('laptopLoans.index')->with('success', 'Your submission to loan laptop successfully edited');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(LaptopLoans $laptopLoans)
+    public function destroy(LaptopLoans $laptop)
     {
-        $laptopLoans->delete();
+        $laptop->delete();
 
-        return redirect()->route('laptopLoans.index')->with('success', `you deleted the $laptopLoans->user->name\' ticket to loan laptop`);
+        return redirect()->route('laptopLoans.index')->with('success', `you deleted the $laptop->user->name\' ticket to loan laptop`);
     }
 }
