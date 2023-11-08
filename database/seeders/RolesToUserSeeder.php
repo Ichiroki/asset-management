@@ -17,7 +17,8 @@ class RolesToUserSeeder extends Seeder
         $gema = User::where('email', 'gema@astronacci.net')->first();
         $gema->assignRole('approval_bod');
 
-        $ezi = User::where('email', 'fahrezi@astronacci.net')->first();
+        $ezi = User::where('email', 'fahrezirizqiawan12649@gmail.com')->first();
+        $ezi->assignRole('approval_it');
         $ezi->assignRole('super_admin');
     }
 }

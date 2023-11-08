@@ -18,7 +18,8 @@ class LaptopLoans extends Model
         'status',
         'purpose',
         'laptop_id',
-        'information'
+        'information',
+        'loan_status'
     ];
 
     protected $dates = ['loan_date', 'return_date'];
@@ -31,6 +32,14 @@ class LaptopLoans extends Model
 
     public function laptop() {
         return $this->belongsTo(Laptop::class, 'laptop_id');
+    }
+
+    public function approve() {
+        $this->update(['loan_status' => 'Approved']);
+    }
+
+    public function reject() {
+        $this->update(['loan_status' => 'Rejected']);
     }
 
     use HasFactory;

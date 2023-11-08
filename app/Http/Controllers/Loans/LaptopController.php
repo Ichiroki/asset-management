@@ -57,7 +57,7 @@ class LaptopController extends Controller
             'information' => $validated['information'],
         ]);
 
-        return redirect()->route('vehicleLoans.index')->with('success', 'Your submission to loan vehicle successfully sended, please wait to accept the submission');
+        return redirect()->route('laptopLoans.index')->with('success', 'Your submission to loan vehicle successfully sended, please wait to accept the submission');
     }
 
     /**
@@ -65,7 +65,8 @@ class LaptopController extends Controller
      */
     public function show(LaptopLoans $laptopLoans)
     {
-        //
+        dd($laptopLoans);
+        return view('pages.loans.laptop.show', ['laptop' => $laptopLoans]);
     }
 
     /**
@@ -73,7 +74,11 @@ class LaptopController extends Controller
      */
     public function edit(LaptopLoans $laptopLoans)
     {
-        //
+        $laptopLoans->first();
+        dd($laptopLoans);
+        return view('pages.loans.laptop.edit', [
+            'laptop' => $laptopLoans
+        ]);
     }
 
     /**

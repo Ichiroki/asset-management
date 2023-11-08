@@ -25,8 +25,7 @@ class StoreUserRequest extends FormRequest
             "name" => "required|max:255|min:8",
             "department" => "required",
             "position" => "required",
-            "role-asset" => "required",
-            "role-meeting" => "required"
+            "phone_number" => "required|string|number|regex:/^[0-9]{10}$/"
         ];
     }
 }

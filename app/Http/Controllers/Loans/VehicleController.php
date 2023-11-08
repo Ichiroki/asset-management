@@ -3,13 +3,16 @@
 namespace App\Http\Controllers\Loans;
 
 use App\Http\Controllers\Controller;
+use App\Mail\Loans\VehicleLoansMail;
 use App\Models\Loans\VehicleLoans;
 use App\Models\Office\Vehicle;
 use App\Notifications\VehicleLoanNotification;
 use Illuminate\Http\Request;
-use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Validation\Rule;
+use App\Models\User;
 
 class VehicleController extends Controller
 {
@@ -64,6 +67,8 @@ class VehicleController extends Controller
             'information' => 'nullable|string',
         ]);
 
+        Mail::to($user->email)->send(new VehicleLoansMail());
+
         VehicleLoans::create([
             'user_id' => $user->id,
             'department' => $validate['department'],
@@ -77,7 +82,6 @@ class VehicleController extends Controller
             'information' => $validate['information']
         ]);
 
-
         return redirect()->route('vehicleLoans.index')->with('success', 'Your submission to loan vehicle successfully sended, please wait to accept the submission');
 
     }
@@ -87,6 +91,7 @@ class VehicleController extends Controller
      */
     public function show(VehicleLoans $vehicle)
     {
+        dd($vehicle);
         return view('pages.loans.vehicle.show', compact('vehicle'));
     }
 

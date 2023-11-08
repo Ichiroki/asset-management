@@ -42,6 +42,9 @@ Route::prefix('/')->middleware('auth')->group(function () {
         Route::group(['middleware' => ['role:approval_bod', 'permission:approve vehicle loans']],function() {
             Route::patch('vehicle/{vehicle}/approve', [ApproveController::class, 'approveVehicleLoan'])->name('vehicleLoans.approve');
             Route::patch('vehicle/{vehicle}/reject', [ApproveController::class, 'rejectVehicleLoan'])->name('vehicleLoans.reject');
+
+            Route::patch('laptop/{laptop}/approve', [ApproveController::class, 'approveLaptopLoan'])->name('laptopLoans.approve');
+            Route::patch('laptop/{laptop}/reject', [ApproveController::class, 'rejectLaptopLoan'])->name('laptopLoans.reject');
         });
 
         Route::resource('laptop', LoansLaptopController::class)->names('laptopLoans');

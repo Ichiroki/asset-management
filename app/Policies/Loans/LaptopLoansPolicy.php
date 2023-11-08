@@ -2,17 +2,17 @@
 
 namespace App\Policies\Loans;
 
-use App\Models\Loans\VehicleLoans;
+use App\Models\Loans\LaptopLoans;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
-class VehicleLoansPolicy
+class LaptopLoansPolicy
 {
     /**
      * Determine whether the user can view any models.
      */
-    public function approveVehicleLoan(User $user) {
-        if($user->hasRole('approval_bod') || $user->hasRole('super_admin')) {
+    public function approveLaptopLoans(User $user) {
+        if($user->hasRole('approval_it') || $user->hasRole('super_admin')) {
             return true;
         }
     }

@@ -90,7 +90,7 @@
                     <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</p>
                 @enderror
             </div>
-            <input type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" value="Submit">
+            <input type="submit" id="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 cursor-pointer" value="Submit">
         </form>
     </x-slot>
 </x-card>
@@ -108,6 +108,7 @@
     const vgaText = document.getElementById('vga')
     const monitorText = document.getElementById('monitor')
     const statusText = document.getElementById('status')
+    const submit = document.getElementById('submit')
 
     laptopDropdown.addEventListener('change', async function() {
         let selectedlaptop = this.value
@@ -125,6 +126,12 @@
             .then(response => response.json())
             .then(data => {
                 const laptop = data.laptop
+                if(laptop.status === "On Loan") {
+                    submit.setAttribute("disabled", true)
+                } else {
+                    submit.removeAttribute("disabled")
+                }
+
                 if(laptop.available) {
                     processorText.value = laptop.processor || ''
                     ramText.value = laptop.ram || ''

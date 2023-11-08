@@ -16,7 +16,8 @@ class UserSeeder extends Seeder
         User::create([
             'name' => "Fahrezi Rizqiawan",
             'department_id' => 12,
-            'email' => "fahrezi@astronacci.net",
+            'email' => "fahrezirizqiawan12649@gmail.com",
+            'phone_number' => '089662690020',
             'password' => Hash::make('password'),
         ]);
 
@@ -24,6 +25,7 @@ class UserSeeder extends Seeder
             'name' => "Gema Merdeka Goeyardi",
             'department_id' => 1,
             'email' => "gema@astronacci.net",
+            'phone_number' => '089662690020',
             'password' => Hash::make('password'),
         ]);
 
@@ -31,6 +33,7 @@ class UserSeeder extends Seeder
             'name' => "Dedi Setiadi",
             'department_id' => 2,
             'email' => "dedi@astronacci.net",
+            'phone_number' => '089662690020',
             'password' => Hash::make('password'),
         ]);
 
@@ -38,6 +41,7 @@ class UserSeeder extends Seeder
             'name' => "Desta Arifta",
             'department_id' => 10,
             'email' => "desta@astronacci.net",
+            'phone_number' => '089662690020',
             'password' => Hash::make('password'),
         ]);
     }

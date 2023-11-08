@@ -28,8 +28,7 @@ class User extends Authenticatable
         'email',
         'department',
         'position',
-        'role-asset',
-        'role-meeting',
+        'phone_number',
         'password',
     ];
 

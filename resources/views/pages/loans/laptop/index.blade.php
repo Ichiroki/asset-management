@@ -2,11 +2,11 @@
 
 @section('main')
 
-<h1 class="pb-2 mb-6 text-3xl border-b-4 border-slate-800 w-fit dark:text-slate-200 dark:border-slate-200">Laptop</h1>
+<h1 class="pb-2 mb-6 text-3xl border-b-4 border-slate-800 w-fit dark:text-slate-200 dark:border-slate-200">Peminjaman Laptop</h1>
         <div class="flex flex-col justify-between">
             <div class="flex justify-between">
                 <a href="{{ route('laptopLoans.create') }}" class="text-green-700 transition hover:text-white border border-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:border-green-500 dark:text-green-500 dark:hover:text-white dark:hover:bg-green-600 dark:focus:ring-green-800" type="button">
-                    Create Ticket For Loan
+                    Buat Tiket Peminjaman
                 </a>
 
                 <x-input type="text" name="search" id="search" placeholder="search here" class="w-3/5 lg:w-4/12"/>
@@ -34,6 +34,9 @@
             <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                 <thead class="text-xs text-center text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
+                        {{-- <th scope="col" class="py-3">
+
+                        </th> --}}
                         <th scope="col" class="py-3">
                             No
                         </th>
@@ -76,6 +79,19 @@
                     @if($laptop->loan_status === "Approved") shadow-green-500/50 @endif
                     @if($laptop->loan_status === "Rejected") shadow-rose-500/50 @endif
                     dark:bg-gray-900 dark:border-gray-700">
+                        {{-- <td class="py-4">
+                            <div class="accordion">
+                                <input type="checkbox" id="accordion-{{ $laptop->id }}" class="accordion-checkbox">
+                                <label for="accordion-{{ $laptop->id }}" class="accordion-label">
+                                    <div class="accordion-header">
+                                        <!-- Tampilkan judul accordion di sini -->
+                                    </div>
+                                </label>
+                                <div class="accordion-content">
+                                    <!-- Tampilkan konten accordion di sini -->
+                                </div>
+                            </div>
+                        </td> --}}
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             {{ $i = $i + 1 }}
                         </th>
@@ -104,14 +120,14 @@
                             {{ $laptop->loan_status }}
                         </td>
                         <td class="py-4">
-                            <div class="flex items-center">
+                            <div class="flex items-center justify-center">
                                 <a href="{{ route('laptopLoans.show', ['laptop' => $laptop->id]) }}" class="px-3 py-2 mb-2 mr-2 text-sm font-medium text-center text-green-700 transition border border-green-700 rounded-lg hover:text-white hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:border-green-500 dark:text-green-500 dark:hover:text-white dark:hover:bg-green-600 dark:focus:ring-green-800">
                                     Read
                                 </a>
-                                <a href="{{ route('laptopLoans.edit', ['laptop' => $laptop->id]) }}" class="@if(Auth::user()->hasRole('approval_bod')) hidden @endif px-3 py-2 mb-2 mr-2 text-sm font-medium text-center text-blue-700 transition border border-blue-700 rounded-lg hover:text-white hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-600 dark:focus:ring-blue-800">
+                                <a href="{{ route('laptopLoans.edit', ['laptop' => $laptop->id]) }}" class="px-3 py-2 mb-2 mr-2 text-sm font-medium text-center text-blue-700 transition border border-blue-700 rounded-lg hover:text-white hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-600 dark:focus:ring-blue-800">
                                     Edit
                                 </a>
-                                {{-- @can('approve laptop loans')
+                                @can('approve laptop loans')
                                     <form action="{{ route('laptopLoans.approve', ['laptop' => $laptop->id]) }}" method="POST">
                                         @csrf
                                         @method('PATCH')
@@ -122,7 +138,7 @@
                                         @method('PATCH')
                                         <button type="submit" class="px-3 py-2 mb-2 mr-2 text-sm font-medium text-center transition border rounded-lg text-rose-700 border-rose-700 hover:text-white hover:bg-rose-800 focus:ring-4 focus:outline-none focus:ring-rose-300 dark:border-rose-500 dark:text-rose-500 dark:hover:text-white dark:hover:bg-rose-600 dark:focus:ring-rose-800">Reject</button>
                                     </form>
-                                @endcan --}}
+                                @endcan
                                     <button data-modal-target="popup-modal-{{ $laptop->id }}" data-modal-toggle="popup-modal-{{ $laptop->id }}" class="
                                         @if(Auth::user()->hasRole('approval_bod')) hidden @endif
                                         px-3 py-2 mb-2 mr-2 text-sm font-medium text-center transition border rounded-lg text-rose-700 hover:text-white border-rose-700 hover:bg-rose-800 focus:ring-4 focus:outline-none focus:ring-rose-300 dark:border-rose-500 dark:text-rose-500 dark:hover:text-white dark:hover:bg-rose-600 dark:focus:ring-rose-800" type="button">

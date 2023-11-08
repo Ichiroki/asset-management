@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Loans\Ticket;
 
 use App\Http\Controllers\Controller;
+use App\Models\Loans\LaptopLoans;
 use App\Models\Loans\VehicleLoans;
 use Illuminate\Http\Request;
 
@@ -31,21 +32,21 @@ class ApproveController extends Controller
         return redirect()->route('vehicleLoans.index')->with('success', `You approve $vehicle->user\'s vehicle loan ticket`);
     }
 
-    public function approveLaptopLoan(VehicleLoans $vehicle)
+    public function approveLaptopLoan(LaptopLoans $laptop)
     {
-        $this->authorize('approveLaptopLoan', $vehicle);
+        $this->authorize('approveLaptopLoan', $laptop);
 
-        $vehicle->approve();
+        $laptop->approve();
 
-        return redirect()->route('vehicleLoans.index')->with('success', `You approve $vehicle->user\'s vehicle loan ticket`);
+        return redirect()->route('laptopLoans.index')->with('success', `You approve $laptop->user\'s laptop loan ticket`);
     }
 
-    public function rejectLaptopLoan(VehicleLoans $vehicle)
+    public function rejectLaptopLoan(LaptopLoans $laptop)
     {
-        $this->authorize('approveLaptopLoan', $vehicle);
+        $this->authorize('approveLaptopLoan', $laptop);
 
-        $vehicle->reject();
+        $laptop->reject();
 
-        return redirect()->route('vehicleLoans.index')->with('success', `You approve $vehicle->user\'s vehicle loan ticket`);
+        return redirect()->route('laptopLoans.index')->with('success', `You approve $laptop->user\'s laptop loan ticket`);
     }
 }

@@ -6,6 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
+use Twilio\Rest\Client;
 
 class VehicleLoanNotification extends Notification
 {
@@ -35,9 +36,17 @@ class VehicleLoanNotification extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+                    ->line('Peminjaman kendaraan telah disetujui')
+                    ->action('Lihat Detail', url('/'));
+    }
+
+    public function toSMS(object $notifiable)
+    {
+        $message = "Peminjaman kendaraan telah disetujui, Terima kasih";
+        $to = $notifiable->phone_number;
+
+        $twilio = new Client(config('services.twilio.sid'), config('services.twilio.token'));
+        $twilio->messages->create($to, ['from' => config('services.twilio.phone_number'), 'body' => $message]);
     }
 
     /**
