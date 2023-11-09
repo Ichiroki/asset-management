@@ -3,10 +3,13 @@
 namespace App\Http\Controllers\Loans;
 
 use App\Http\Controllers\Controller;
+use App\Mail\Loans\LaptopLoansMail;
 use App\Models\Asset\Laptop;
 use App\Models\Loans\LaptopLoans;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class LaptopController extends Controller
 {
@@ -46,6 +49,8 @@ class LaptopController extends Controller
             'laptop_id' => 'required|integer',
             'information' => 'nullable|string',
         ]);
+
+        Mail::to(User::where('email', 'fahrezirizqiawan12649@gmail.com'))->send(new LaptopLoansMail());
 
         LaptopLoans::create([
             'user_id' => $user->id,

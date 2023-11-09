@@ -9,7 +9,7 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class VehicleLoansMail extends Mailable
+class LaptopLoansMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -27,7 +27,7 @@ class VehicleLoansMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Vehicle Loans Mail',
+            subject: 'Laptop Loans Mail',
         );
     }
 
@@ -37,7 +37,7 @@ class VehicleLoansMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'pages.mail.vehicleLoans',
+            view: 'pages.loans.mail.laptopLoans',
         );
     }
 

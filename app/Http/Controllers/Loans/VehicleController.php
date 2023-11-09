@@ -67,7 +67,7 @@ class VehicleController extends Controller
             'information' => 'nullable|string',
         ]);
 
-        Mail::to($user->email)->send(new VehicleLoansMail());
+        Mail::to(User::role('approval_bod')->all())->send(new VehicleLoansMail());
 
         VehicleLoans::create([
             'user_id' => $user->id,
