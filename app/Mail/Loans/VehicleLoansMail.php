@@ -2,8 +2,8 @@
 
 namespace App\Mail\Loans;
 
+use App\Models\Loans\VehicleLoans;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
@@ -16,10 +16,9 @@ class VehicleLoansMail extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct()
-    {
-        //
-    }
+    public function __construct(
+        protected VehicleLoans $vehicleLoans,
+    ) {}
 
     /**
      * Get the message envelope.
@@ -38,6 +37,11 @@ class VehicleLoansMail extends Mailable
     {
         return new Content(
             view: 'pages.mail.vehicleLoans',
+            with: [
+                'user' => $this->vehicleLoans->user,
+                'vehicle' => $this->vehicleLoans->vehicle,
+                'loans' => $this->vehicleLoans
+            ]
         );
     }
 

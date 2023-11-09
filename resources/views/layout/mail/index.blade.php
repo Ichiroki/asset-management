@@ -7,10 +7,16 @@
     <title>Document</title>
 </head>
 <body>
+    <div style="border:">
+        <h1 style="text-align: center; font-size: 2rem;">You have new notification</h1>
+    </div>
 
-    <h1 class="">You have new notification</h1>
-    <div class="container dark:bg-slate-800 bg-slate-200">
+    <div style="padding: 1.5rem;">
         @yield('mail.content')
+    </div>
+
+    <div style="background: #d1d5db;">
+        @yield('mail.footer')
     </div>
 </body>
 </html>

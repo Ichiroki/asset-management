@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Validation\Rule;
 use App\Models\User;
+use App\Notifications\Loans\VehicleLoansNotification;
 
 class VehicleController extends Controller
 {
@@ -67,9 +68,7 @@ class VehicleController extends Controller
             'information' => 'nullable|string',
         ]);
 
-        Mail::to($user->email)->send(new VehicleLoansMail());
-
-        VehicleLoans::create([
+        $create = VehicleLoans::create([
             'user_id' => $user->id,
             'department' => $validated['department'],
             'vehicle_id' => (int) $validated['vehicle_id'],
@@ -82,8 +81,11 @@ class VehicleController extends Controller
             'information' => $validated['information']
         ]);
 
-        return redirect()->route('vehicleLoans.index')->with('success', 'Your submission to loan vehicle successfully sended, please wait to accept the submission');
+        // Mail::to($user->email)->send(new VehicleLoansMail($create));
+        $user->notify(new VehicleLoansNotification($create));
 
+        // return redirect()->route('vehicleLoans.index')->with('success', 'Your submission to loan vehicle successfully sended, please wait to accept the submission');
+        return redirect()->route('vehicleLoans.create');
     }
 
     /**
