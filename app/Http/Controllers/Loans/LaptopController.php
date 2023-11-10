@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Loans;
 use App\Http\Controllers\Controller;
 use App\Models\Asset\Laptop;
 use App\Models\Loans\LaptopLoans;
+use App\Notifications\Loans\LaptopLoansNotification;
 use Illuminate\Http\Request;
+use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\Auth;
 
 class LaptopController extends Controller
@@ -16,7 +18,10 @@ class LaptopController extends Controller
     public function index()
     {
         $laptops = LaptopLoans::all();
-        return view("pages.loans.laptop.index", compact("laptops"));
+        return view("pages.loans.laptop.index", [
+            'laptops' => $laptops,
+            'title' => "Laptop Loans"
+        ]);
     }
 
     /**
@@ -25,7 +30,10 @@ class LaptopController extends Controller
     public function create()
     {
         $laptop = Laptop::all();
-        return view("pages.loans.laptop.create", compact("laptop"));
+        return view("pages.loans.laptop.create", [
+            'laptop' => $laptop,
+            'title' => "Create Ticket Loan"
+        ]);
     }
 
     /**
@@ -34,30 +42,34 @@ class LaptopController extends Controller
     public function store(Request $request)
     {
         $user = Auth::user();
+        try {
+            $validated = $request->validate([
+                'user_id' =>  [
+                    `required|integer|in:$user->id`
+                ],
+                'loan_date' => 'required|date',
+                'return_date' => 'required|date',
+                'status' => 'required|string',
+                'purpose' => 'required|string',
+                'laptop_id' => 'required|integer',
+                'information' => 'nullable|string',
+            ]);
 
-        $validated = $request->validate([
-            'user_id' =>  [
-                `required|integer|in:$user->id`
-            ],
-            'loan_date' => 'required|date',
-            'return_date' => 'required|date',
-            'status' => 'required|string',
-            'purpose' => 'required|string',
-            'laptop_id' => 'required|integer',
-            'information' => 'nullable|string',
-        ]);
+            $create = LaptopLoans::create([
+                'user_id' => $user->id,
+                'loan_date' => $validated['loan_date'],
+                'return_date' => $validated['return_date'],
+                'status' => $validated['status'],
+                'purpose' => $validated['purpose'],
+                'laptop_id' => $validated['laptop_id'],
+                'information' => $validated['information'],
+            ]);
+            Notification::send(env('MAIL_USERNAME'), new LaptopLoansNotification($create));
 
-        LaptopLoans::create([
-            'user_id' => $user->id,
-            'loan_date' => $validated['loan_date'],
-            'return_date' => $validated['return_date'],
-            'status' => $validated['status'],
-            'purpose' => $validated['purpose'],
-            'laptop_id' => $validated['laptop_id'],
-            'information' => $validated['information'],
-        ]);
-
-        return redirect()->route('laptopLoans.index')->with('success', 'Your submission to loan vehicle successfully sended, please wait to accept the submission');
+            return redirect()->route('laptopLoans.index')->with('success', 'Your submission to loan vehicle successfully sended, please wait to accept the submission');
+        } catch(\Exception $e) {
+            dd($e);
+        }
     }
 
     /**
@@ -65,7 +77,10 @@ class LaptopController extends Controller
      */
     public function show(LaptopLoans $laptop)
     {
-        return view('pages.loans.laptop.show', compact('laptop'));
+        return view('pages.loans.laptop.show', [
+            'laptop' => $laptop,
+            'title' => "Show Ticket"
+        ]);
     }
 
     /**
@@ -76,7 +91,8 @@ class LaptopController extends Controller
         $laptops = Laptop::all();
         return view('pages.loans.laptop.edit', [
             'laptop' => $laptop,
-            'laptops' => $laptops
+            'laptops' => $laptops,
+            'title' => "Edit Ticket"
         ]);
     }
 

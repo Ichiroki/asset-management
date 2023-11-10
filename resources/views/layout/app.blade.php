@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-        <title>Assets</title>
+        <title>Assets | {{ $title }}</title>
         @vite(['resources/css/app.css','resources/js/app.js', 'resources/js/head.js'])
         @yield('script.head')
     </head>

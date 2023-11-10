@@ -7,16 +7,18 @@
     <title>Document</title>
 </head>
 <body>
-    <div style="border:">
-        <h1 style="text-align: center; font-size: 2rem;">You have new notification</h1>
-    </div>
+    <div style="margin: auto;">
+        <div>
+            <h1 style="text-align: center; font-size: 2rem; color: #0f172a;">You have new notification</h1>
+        </div>
 
-    <div style="padding: 1.5rem;">
-        @yield('mail.content')
-    </div>
+        <div style="padding: 1.5rem;">
+            @yield('mail.content')
+        </div>
 
-    <div style="background: #d1d5db;">
-        @yield('mail.footer')
+        <div style="background-image: linear-gradient(135deg, #0f172a, #334155); margin-top: .85rem;">
+            @yield('mail.footer')
+        </div>
     </div>
 </body>
 </html>

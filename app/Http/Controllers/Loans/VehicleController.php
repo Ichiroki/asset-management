@@ -25,6 +25,7 @@ class VehicleController extends Controller
         $vehicles = VehicleLoans::paginate(5);
         return view('pages.loans.vehicle.index', [
             'vehicles' => $vehicles,
+            'title' => "Vehicle Loans"
         ]);
     }
 
@@ -39,7 +40,8 @@ class VehicleController extends Controller
         return view('pages.loans.vehicle.create', [
             'user' => $user,
             'department' => $department,
-            'vehicle' => $vehicle
+            'vehicle' => $vehicle,
+            'title' => "Create Ticket Loan"
         ]);
     }
 
@@ -81,10 +83,8 @@ class VehicleController extends Controller
             'information' => $validated['information']
         ]);
 
-        // Mail::to($user->email)->send(new VehicleLoansMail($create));
         $user->notify(new VehicleLoansNotification($create));
 
-        // return redirect()->route('vehicleLoans.index')->with('success', 'Your submission to loan vehicle successfully sended, please wait to accept the submission');
         return redirect()->route('vehicleLoans.create');
     }
 
@@ -93,8 +93,11 @@ class VehicleController extends Controller
      */
     public function show(VehicleLoans $vehicle)
     {
-        dd($vehicle);
-        return view('pages.loans.vehicle.show', compact('vehicle'));
+        return view('pages.loans.vehicle.show', [
+            'vehicle' => $vehicle,
+            'title' => "Show Ticket"
+        ]);
+
     }
 
     /**
@@ -108,7 +111,8 @@ class VehicleController extends Controller
         return view('pages.loans.vehicle.edit', [
             'vehicle' => $vehicle,
             'vehicles' => $vehicles,
-            'approve' => $approve
+            'approve' => $approve,
+            'title' => "Edit Ticket"
         ]);
     }
 
