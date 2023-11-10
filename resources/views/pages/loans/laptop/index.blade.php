@@ -79,19 +79,6 @@
                     @if($laptop->loan_status === "Approved") shadow-green-500/50 @endif
                     @if($laptop->loan_status === "Rejected") shadow-rose-500/50 @endif
                     dark:bg-gray-900 dark:border-gray-700">
-                        {{-- <td class="py-4">
-                            <div class="accordion">
-                                <input type="checkbox" id="accordion-{{ $laptop->id }}" class="accordion-checkbox">
-                                <label for="accordion-{{ $laptop->id }}" class="accordion-label">
-                                    <div class="accordion-header">
-                                        <!-- Tampilkan judul accordion di sini -->
-                                    </div>
-                                </label>
-                                <div class="accordion-content">
-                                    <!-- Tampilkan konten accordion di sini -->
-                                </div>
-                            </div>
-                        </td> --}}
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             {{ $i = $i + 1 }}
                         </th>
@@ -127,41 +114,29 @@
                                 <a href="{{ route('laptopLoans.edit', ['laptop' => $laptop->id]) }}" class="px-3 py-2 mb-2 mr-2 text-sm font-medium text-center text-blue-700 transition border border-blue-700 rounded-lg hover:text-white hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-600 dark:focus:ring-blue-800">
                                     Edit
                                 </a>
-                                @can('approve laptop loans')
-                                    <form action="{{ route('laptopLoans.approve', ['laptop' => $laptop->id]) }}" method="POST">
+                                <button data-modal-target="popup-modal-{{ $laptop->id }}" data-modal-toggle="popup-modal-{{ $laptop->id }}" class="
+                                    @if(Auth::user()->hasRole('approval_bod')) hidden @endif
+                                    px-3 py-2 mb-2 mr-2 text-sm font-medium text-center transition border rounded-lg text-rose-700 hover:text-white border-rose-700 hover:bg-rose-800 focus:ring-4 focus:outline-none focus:ring-rose-300 dark:border-rose-500 dark:text-rose-500 dark:hover:text-white dark:hover:bg-rose-600 dark:focus:ring-rose-800" type="button">
+                                    Delete
+                                </button>
+                                <x-modal-box value="{{ $laptop->id }}">
+                                    <x-slot name="logo">
+                                        <svg class="w-12 h-12 mx-auto mb-4 text-gray-400 dark:text-gray-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+                                        </svg>
+                                    </x-slot>
+                                    <x-slot name="title">
+                                        <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Are you sure you want to delete this ticket ?</h3>
+                                    </x-slot>
+                                    <form action="{{ route('laptopLoans.destroy', ['laptop' => $laptop->id]) }}" class="inline" method="POST">
                                         @csrf
-                                        @method('PATCH')
-                                        <button type="submit" class="px-3 py-2 mb-2 mr-2 text-sm font-medium text-center transition border rounded-lg text-amber-700 border-amber-700 hover:text-white hover:bg-amber-800 focus:ring-4 focus:outline-none focus:ring-amber-300 dark:border-amber-500 dark:text-amber-500 dark:hover:text-white dark:hover:bg-amber-600 dark:focus:ring-amber-800">Approve</button>
+                                        @method('DELETE')
+                                        <button type="submit" class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2">
+                                            Yes, I'm sure
+                                        </button>
+                                        <button data-modal-hide="popup-modal-{{ $laptop->id }}" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">No, cancel</button>
                                     </form>
-                                    <form action="{{ route('laptopLoans.reject', ['laptop' => $laptop->id]) }}" method="POST">
-                                        @csrf
-                                        @method('PATCH')
-                                        <button type="submit" class="px-3 py-2 mb-2 mr-2 text-sm font-medium text-center transition border rounded-lg text-rose-700 border-rose-700 hover:text-white hover:bg-rose-800 focus:ring-4 focus:outline-none focus:ring-rose-300 dark:border-rose-500 dark:text-rose-500 dark:hover:text-white dark:hover:bg-rose-600 dark:focus:ring-rose-800">Reject</button>
-                                    </form>
-                                @endcan
-                                    <button data-modal-target="popup-modal-{{ $laptop->id }}" data-modal-toggle="popup-modal-{{ $laptop->id }}" class="
-                                        @if(Auth::user()->hasRole('approval_bod')) hidden @endif
-                                        px-3 py-2 mb-2 mr-2 text-sm font-medium text-center transition border rounded-lg text-rose-700 hover:text-white border-rose-700 hover:bg-rose-800 focus:ring-4 focus:outline-none focus:ring-rose-300 dark:border-rose-500 dark:text-rose-500 dark:hover:text-white dark:hover:bg-rose-600 dark:focus:ring-rose-800" type="button">
-                                        Delete
-                                    </button>
-                                    <x-modal-box value="{{ $laptop->id }}">
-                                        <x-slot name="logo">
-                                            <svg class="w-12 h-12 mx-auto mb-4 text-gray-400 dark:text-gray-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
-                                            </svg>
-                                        </x-slot>
-                                        <x-slot name="title">
-                                            <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Are you sure you want to delete this ticket ?</h3>
-                                        </x-slot>
-                                        <form action="{{ route('laptopLoans.destroy', ['laptop' => $laptop->id]) }}" class="inline" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2">
-                                                Yes, I'm sure
-                                            </button>
-                                            <button data-modal-hide="popup-modal-{{ $laptop->id }}" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">No, cancel</button>
-                                        </form>
-                                    </x-modal-box>
+                                </x-modal-box>
                             </div>
                         </td>
                     </tr>

@@ -17,7 +17,16 @@
         </div>
 
         <div style="background-image: linear-gradient(135deg, #0f172a, #334155); margin-top: .85rem;">
-            @yield('mail.footer')
+            <div style="padding: .5rem;">
+                <p style="text-align: center; color: #e2e8f0;">Asset Management <sup>&copy;</sup> 2023 | All Right Reserved</p>
+                <br>
+                <p style="text-align: center;">
+                    <a href="{{ route('dashboard') }}" style="color: #e2e8f0;">View Website </a>|
+                    <a href="{{ route('dashboard') }}" style="color: #e2e8f0;"> Privacy Policy</a>
+                </p>
+                <br>
+                <p style="text-align: center; color: #e2e8f0;">If you have any questions please contact us <a href="#" style="color: #e2e8f0;">support@gmail.com</a></p>
+            </div>
         </div>
     </div>
 </body>

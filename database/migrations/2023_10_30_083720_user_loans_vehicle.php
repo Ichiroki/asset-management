@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('user_loans_vehicle', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->string('department');
+            $table->unsignedBigInteger('department_id');
             $table->unsignedBigInteger('vehicle_id');
             $table->date('loan_date');
             $table->date('return_date');
@@ -28,6 +28,7 @@ return new class extends Migration
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('department_id')->references('id')->on('departments')->onDelete('cascade');
             $table->foreign('vehicle_id')->references('id')->on('vehicles')->onDelete('cascade');
         });
     }

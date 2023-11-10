@@ -29,6 +29,7 @@
             </tbody>
         </table>
         <br>
+        <h2 style="font-size: 1.5rem; margin-bottom: 1rem; text-align: center;">Vehicle Details</h2>
         <table style="width: 100%;">
             <tbody>
                 <tr>
@@ -54,6 +55,7 @@
             </tbody>
         </table>
         <br>
+        <h2 style="font-size: 1.5rem; margin-bottom: 1rem; text-align: center;">Loan Details</h2>
         <table style="width: 100%;">
             <tbody>
                 <tr>
@@ -79,18 +81,5 @@
             </tbody>
         </table>
         <a href={{ route('vehicleLoans.show', ['vehicle' => $loans->id]) }} style="margin-top: .3rem; color: #e2e8f0; background-image: linear-gradient(135deg, #0f172a, #334155); text-align: center; display: block; padding: 1rem; border-radius: 2.5rem; text-decoration: none;">See Details</a>
-    </div>
-@endsection
-
-@section('mail.footer')
-    <div style="padding: .5rem;">
-        <p style="text-align: center; color: #e2e8f0;">Asset Management <sup>&copy;</sup> 2023 | All Right Reserved</p>
-        <br>
-        <p style="text-align: center;">
-            <a href="{{ route('dashboard') }}" style="color: #e2e8f0;">View Website </a>|
-            <a href="{{ route('dashboard') }}" style="color: #e2e8f0;"> Privacy Policy</a>
-        </p>
-        <br>
-        <p style="text-align: center; color: #e2e8f0;">If you have any questions please contact us <a href="#" style="color: #e2e8f0;">support@gmail.com</a></p>
     </div>
 @endsection

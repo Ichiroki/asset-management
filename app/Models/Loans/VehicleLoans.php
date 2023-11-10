@@ -3,6 +3,7 @@
 namespace App\Models\Loans;
 
 use App\Models\Asset\Vehicle;
+use App\Models\Office\Department;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -31,6 +32,10 @@ class VehicleLoans extends Model
 
     public function user() {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function department() {
+        return $this->belongsTo(Department::class, 'department_id');
     }
 
     public function vehicle() {

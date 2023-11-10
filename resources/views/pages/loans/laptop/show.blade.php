@@ -15,7 +15,7 @@
             <div id="accordion-arrow-icon-body-1" aria-labelledby="accordion-arrow-icon-heading-1">
                 <div class="p-5 border border-slate-200 dark:border-slate-700 dark:bg-slate-900">
                     <ul>
-                        <li class="mb-6">
+                        <li>
                             <div id="accordion-nested-collapse" data-accordion="collapse">
                                 <h2 id="accordion-nested-collapse-heading-1">
                                   <button type="button" class="flex items-center justify-between w-full p-5 font-medium text-left text-slate-500 border-slate-200 focus:ring-4 focus:ring-slate-200 dark:focus:ring-slate-800 dark:border-slate-700 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800" data-accordion-target="#accordion-nested-collapse-body-1" aria-expanded="false" aria-controls="accordion-nested-collapse-body-1">
@@ -36,16 +36,7 @@
                                 </div>
                             </div>
                         </li>
-                        <li class="mb-6 px-5">
-                            Tanggal Meminjam : {{ $laptop->loan_date }}
-                        </li>
-                        <li class="mb-6 px-5">
-                            Tanggal Pengembalian : {{ $laptop->return_date }}
-                        </li>
-                        <li class="mb-6 px-5">
-                            Status : {{ $laptop->status }}
-                        </li>
-                        <li class="mb-6">
+                        <li class="mb-3">
                             <div id="accordion-nested-collapse" data-accordion="collapse">
                                 <h2 id="accordion-nested-collapse-heading-1">
                                   <button type="button" class="flex items-center justify-between w-full p-5 font-medium text-left text-slate-500 border-slate-200 focus:ring-4 focus:ring-slate-200 dark:focus:ring-slate-800 dark:border-slate-700 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800" data-accordion-target="#accordion-nested-collapse-laptop" aria-expanded="false" aria-controls="accordion-nested-collapse-body-1">
@@ -69,9 +60,32 @@
                                 </div>
                             </div>
                         </li>
+                        <li class="mb-6 px-5">
+                            Tanggal Meminjam : {{ $laptop->loan_date }}
+                        </li>
+                        <li class="mb-6 px-5">
+                            Tanggal Pengembalian : {{ $laptop->return_date }}
+                        </li>
+                        <li class="mb-6 px-5">
+                            Status : {{ $laptop->status }}
+                        </li>
                         <li class="mb-6 px-5">Information : {{ $laptop->information }}</li>
                         <li class="mb-6 px-5">Loan Status : {{ $laptop->loan_status }}</li>
                     </ul>
+                </div>
+                <div class="mt-6 flex">
+                    @can('approve laptop loans')
+                        <form action="{{ route('laptopLoans.approve', ['laptop' => $laptop->id]) }}" method="POST">
+                            @csrf
+                            @method('PATCH')
+                            <button type="submit" class="px-3 py-2 mb-2 mr-2 text-sm font-medium text-center transition border rounded-lg text-amber-700 border-amber-700 hover:text-white hover:bg-amber-800 focus:ring-4 focus:outline-none focus:ring-amber-300 dark:border-amber-500 dark:text-amber-500 dark:hover:text-white dark:hover:bg-amber-600 dark:focus:ring-amber-800">Approve</button>
+                        </form>
+                        <form action="{{ route('laptopLoans.reject', ['laptop' => $laptop->id]) }}" method="POST">
+                            @csrf
+                            @method('PATCH')
+                            <button type="submit" class="px-3 py-2 mb-2 mr-2 text-sm font-medium text-center transition border rounded-lg text-rose-700 border-rose-700 hover:text-white hover:bg-rose-800 focus:ring-4 focus:outline-none focus:ring-rose-300 dark:border-rose-500 dark:text-rose-500 dark:hover:text-white dark:hover:bg-rose-600 dark:focus:ring-rose-800">Reject</button>
+                        </form>
+                    @endcan
                 </div>
             </div>
         </div>

@@ -20,7 +20,20 @@
             @else
                 {{ $vehicle->loan_status }}</p>
             @endif
-        <p class="font-normal text-gray-700 dark:text-gray-400">Notes : {{ $vehicle->notes }}</p>
+        @can('approve vehicle loans')
+        <div class="flex mt-3">
+            <form action="{{ route('vehicleLoans.approve', ['vehicle' => $vehicle->id]) }}" method="POST">
+                @csrf
+                @method('PATCH')
+                <button type="submit" class="px-3 py-2 mb-2 mr-2 text-sm font-medium text-center transition border rounded-lg text-amber-700 border-amber-700 hover:text-white hover:bg-amber-800 focus:ring-4 focus:outline-none focus:ring-amber-300 dark:border-amber-500 dark:text-amber-500 dark:hover:text-white dark:hover:bg-amber-600 dark:focus:ring-amber-800">Approve</button>
+            </form>
+            <form action="{{ route('vehicleLoans.reject', ['vehicle' => $vehicle->id]) }}" method="POST">
+                @csrf
+                @method('PATCH')
+                <button type="submit" class="px-3 py-2 mb-2 mr-2 text-sm font-medium text-center transition border rounded-lg text-rose-700 border-rose-700 hover:text-white hover:bg-rose-800 focus:ring-4 focus:outline-none focus:ring-rose-300 dark:border-rose-500 dark:text-rose-500 dark:hover:text-white dark:hover:bg-rose-600 dark:focus:ring-rose-800">Reject</button>
+            </form>
+        </div>
+        @endcan
     </x-slot>
 </x-card>
 

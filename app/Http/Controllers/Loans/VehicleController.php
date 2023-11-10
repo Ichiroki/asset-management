@@ -51,14 +51,16 @@ class VehicleController extends Controller
     public function store(Request $request)
     {
         $user = Auth::user();
+        $bod = User::role('approval_bod')->get();
 
         $validated = $request->validate([
             'user_id' => [
                 `required|integer|in:$user->id`,
             ],
-            'department' => [
+            'department_id' => [
                 'required',
-                Rule::in([$user->department->name])
+                'integer',
+                `in:$user->department->id`
             ],
             'vehicle_id' => 'required|integer',
             'loan_date' => 'required|date',
@@ -72,7 +74,7 @@ class VehicleController extends Controller
 
         $create = VehicleLoans::create([
             'user_id' => $user->id,
-            'department' => $validated['department'],
+            'department_id' => $validated['department_id'],
             'vehicle_id' => (int) $validated['vehicle_id'],
             'loan_date' => $validated['loan_date'],
             'return_date' => $validated['return_date'],
@@ -83,9 +85,9 @@ class VehicleController extends Controller
             'information' => $validated['information']
         ]);
 
-        $user->notify(new VehicleLoansNotification($create));
+        $bod->notify(new VehicleLoansNotification($create));
 
-        return redirect()->route('vehicleLoans.create');
+        return redirect()->route('vehicleLoans.index')->with('success', 'Your ticket successfully created. please wait for approval');
     }
 
     /**
@@ -127,7 +129,7 @@ class VehicleController extends Controller
             'user_id' => [
                 `required|integer|in:$user->name`,
             ],
-            'department' => [
+            'department_id' => [
                 `required|in:$department`
             ],
             'vehicle_id' => 'required|integer',
@@ -144,7 +146,7 @@ class VehicleController extends Controller
 
         $vehicle->update([
             'user_id' => $vehicle->user->id,
-            'department' => $validate['department'],
+            'department_id' => $validate['department'],
             'vehicle_id' => (int) $validate['vehicle_id'],
             'loan_date' => $validate['loan_date'],
             'return_date' => $validate['return_date'],

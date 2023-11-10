@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Loans;
 use App\Http\Controllers\Controller;
 use App\Models\Asset\Laptop;
 use App\Models\Loans\LaptopLoans;
+use App\Models\User;
 use App\Notifications\Loans\LaptopLoansNotification;
 use Illuminate\Http\Request;
 use Illuminate\Notifications\Notification;
@@ -41,35 +42,38 @@ class LaptopController extends Controller
      */
     public function store(Request $request)
     {
+
+
         $user = Auth::user();
-        try {
-            $validated = $request->validate([
-                'user_id' =>  [
-                    `required|integer|in:$user->id`
-                ],
-                'loan_date' => 'required|date',
-                'return_date' => 'required|date',
-                'status' => 'required|string',
-                'purpose' => 'required|string',
-                'laptop_id' => 'required|integer',
-                'information' => 'nullable|string',
-            ]);
+        $validated = $request->validate([
+            'user_id' =>  [
+                `required|integer|in:$user->id`
+            ],
+            'loan_date' => 'required|date',
+            'return_date' => 'required|date',
+            'status' => 'required|string',
+            'purpose' => 'required|string',
+            'laptop_id' => 'required|integer',
+            'information' => 'nullable|string',
+        ]);
 
-            $create = LaptopLoans::create([
-                'user_id' => $user->id,
-                'loan_date' => $validated['loan_date'],
-                'return_date' => $validated['return_date'],
-                'status' => $validated['status'],
-                'purpose' => $validated['purpose'],
-                'laptop_id' => $validated['laptop_id'],
-                'information' => $validated['information'],
-            ]);
-            Notification::send(env('MAIL_USERNAME'), new LaptopLoansNotification($create));
+        $create = LaptopLoans::create([
+            'user_id' => $user->id,
+            'loan_date' => $validated['loan_date'],
+            'return_date' => $validated['return_date'],
+            'status' => $validated['status'],
+            'purpose' => $validated['purpose'],
+            'laptop_id' => $validated['laptop_id'],
+            'information' => $validated['information'],
+        ]);
 
-            return redirect()->route('laptopLoans.index')->with('success', 'Your submission to loan vehicle successfully sended, please wait to accept the submission');
-        } catch(\Exception $e) {
-            dd($e);
+        $it = User::role('approval_it')->get();
+
+        foreach($it as $i) {
+            $i->notify(new LaptopLoansNotification($create));
         }
+
+        return redirect()->route('laptopLoans.index')->with('success', 'Your submission to loan vehicle successfully sended, please wait to accept the submission');
     }
 
     /**
