@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\{DashboardController, SearchController};
+use App\Http\Controllers\Admin\AuditController;
 use App\Http\Controllers\Asset\LaptopController;
 use App\Http\Controllers\Asset\VehicleController;
 use App\Http\Controllers\Auth\AuthenticationController;
@@ -22,12 +23,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/welcome', [DashboardController::class, 'welcome']);
+
 Route::get('/login', [AuthenticationController::class, 'index'])->name('login.index');
 Route::post('/login', [AuthenticationController::class, 'login'])->name('login');
 
 Route::prefix('/')->middleware('auth')->group(function () {
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('profile', [DashboardController::class, 'profile'])->name('profile');
+    Route::post('profile', [DashboardController::class, 'changeProfile'])->name('profile.change');
 
     Route::resource('vehicle', VehicleController::class);
     Route::resource('laptop', LaptopController::class);
@@ -61,4 +65,8 @@ Route::prefix('/')->middleware('auth')->group(function () {
     // Search
     // Vehicle Loans
     Route::get('/search', [SearchController::class, 'vehicleLoansSearch'])->name('search.vehicleLoans');
+
+    Route::group(['middleware' => 'role:super_admin'], function() {
+        Route::get('/audit', [AuditController::class, 'index'])->name('audit');
+    });
 });

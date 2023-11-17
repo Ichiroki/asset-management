@@ -1,7 +1,7 @@
 @extends('layout.mail.index')
 
 @section('mail.content')
-    <p style="text-align: center; margin: 0 auto; font-size: 1rem; margin-bottom: .75rem;">Your ticket has been created at {{ $laptop->created_at }} was approved</p>
+    <p style="text-align: center; margin: 0 auto; font-size: 1rem; margin-bottom: .75rem;">Your ticket has been created at {{ $vehicle->created_at }} was approved</p>
     <div style="padding: 1.5rem; margin: 0 auto; width: 28%; border: 2px solid #d1d5db; border-radius: 1.3rem;  color: #0f172a;">
         <h2 style="font-size: 1.5rem; margin-bottom: 1rem; text-align: center;">Ticket Details</h2>
         <table style="width: 100%;">
@@ -29,61 +29,33 @@
             </tbody>
         </table>
         <br>
+        <h2 style="font-size: 1.5rem; margin-bottom: 1rem; text-align: center;">Vehicle Details</h2>
         <table style="width: 100%;">
             <tbody>
                 <tr>
-                    <td style="width: 49%; vertical-align: top;">Laptop Name</td>
+                    <td style="width: 49%; vertical-align: top;">Vehicle Type</td>
                     <td style="width: 2%; vertical-align: top;">:</td>
-                    <td style="width: 49%; vertical-align: top;">{{ $laptop->name }}</td>
+                    <td style="width: 49%; vertical-align: top;">{{ $vehicle->type }}</td>
                 </tr>
                 <tr>
-                    <td style="width: 49%; vertical-align: top;">Asset Number</td>
+                    <td style="width: 49%; vertical-align: top;">Number Plates</td>
                     <td style="width: 2%; vertical-align: top;">:</td>
-                    <td style="width: 49%; vertical-align: top;">{{ $laptop->no_asset }}</td>
+                    <td style="width: 49%; vertical-align: top;">{{ $vehicle->nomorPol }}</td>
+                </tr>
+                <tr>
+                    <td style="width: 49%; vertical-align: top;">Capacity</td>
+                    <td style="width: 2%; vertical-align: top;">:</td>
+                    <td style="width: 49%; vertical-align: top;">{{ $vehicle->capacity }}</td>
                 </tr>
                 <tr>
                     <td style="width: 49%; vertical-align: top;">Status</td>
                     <td style="width: 2%; vertical-align: top;">:</td>
-                    <td style="width: 49%; vertical-align: top;">{{ $laptop->status }}</td>
-                </tr>
-                <tr>
-                    <td style="width: 49%; vertical-align: top;">Date Used</td>
-                    <td style="width: 2%; vertical-align: top;">:</td>
-                    <td style="width: 49%; vertical-align: top;">{{ $laptop->date_user }}</td>
-                </tr>
-                <tr>
-                    <td style="width: 49%; vertical-align: top;">Processor</td>
-                    <td style="width: 2%; vertical-align: top;">:</td>
-                    <td style="width: 49%; vertical-align: top;">{{ $laptop->processor }}</td>
-                </tr>
-                <tr>
-                    <td style="width: 49%; vertical-align: top;">RAM</td>
-                    <td style="width: 2%; vertical-align: top;">:</td>
-                    <td style="width: 49%; vertical-align: top;">{{ $laptop->ram }}</td>
-                </tr>
-                <tr>
-                    <td style="width: 49%; vertical-align: top;">Main Storage</td>
-                    <td style="width: 2%; vertical-align: top;">:</td>
-                    <td style="width: 49%; vertical-align: top;">{{ $laptop->main_storage }}</td>
-                </tr>
-                <tr>
-                    <td style="width: 49%; vertical-align: top;">Extend Storage</td>
-                    <td style="width: 2%; vertical-align: top;">:</td>
-                    <td style="width: 49%; vertical-align: top;">{{ $laptop->extend_storage }}</td>
-                </tr>
-                <tr>
-                    <td style="width: 49%; vertical-align: top;">VGA</td>
-                    <td style="width: 2%; vertical-align: top;">:</td>
-                    <td style="width: 49%; vertical-align: top;">{{ $laptop->vga }}</td>
-                </tr>
-                <tr>
-                    <td style="width: 49%; vertical-align: top;">Monitor</td>
-                    <td style="width: 2%; vertical-align: top;">:</td>
-                    <td style="width: 49%; vertical-align: top;">{{ $laptop->monitor }}</td>
+                    <td style="width: 49%; vertical-align: top;">{{ $vehicle->status }}</td>
                 </tr>
             </tbody>
         </table>
         <br>
+        <h2 style="font-size: 1.5rem; margin-bottom: 1rem; text-align: center;">Loan Details</h2>
         <table style="width: 100%;">
             <tbody>
                 <tr>
@@ -108,7 +80,6 @@
                 </tr>
             </tbody>
         </table>
-        <a href={{ route('laptopLoans.show', ['laptop' => $loans->id]) }} style="margin-top: .3rem; color: #e2e8f0; background-image: linear-gradient(135deg, #0f172a, #334155); text-align: center; display: block; padding: 1rem; border-radius: 2.5rem; text-decoration: none;">See Details</a>
+        <p style="color: #be123c; font-weight: semibold; text-align: center; font-size: 2rem;">Your ticket has been rejected</p>
     </div>
 @endsection
-

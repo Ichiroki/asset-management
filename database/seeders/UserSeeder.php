@@ -5,13 +5,16 @@ namespace Database\Seeders;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
+use Faker\Generator as Faker;
 
 class UserSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
-    public function run(): void
+
+
+    public function run(Faker $faker): void
     {
         User::create([
             'name' => "Fahrezi Rizqiawan",
@@ -23,38 +26,47 @@ class UserSeeder extends Seeder
         ]);
 
         User::create([
-            'name' => "Gema Merdeka Goeyardi",
+            'name' => "Bima Iskandar",
             'department_id' => 1,
             'email' => "emailzfake23148708923475@gmail.com",
             'position' => "User",
-            'phone_number' => '089662690020',
+            'phone_number' => $faker->phoneNumber(),
             'password' => Hash::make('password'),
         ]);
 
         User::create([
-            'name' => "Dedi Setiadi",
+            'name' => "Chizuru Yuuko",
             'department_id' => 2,
-            'email' => "dedi@astronacci.net",
+            'email' => "chizuru@gmail.com",
             'position' => "User",
-            'phone_number' => '089662690020',
+            'phone_number' => $faker->phoneNumber(),
             'password' => Hash::make('password'),
         ]);
 
         User::create([
-            'name' => "Desta Arifta",
-            'department_id' => 10,
-            'email' => "desta@astronacci.net",
+            'name' => "Tirta Burhanuddin",
+            'department_id' => 3,
+            'email' => "tirta@gmail.com",
             'position' => "Head",
-            'phone_number' => '089662690020',
+            'phone_number' => $faker->phoneNumber(),
             'password' => Hash::make('password'),
         ]);
 
         User::create([
-            'name' => "Lery Budi Apriansyah",
-            'department_id' => 10,
-            'email' => "lery@astronacci.net",
+            'name' => "Widya Hadi",
+            'department_id' => 6,
+            'email' => "widya@gmail.com",
             'position' => "User",
-            'phone_number' => '089662690020',
+            'phone_number' => $faker->phoneNumber(),
+            'password' => Hash::make('password'),
+        ]);
+
+        User::create([
+            'name' => "Citra Hadijah",
+            'department_id' => 4,
+            'email' => "citra@gmail.com",
+            'position' => "User",
+            'phone_number' => $faker->phoneNumber(),
             'password' => Hash::make('password'),
         ]);
     }

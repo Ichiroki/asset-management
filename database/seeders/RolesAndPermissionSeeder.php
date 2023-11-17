@@ -38,6 +38,10 @@ class RolesAndPermissionSeeder extends Seeder
         $it = Role::create(['name' => 'approval_it']);
         $it->givePermissionTo(['access laptop loans', 'view laptop loans', 'edit laptop loans', 'delete laptop loans', 'approve laptop loans']);
 
+        $gm = Role::create(['name' => 'approval_gm']);
+
+        $operation = Role::create(['name' => 'approval_operation']);
+
         $superAdmin = Role::create(['name' => 'super_admin']);
         $superAdmin->givePermissionTo(Permission::all());
 

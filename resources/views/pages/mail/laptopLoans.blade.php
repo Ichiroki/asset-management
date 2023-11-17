@@ -1,7 +1,7 @@
 @extends('layout.mail.index')
 
 @section('mail.content')
-    <p style="text-align: center; margin: 0 auto; font-size: 1rem;">Your ticket has been recorded and saved to our tables</p>
+    <p style="text-align: center; margin: 0 auto; font-size: 1rem; margin-bottom: .75rem;">Your ticket has been recorded and saved to our tables</p>
     <div style="padding: 1.5rem; margin: 0 auto; width: 28%; border: 2px solid #d1d5db; border-radius: 1.3rem;  color: #0f172a;">
         <h2 style="font-size: 1.5rem; margin-bottom: 1rem; text-align: center;">Ticket Details</h2>
         <table style="width: 100%;">

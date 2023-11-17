@@ -7,6 +7,7 @@ use App\Models\Loans\LaptopLoans;
 use App\Models\Loans\VehicleLoans;
 use App\Notifications\Approve\LaptopApproveNotification;
 use App\Notifications\Approve\VehicleApproveNotification;
+use App\Notifications\Reject\VehicleRejectNotification;
 
 class ApproveController extends Controller
 {
@@ -32,6 +33,8 @@ class ApproveController extends Controller
         $this->authorize('approveVehicleLoan', $vehicle);
 
         $vehicle->reject();
+
+        $vehicle->user->notify(new VehicleRejectNotification($vehicle));
 
         return redirect()->route('vehicleLoans.index')->with('success', `You approve $vehicle->user\'s vehicle loan ticket`);
     }

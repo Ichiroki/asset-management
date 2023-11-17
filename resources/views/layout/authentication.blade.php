@@ -9,7 +9,7 @@
 </head>
 <body class="dark:bg-slate-800 bg-slate-100">
 
-    <div class="container mx-auto">
+    <div class="container mx-auto" id="auth_layout">
         @yield('main')
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js"></script>

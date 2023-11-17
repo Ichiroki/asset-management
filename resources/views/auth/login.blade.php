@@ -2,9 +2,11 @@
 
 @section('main')
     <div class="flex flex-col items-center justify-center w-full h-screen">
-        <div class="w-full lg:w-1/2 items-center justify-center flex-col px-4 z-10 pb-6 flex lg:hidden">
+        <div class="w-full lg:w-1/2 w-3/4 items-center justify-center flex-col px-4 z-10 pb-6 flex lg:hidden">
             <h1 class="text-center dark:text-slate-200 text-slate-800 text-4xl mb-3">Welcome Back</h1>
             <p class="dark:text-slate-200 text-center">This asset management website will monitoring all of your assets loan</p>
+            <br>
+            <p class="dark:text-slate-200 text-center">If you want to register and log in, tell the admins to make them registering an account for you</p>
         </div>
         <div class="dark:glassmorphism-dark glassmorphism-light rounded-xl flex flex-col lg:flex-row lg:gap-12 overflow-hidden relative w-8/12 h-3/6">
             <div class="w-80 h-80 bg-slate-700 rounded-full absolute bottom-[-7rem] left-[-5rem] opacity-25"></div>
@@ -12,6 +14,8 @@
             <div class="w-full lg:w-1/2 items-center justify-center flex-col px-4 z-10 py-6 hidden lg:flex">
                 <h1 class="text-center dark:text-slate-200 text-slate-800 text-4xl mb-3">Welcome Back</h1>
                 <p class="dark:text-slate-200 text-center">This asset management website will monitoring all of your assets loan</p>
+                <br>
+                <p class="dark:text-slate-200 text-center">If you want to register and log in, tell the admins to make them registering an account for you</p>
             </div>
             <div class="w-full lg:w-1/2 px-12 py-2.5 flex flex-col justify-center z-20">
                 <h1 class="pb-2 mt-2 mb-6 text-3xl font-semibold text-center uppercase dark:text-slate-200">Login</h1>

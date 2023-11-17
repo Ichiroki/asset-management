@@ -21,7 +21,7 @@ class RolesToUserSeeder extends Seeder
         $ezi->assignRole('approval_it');
         $ezi->assignRole('super_admin');
 
-        $lery = User::where('email', 'lery@astronacci.net')->first();
+        $lery = User::where('email', 'widya@gmail.com')->first();
         $lery->assignRole('approval_it');
     }
 }
