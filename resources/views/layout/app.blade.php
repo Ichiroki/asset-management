@@ -8,7 +8,7 @@
         @vite(['resources/css/app.css','resources/js/app.js', 'resources/js/head.js'])
         @yield('script.head')
     </head>
-    <body class="dark:bg-slate-800 bg-slate-100 dark:text-slate-200 text-slate-800" id="app_layout">
+    <body class="dark:bg-slate-800 bg-slate-100 dark:text-slate-200 text-slate-800">
             @include('layout.utils.sidebar')
 
             <div class="p-4 mt-24 sm:ml-64 lg:mt-18">
