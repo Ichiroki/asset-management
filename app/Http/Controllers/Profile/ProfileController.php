@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Profile\ProfileUpdateRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -21,18 +22,10 @@ class ProfileController extends Controller
         ]);
     }
 
-    public function update(User $user, Request $request) {
+    public function update(User $user, ProfileUpdateRequest $request) {
 
-        $validated = $request->validate([
-            'avatar' => 'nullable|image|mimes:jpg,jpeg,png|max:7128',
-            'name' => 'nullable|string',
-            'email' => 'nullable|string|email|exists:users,email',
-            'password' => 'nullable|string',
-            'confPassword' => 'nullable|string|same:password'
-        ]);
-
-        if(empty($validated['password'])) {
-            unset($validated['password']);
+        if(empty($request['password'])) {
+            unset($request['password']);
         }
 
         if($user->avatar !== 'person.png') {
@@ -46,9 +39,9 @@ class ProfileController extends Controller
         }
 
         $user->update([
-            'avatar' => $validated['avatar'],
-            'name' => $validated['name'],
-            'email' => $validated['email'],
+            'name' => $request['name'],
+            'password' => $request['password'],
+            'email' => $request['email'],
         ]);
 
         return redirect()->back()->with('success', 'Your profile successfully changed');
