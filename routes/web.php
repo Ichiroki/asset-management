@@ -10,6 +10,7 @@ use App\Http\Controllers\Loans\Ticket\CheckAvailabilityController;
 use App\Http\Controllers\Loans\VehicleController as LoansVehicleController;
 use App\Http\Controllers\Loans\LaptopController as LoansLaptopController;
 use App\Http\Controllers\Office\{DepartmentController, PositionController, UserController};
+use App\Http\Controllers\Profile\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,8 +31,9 @@ Route::post('/login', [AuthenticationController::class, 'login'])->name('login')
 
 Route::prefix('/')->middleware('auth')->group(function () {
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    Route::get('profile', [DashboardController::class, 'profile'])->name('profile');
-    Route::post('profile', [DashboardController::class, 'changeProfile'])->name('profile.change');
+
+    Route::get('profile', [ProfileController::class, 'index'])->name('profile');
+    Route::put('profile/{user}', [ProfileController::class, 'update'])->name('profile.update');
 
     Route::resource('vehicle', VehicleController::class);
     Route::resource('laptop', LaptopController::class);
