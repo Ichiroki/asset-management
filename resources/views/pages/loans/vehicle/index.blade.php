@@ -55,13 +55,7 @@
                             Nama Asset
                         </th>
                         <th scope="col" class="py-3 text-center">
-                            Plat Nomor
-                        </th>
-                        <th scope="col" class="py-3 text-center">
                             Tujuan
-                        </th>
-                        <th scope="col" class="py-3 text-center">
-                            Kapasitas
                         </th>
                         <th scope="col" class="py-3 text-center">
                             Keterangan
@@ -103,13 +97,7 @@
                             {{ $vehicle->vehicle->type }}
                         </td>
                         <td class="px-6 py-4">
-                            {{ $vehicle->vehicle->nomorPol }}
-                        </td>
-                        <td class="px-6 py-4">
                             {{ $vehicle->purpose }}
-                        </td>
-                        <td class="px-6 py-4">
-                            {{ $vehicle->vehicle->capacity }}
                         </td>
                         <td class="px-6 py-4">
                             {{ $vehicle->information }}
