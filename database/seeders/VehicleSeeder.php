@@ -31,14 +31,14 @@ class VehicleSeeder extends Seeder
             'type' => "BMW",
             'nomorPol' => 'B 63 AWY',
             'capacity' => 4,
-            'status' => "On Loan",
+            'status' => "Occupied",
             'pic' => "BOD"
         ]);
         Vehicle::create([
             'type' => "Fortuner",
             'nomorPol' => 'B 1106 P',
             'capacity' => 4,
-            'status' => "On Loan",
+            'status' => "Occupied",
             'pic' => "BOD"
         ]);
         Vehicle::create([

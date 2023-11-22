@@ -7,6 +7,7 @@
         <form action="{{ route('vehicleLoans.store') }}" method="POST" novalidate>
             @csrf
             <div class="flex flex-col justify-between gap-3 md:flex-row">
+                <input type="text" id="index" name="index" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="" value="{{ bin2hex(random_bytes(6)) }}" readonly>
                 <div class="mb-6 w-full">
                     <label for="user_id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
                     <input type="text" id="user_id" name="user_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="" value="{{ Auth::user()->name }}" readonly>
@@ -113,16 +114,22 @@
         .then(data => {
             const veh = data.vehicle
             const submit = document.getElementById('submit')
-
-            if(veh.available) {
-                availText.value = data.message
-                nomorPolText.value = veh.nomorPol
-                capacityText.value = veh.capacity
+            if(veh.status === "Occupied") {
+                submit.setAttribute("disabled", true)
             } else {
+                submit.removeAttribute("disabled")
+
+                if(veh.available) {
                 availText.value = data.message
                 nomorPolText.value = veh.nomorPol
                 capacityText.value = veh.capacity
+                } else {
+                    availText.value = data.message
+                    nomorPolText.value = veh.nomorPol
+                    capacityText.value = veh.capacity
+                }
             }
+
         })
         .catch(err => {console.error(err)})
     }

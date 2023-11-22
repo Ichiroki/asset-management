@@ -15,6 +15,7 @@ class VehicleLoansSeeder extends Seeder
     public function run(): void
     {
         VehicleLoans::create([
+            "index" => bin2hex(random_bytes(6)),
             "user_id" => 1,
             "department_id" => 12,
             "vehicle_id" => 1,
@@ -24,6 +25,7 @@ class VehicleLoansSeeder extends Seeder
         ]);
 
         VehicleLoans::create([
+            "index" => bin2hex(random_bytes(6)),
             "user_id" => 5,
             "department_id" => 10,
             "vehicle_id" => 5,

@@ -2,13 +2,13 @@
 
 @section('main')
     <div class="flex flex-col items-center justify-center w-full h-screen">
-        <div class="w-full lg:w-1/2 w-3/4 items-center justify-center flex-col px-4 z-10 pb-6 flex lg:hidden">
+        <div class="lg:w-1/2 w-3/4 items-center justify-center flex-col px-4 z-10 pb-6 flex lg:hidden">
             <h1 class="text-center dark:text-slate-200 text-slate-800 text-4xl mb-3">Welcome Back</h1>
             <p class="dark:text-slate-200 text-center">This asset management website will monitoring all of your assets loan</p>
             <br>
             <p class="dark:text-slate-200 text-center">If you want to register and log in, tell the admins to make them registering an account for you</p>
         </div>
-        <div class="dark:glassmorphism-dark glassmorphism-light rounded-xl flex flex-col lg:flex-row lg:gap-12 overflow-hidden relative w-8/12 h-3/6">
+        <div class="dark:glassmorphism-dark glassmorphism-light rounded-xl flex flex-col lg:flex-row lg:gap-12 overflow-hidden relative w-10/12 md:w-8/12">
             <div class="w-80 h-80 bg-slate-700 rounded-full absolute bottom-[-7rem] left-[-5rem] opacity-25"></div>
             <div class="w-80 h-80 bg-slate-700 rounded-full absolute top-[-7rem] right-[-5rem] opacity-25"></div>
             <div class="w-full lg:w-1/2 items-center justify-center flex-col px-4 z-10 py-6 hidden lg:flex">
@@ -42,7 +42,7 @@
                         </div>
                     </div>
                     <div class="flex mb-6">
-                        <button type="submit" class="w-4/12 px-3 py-2 text-sm font-medium text-center text-blue-700 transition border border-blue-700 rounded-lg hover:text-white hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-600 dark:focus:ring-blue-800">Login</button>
+                        <button type="submit" class="md:w-4/12 px-3 py-2 text-sm font-medium text-center text-blue-700 transition border border-blue-700 rounded-lg hover:text-white hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-600 dark:focus:ring-blue-800">Login</button>
                     </div>
                 </form>
             </div>

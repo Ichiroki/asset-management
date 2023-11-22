@@ -10,6 +10,7 @@ use App\Http\Requests\Profile\ProfileUpdateRequest;
 use App\Models\Loans\LaptopLoans;
 use App\Models\Loans\VehicleLoans;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
@@ -32,24 +33,23 @@ class ProfileController extends Controller
 
         if(empty($request['password'])) {
             $request['password'] = $user->password;
-
-            if($user->avatar !== 'person.png') {
-                Storage::delete('/img/'.$user->avatar);
-            }
-
-            if($request->hasFile('avatar')) {
-                $avatarName = Str::random(10).'.'.$request->file('avatar')->getClientOriginalName();
-                $request->file('avatar')->storeAs('/img/', $avatarName, 'public');
-                $user->update(['avatar' => $avatarName]);
-            }
-
-            $user->update([
-                'name' => $request['name'],
-                'password' => $request['password'],
-                'email' => $request['email'],
-            ]);
         }
 
+        if($user->avatar !== 'person.png') {
+            Storage::delete('/img/'.$user->avatar);
+        }
+
+        if($request->hasFile('avatar')) {
+            $avatarName = Str::random(10).'.'.$request->file('avatar')->getClientOriginalName();
+            $request->file('avatar')->storeAs('/img/', $avatarName, 'public');
+            $user->update(['avatar' => $avatarName]);
+        }
+
+        $user->update([
+            'name' => $request['name'],
+            'password' => $request['password'],
+            'email' => $request['email'],
+        ]);
         return redirect()->back()->with('success', 'Your profile successfully changed');
     }
 }

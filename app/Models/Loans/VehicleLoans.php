@@ -18,6 +18,7 @@ class VehicleLoans extends Model implements Auditable
     protected $table = 'user_loans_vehicle';
 
     protected $fillable = [
+        'id',
         'user_id',
         'department_id',
         'vehicle_id',

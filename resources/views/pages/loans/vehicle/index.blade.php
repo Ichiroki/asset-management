@@ -84,9 +84,9 @@
                     @if($vehicle->loan_status === "Approved") shadow-green-500/50 @endif
                     @if($vehicle->loan_status === "Rejected") shadow-rose-500/50 @endif
                     dark:bg-gray-900 dark:border-gray-700">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        <td scope="row" class="px-6 py-4 font-medium whitespace-nowrap">
                             {{ $i = $i + 1 }}
-                        </th>
+                        </td>
                         <td class="px-6 py-4">
                             {{ $vehicle->user->name }}
                         </td>

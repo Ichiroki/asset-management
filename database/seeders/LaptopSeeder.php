@@ -31,7 +31,7 @@ class LaptopSeeder extends Seeder
         Laptop::create([
             'name' => 'Ulung',
             'no_asset' => 'FA.21.08.001',
-            'status' => 'On Loan',
+            'status' => 'Occupied',
             'date_used' => Carbon::createFromFormat('d-m-Y', '23-04-2023')->format('Y-m-d'),
             'processor' => 'Core i5 - Gen 10 2.5 GHZ',
             'ram' => 'DDR4 - 16',
@@ -42,7 +42,7 @@ class LaptopSeeder extends Seeder
 
         Laptop::create([
             'name' => 'Andri',
-            'status' => 'On Loan',
+            'status' => 'Occupied',
             'date_used' => Carbon::createFromFormat('d-m-Y', '23-07-2022')->format('Y-m-d'),
             'processor' => 'Core i5 - Gen 11 2.4 GHZ',
             'ram' => 'DDR4 - 16',
@@ -54,7 +54,7 @@ class LaptopSeeder extends Seeder
         Laptop::create([
             'name' => 'Dhiandra',
             'no_asset' => 'FA.22.05.002',
-            'status' => 'On Loan',
+            'status' => 'Occupied',
             'date_used' => Carbon::createFromFormat('d-m-Y', '23-05-2022')->format('Y-m-d'),
             'processor' => 'Core i5 - Gen 11 2.4 GHZ',
             'ram' => 'DDR4 - 12',

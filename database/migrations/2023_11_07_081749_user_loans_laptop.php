@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('user_loans_laptop', function (Blueprint $table) {
             $table->id();
+            $table->uuid('index');
             $table->unsignedBigInteger('user_id');
             $table->date('loan_date');
             $table->date('return_date');
