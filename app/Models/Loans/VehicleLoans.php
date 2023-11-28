@@ -9,11 +9,13 @@ use OwenIt\Auditing\Auditable as AuditableTrait;
 use OwenIt\Auditing\Contracts\Auditable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Scout\Searchable;
+use Laravel\Scout\Attributes\SearchUsingPrefix;
 
 class VehicleLoans extends Model implements Auditable
 {
 
-    use AuditableTrait;
+    use AuditableTrait, Searchable;
 
     protected $table = 'user_loans_vehicle';
 
@@ -58,6 +60,19 @@ class VehicleLoans extends Model implements Auditable
         'vehicle_id',
         'loan_date'
     ];
+
+    #[SearchUsingPrefix(['loan_status'])]
+
+    public function toSearchableArray()
+    {
+        return [
+            'loan_status' => $this->loan_status,
+            'user' => $this->user->name,
+            'vehicle' => $this->vehicle->type,
+            'department' => $this->department->name,
+            'nomorPol' => $this->vehicle->nomorPol
+        ];
+    }
 
     use HasFactory;
 }

@@ -20,11 +20,21 @@ class VehicleController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
+        $search_param = $request->query('search');
+
         $vehicles = VehicleLoans::paginate(5);
+
+        if($search_param !== '') {
+            $vehicles = VehicleLoans::search($search_param)->paginate(5);
+        }
+
+        // dd($vehicles);
+
         return view('pages.loans.vehicle.index', [
             'vehicles' => $vehicles,
+            'search_param' => $search_param,
             'title' => "Vehicle Loans"
         ]);
     }
