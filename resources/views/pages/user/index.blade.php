@@ -41,10 +41,10 @@
                             Name
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Role Asset
+                            Department
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Role Meeting Room
+                            Number Phone
                         </th>
                         <th scope="col" class="px-6 py-3">
                             Action
@@ -68,10 +68,10 @@
                             </div>
                         </th>
                         <td class="px-6 py-4">
-                            {{ $user->status }}
+                            {{ $user->department->name }}
                         </td>
                         <td class="px-6 py-4">
-                            {{ $user->status }}
+                            {{ $user->phone_number }}
                         </td>
                         <td class="px-6 py-4">
                             <div class="flex items-center">
