@@ -23,14 +23,11 @@ class VehicleController extends Controller
     public function index(Request $request)
     {
         $search_param = $request->query('search');
-
         $vehicles = VehicleLoans::paginate(5);
 
         if($search_param !== '') {
             $vehicles = VehicleLoans::search($search_param)->paginate(5);
         }
-
-        // dd($vehicles);
 
         return view('pages.loans.vehicle.index', [
             'vehicles' => $vehicles,

@@ -82,8 +82,4 @@
                 </div>
         </form>
     </div>
-
-    <div
-        class="md:py-12 md:px-20 sm:px-12 sm:py-6 px-6 py-2 rounded-3xl glassmorphism-light dark:glassmorphism-dark relative overflow-hidden">
-    </div>
 @endsection

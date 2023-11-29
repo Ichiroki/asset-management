@@ -8,7 +8,6 @@ use App\Models\Loans\LaptopLoans;
 use App\Models\User;
 use App\Notifications\Loans\LaptopLoansNotification;
 use Illuminate\Http\Request;
-use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\Auth;
 
 class LaptopController extends Controller
@@ -16,10 +15,17 @@ class LaptopController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $laptops = LaptopLoans::all();
+        $search_param = $request->query('search');
+        $laptops = LaptopLoans::paginate(5);
+
+        if($search_param !== '') {
+            $laptops = LaptopLoans::search($search_param)->paginate(5);
+        }
+
         return view("pages.loans.laptop.index", [
+            'search_param' => $search_param,
             'laptops' => $laptops,
             'title' => "Laptop Loans"
         ]);

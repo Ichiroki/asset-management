@@ -14,12 +14,19 @@ class DepartmentController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $departments = Department::paginate(5);
-        return view('pages/department/index', [
+        $search_param = $request->query('search');
+
+        if($search_param !== "") {
+            $deparments = Department::search($search_param)->paginate(5);
+        }
+
+        return view('pages.department.index', [
+            "search_param" => $search_param,
             'departments' => $departments,
-        'title' => "Department"
+            'title' => "Department"
         ]);
     }
 

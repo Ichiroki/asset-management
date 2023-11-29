@@ -35,7 +35,7 @@ class ProfileController extends Controller
             $request['password'] = $user->password;
         }
 
-        if($user->avatar !== 'person.png') {
+        if($user->avatar !== 'person.png' && Storage::exists('/img/'.$user->avatar)) {
             Storage::delete('/img/'.$user->avatar);
         }
 
