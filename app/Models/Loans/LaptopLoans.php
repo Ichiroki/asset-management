@@ -58,7 +58,7 @@ class LaptopLoans extends Model
             'ram' => $this->laptop->ram,
             'main_storage' => $this->laptop->main_storage,
             'department' => $this->department->name,
-            'nomorPol' => $this->vehicle->nomorPol
+            'number_plates' => $this->vehicle->number_plates
         ];
     }
 

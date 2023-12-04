@@ -40,7 +40,7 @@
                 <tr>
                     <td style="width: 49%; vertical-align: top;">Number Plates</td>
                     <td style="width: 2%; vertical-align: top;">:</td>
-                    <td style="width: 49%; vertical-align: top;">{{ $vehicle->nomorPol }}</td>
+                    <td style="width: 49%; vertical-align: top;">{{ $vehicle->number_plates }}</td>
                 </tr>
                 <tr>
                     <td style="width: 49%; vertical-align: top;">Capacity</td>

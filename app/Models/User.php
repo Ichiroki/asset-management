@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
+use App\Models\Asset\Vehicle;
 use App\Models\Loans\VehicleLoans;
 use App\Models\Office\Department;
 use Illuminate\Contracts\Auth\CanResetPassword;
@@ -60,6 +61,10 @@ class User extends Authenticatable implements CanResetPassword
 
     public function vehicleLoans() {
         return $this->hasMany(VehicleLoans::class, 'user_id');
+    }
+
+    public function vehicles() {
+        return $this->morphMany(Vehicle::class, 'pic_id');
     }
 
     public function toSearchableArray()

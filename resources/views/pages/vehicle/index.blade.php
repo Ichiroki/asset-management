@@ -70,7 +70,7 @@
                             {{ $vehicle->type }}
                         </td>
                         <td class="px-6 py-4">
-                            {{ $vehicle->nomorPol }}
+                            {{ $vehicle->number_plates }}
                         </td>
                         <td class="px-6 py-4">
                             {{ $vehicle->capacity }}
@@ -79,7 +79,7 @@
                             {{ $vehicle->status }}
                         </td>
                         <td class="px-6 py-4">
-                            {{ $vehicle->pic }}
+                            {{ $vehicle->pic->name }}
                         </td>
                         <td class="px-6 py-4">
                             <div class="flex items-center">

@@ -70,7 +70,7 @@ class VehicleLoans extends Model implements Auditable
             'user' => $this->user->name,
             'vehicle' => $this->vehicle->type,
             'department' => $this->department->name,
-            'nomorPol' => $this->vehicle->nomorPol
+            'number_plates' => $this->vehicle->number_plates
         ];
     }
 

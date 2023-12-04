@@ -30,11 +30,12 @@ class VehicleController extends Controller
     public function create()
     {
         $users = User::all();
-
         $department = Department::all();
+
         return view('pages/vehicle/create', [
-            'department' => $department,
-            'users' => $users
+            'departments' => $department,
+            'users' => $users,
+            'title' => "Add Vehicle"
         ]);
     }
 
@@ -43,16 +44,31 @@ class VehicleController extends Controller
      */
     public function store(StoreVehicleRequest $request)
     {
+        dd($request);
         if(is_string($request->capacity)) {
             $capacity = (int)$request->capacity;
         }
 
-        Vehicle::create([
+        $data = [
             'type' => $request->type,
-            'nomorPol' => $request->nomorPol,
-            'capacity' => $capacity,
-            'pic' => $request->pic,
-        ]);
+            'number_plates' => $request->number_plates,
+            'capacity' => $capacity
+        ];
+
+
+        if($request->has('pic_user') && !$request->has('pic_department')) {
+            $user = User::find('id', $request->input('pic_user'));
+
+            $data['pic_id'] = $user->id;
+            $data['pic_type'] = $user;
+        } elseif ($request->has('pic_department') && !$request->has('pic_user')) {
+            $department = Department::find('id', $request->input('pic_department'));
+
+            $data['pic_id'] = $department->id;
+            $data['pic_type'] = $department;
+        }
+
+        Vehicle::create($data);
 
         return redirect()->route('vehicle.index');
     }
@@ -93,7 +109,7 @@ class VehicleController extends Controller
 
         Vehicle::where('id', $id)->update([
             'type' => $request->type,
-            'nomorPol' => $request->nomorPol,
+            'number_plates' => $request->number_plates,
             'capacity' => $capacity,
             'pic' => $request->pic
         ]);

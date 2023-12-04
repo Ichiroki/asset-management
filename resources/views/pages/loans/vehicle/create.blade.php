@@ -121,11 +121,11 @@
 
                 if(veh.available) {
                 availText.value = data.message
-                nomorPolText.value = veh.nomorPol
+                nomorPolText.value = veh.number_plates
                 capacityText.value = veh.capacity
                 } else {
                     availText.value = data.message
-                    nomorPolText.value = veh.nomorPol
+                    nomorPolText.value = veh.number_plates
                     capacityText.value = veh.capacity
                 }
             }

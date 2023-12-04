@@ -21,8 +21,8 @@ class Department extends Model
         return $this->hasMany(User::class);
     }
 
-    public function vehicle() {
-        return $this->hasMany(Vehicle::class);
+    public function vehicles() {
+        return $this->morphMany(Vehicle::class, 'pic_id');
     }
 
     public function toSearchableArray()
