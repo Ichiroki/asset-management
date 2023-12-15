@@ -21,7 +21,17 @@ class VehicleController extends Controller
      */
     public function index()
     {
+<<<<<<< HEAD
         $vehicles = VehicleLoans::paginate(5);
+=======
+        $search_param = $request->query('search');
+        $vehicles = VehicleLoans::paginate(5);
+
+        if($search_param !== '') {
+            $vehicles = VehicleLoans::search($search_param)->paginate(5);
+        }
+
+>>>>>>> 2420d4b1f586cc176623ee4d3ba9246112098e1b
         return view('pages.loans.vehicle.index', [
             'vehicles' => $vehicles,
         ]);

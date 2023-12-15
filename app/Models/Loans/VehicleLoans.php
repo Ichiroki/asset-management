@@ -45,5 +45,27 @@ class VehicleLoans extends Model
         $this->update(['loan_status' => 'Rejected']);
     }
 
+<<<<<<< HEAD
+=======
+    protected $auditInclude = [
+        'user_id',
+        'vehicle_id',
+        'loan_date'
+    ];
+
+    #[SearchUsingPrefix(['loan_status'])]
+
+    public function toSearchableArray()
+    {
+        return [
+            'loan_status' => $this->loan_status,
+            'user' => $this->user->name,
+            'vehicle' => $this->vehicle->type,
+            'department' => $this->department->name,
+            'number_plates' => $this->vehicle->number_plates
+        ];
+    }
+
+>>>>>>> 2420d4b1f586cc176623ee4d3ba9246112098e1b
     use HasFactory;
 }

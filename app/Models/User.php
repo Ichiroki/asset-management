@@ -4,18 +4,24 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
+use App\Models\Asset\Vehicle;
 use App\Models\Loans\VehicleLoans;
 use App\Models\Office\Department;
+<<<<<<< HEAD
+=======
+use Illuminate\Contracts\Auth\CanResetPassword;
+>>>>>>> 2420d4b1f586cc176623ee4d3ba9246112098e1b
 use Illuminate\Database\Eloquent\Concerns\HasRelationships;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Laravel\Scout\Searchable;
 use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, HasRelationships, HasRoles;
+    use HasApiTokens, HasFactory, Notifiable, HasRelationships, HasRoles, Searchable;
 
     /**
      * The attributes that are mass assignable.
@@ -58,5 +64,17 @@ class User extends Authenticatable
 
     public function vehicleLoans() {
         return $this->hasMany(VehicleLoans::class, 'user_id');
+    }
+
+    public function vehicles() {
+        return $this->morphMany(Vehicle::class, 'pic_id');
+    }
+
+    public function toSearchableArray()
+    {
+        return [
+            'name' => $this->name,
+            'department' => $this->department->name
+        ];
     }
 }

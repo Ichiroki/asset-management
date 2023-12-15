@@ -7,10 +7,11 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Concerns\HasRelationships;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Scout\Searchable;
 
 class Department extends Model
 {
-    use HasRelationships;
+    use HasRelationships, Searchable;
 
     protected $fillable = [
         'name', 'status'
@@ -20,8 +21,15 @@ class Department extends Model
         return $this->hasMany(User::class);
     }
 
-    public function vehicle() {
-        return $this->hasMany(Vehicle::class);
+    public function vehicles() {
+        return $this->morphMany(Vehicle::class, 'pic_id');
+    }
+
+    public function toSearchableArray()
+    {
+        return [
+            'name' => $this->name
+        ];
     }
 
     use HasFactory;

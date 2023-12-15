@@ -7,7 +7,7 @@
     </x-slot>
     <x-slot name="content">
         <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Jenis : {{ $vehicle->jenis }}</h5>
-        <p class="font-normal text-gray-700 dark:text-gray-400">Nomor Polisi : {{ $vehicle->nomorPol }}</p>
+        <p class="font-normal text-gray-700 dark:text-gray-400">Nomor Polisi : {{ $vehicle->number_plates }}</p>
         <p class="font-normal text-gray-700 dark:text-gray-400">Kapasitas : {{ $vehicle->capacity }}</p>
         <p class="font-normal text-gray-700 dark:text-gray-400">PIC : {{ $vehicle->department->name }}</p>
     </x-slot>

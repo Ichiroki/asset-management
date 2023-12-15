@@ -1,10 +1,7 @@
 @extends('layout.mail.index')
 
 @section('mail.content')
-<<<<<<< HEAD
-    <h1>Your ticket has been recorder to our system, please wait for ticket approval</h1>
-=======
-    <p style="text-align: center; margin: 0 auto; font-size: 1rem; margin-bottom: .75rem;">Your ticket has been recorded and saved to our tables</p>
+    <p style="text-align: center; margin: 0 auto; font-size: 1rem;">Your ticket has been created at {{ $vehicle->created_at }} was approved</p>
     <div style="padding: 1.5rem; margin: 0 auto; width: 28%; border: 2px solid #d1d5db; border-radius: 1.3rem;  color: #0f172a;">
         <h2 style="font-size: 1.5rem; margin-bottom: 1rem; text-align: center;">Ticket Details</h2>
         <table style="width: 100%;">
@@ -83,7 +80,6 @@
                 </tr>
             </tbody>
         </table>
-        <a href={{ route('vehicleLoans.show', ['vehicle' => $loans->id]) }} style="margin-top: .3rem; color: #e2e8f0; background-image: linear-gradient(135deg, #0f172a, #334155); text-align: center; display: block; padding: 1rem; border-radius: 2.5rem; text-decoration: none;">See Details</a>
+        <p style="color: #15803d; font-weight: semibold; text-align: center; font-size: 2rem;">Your ticket has been approved</p>
     </div>
->>>>>>> 2420d4b1f586cc176623ee4d3ba9246112098e1b
 @endsection

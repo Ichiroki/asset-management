@@ -16,10 +16,25 @@ class LaptopController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
+<<<<<<< HEAD
         $laptops = LaptopLoans::all();
         return view("pages.loans.laptop.index", compact("laptops"));
+=======
+        $search_param = $request->query('search');
+        $laptops = LaptopLoans::paginate(5);
+
+        if($search_param !== '') {
+            $laptops = LaptopLoans::search($search_param)->paginate(5);
+        }
+
+        return view("pages.loans.laptop.index", [
+            'search_param' => $search_param,
+            'laptops' => $laptops,
+            'title' => "Laptop Loans"
+        ]);
+>>>>>>> 2420d4b1f586cc176623ee4d3ba9246112098e1b
     }
 
     /**
