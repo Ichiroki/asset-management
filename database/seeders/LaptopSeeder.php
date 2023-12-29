@@ -4,16 +4,13 @@ namespace Database\Seeders;
 
 use App\Models\Asset\Laptop;
 use Carbon\Carbon;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Date;
 
 class LaptopSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
-
     public function run(): void
     {
         Laptop::create([
@@ -25,7 +22,7 @@ class LaptopSeeder extends Seeder
             'ram' => 'DDR4 - 16',
             'main_storage' => 'SSD - 500',
             'vga' => 'GTX 1650 Ti',
-            'monitor' => 'Samsung 24\''
+            'monitor' => 'Samsung 24\'',
         ]);
 
         Laptop::create([
@@ -37,7 +34,7 @@ class LaptopSeeder extends Seeder
             'ram' => 'DDR4 - 16',
             'main_storage' => 'SSD - 500',
             'vga' => 'GTX 1650 Ti',
-            'monitor' => '15,6\''
+            'monitor' => '15,6\'',
         ]);
 
         Laptop::create([
@@ -49,7 +46,7 @@ class LaptopSeeder extends Seeder
             'main_storage' => 'SSD - 500',
             'extend_storage' => 'HDD - 1000',
             'vga' => 'GTX 1660 Ti',
-            'monitor' => '16\''
+            'monitor' => '16\'',
         ]);
 
         Laptop::create([
@@ -61,7 +58,7 @@ class LaptopSeeder extends Seeder
             'ram' => 'DDR4 - 20',
             'main_storage' => 'SSD - 250',
             'vga' => 'UHD Graphics',
-            'monitor' => '14\''
+            'monitor' => '14\'',
         ]);
 
         Laptop::create([
@@ -73,7 +70,7 @@ class LaptopSeeder extends Seeder
             'ram' => 'DDR4 - 32',
             'main_storage' => 'SSD - 1000',
             'vga' => 'RTX 3060',
-            'monitor' => '15.6\' + Samsung 24\''
+            'monitor' => '15.6\' + Samsung 24\'',
         ]);
     }
 }

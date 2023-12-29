@@ -7,7 +7,6 @@ namespace App\Models;
 use App\Models\Asset\Vehicle;
 use App\Models\Loans\VehicleLoans;
 use App\Models\Office\Department;
-use Illuminate\Contracts\Auth\CanResetPassword;
 use Illuminate\Database\Eloquent\Concerns\HasRelationships;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -18,7 +17,7 @@ use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, HasRelationships, HasRoles, Searchable;
+    use HasApiTokens, HasFactory, HasRelationships, HasRoles, Notifiable, Searchable;
 
     /**
      * The attributes that are mass assignable.
@@ -55,15 +54,18 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function department() {
+    public function department()
+    {
         return $this->belongsTo(Department::class, 'department_id');
     }
 
-    public function vehicleLoans() {
+    public function vehicleLoans()
+    {
         return $this->hasMany(VehicleLoans::class, 'user_id');
     }
 
-    public function vehicles() {
+    public function vehicles()
+    {
         return $this->morphMany(Vehicle::class, 'pic_id');
     }
 
@@ -71,7 +73,7 @@ class User extends Authenticatable
     {
         return [
             'name' => $this->name,
-            'department' => $this->department->name
+            'department' => $this->department->name,
         ];
     }
 }

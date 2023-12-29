@@ -5,7 +5,6 @@ namespace Database\Seeders;
 use App\Models\Asset\Vehicle;
 use App\Models\Office\Department;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
 class VehicleSeeder extends Seeder
 {
@@ -14,42 +13,42 @@ class VehicleSeeder extends Seeder
      */
     public function run(): void
     {
-        $bod = Department::where('name' , "BOD")->first();
+        $bod = Department::where('name', 'BOD')->first();
 
         Vehicle::create([
-            'type' => "Chevrolet",
+            'type' => 'Chevrolet',
             'number_plates' => 'B 16 JET',
             'capacity' => 4,
-            'status' => "Active",
-            'pic' => "BOD"
+            'status' => 'Active',
+            'pic' => 'BOD',
         ]);
         Vehicle::create([
-            'type' => "Luxio",
+            'type' => 'Luxio',
             'number_plates' => 'B 2956 TIQ',
             'capacity' => 8,
-            'status' => "Active",
-            'pic' => "BOD"
+            'status' => 'Active',
+            'pic' => 'BOD',
         ]);
         Vehicle::create([
-            'type' => "BMW",
+            'type' => 'BMW',
             'number_plates' => 'B 63 AWY',
             'capacity' => 4,
-            'status' => "On Loan",
-            'pic' => "BOD"
+            'status' => 'On Loan',
+            'pic' => 'BOD',
         ]);
         Vehicle::create([
-            'type' => "Fortuner",
+            'type' => 'Fortuner',
             'number_plates' => 'B 1106 P',
             'capacity' => 4,
-            'status' => "On Loan",
-            'pic' => "BOD"
+            'status' => 'On Loan',
+            'pic' => 'BOD',
         ]);
         Vehicle::create([
-            'type' => "Mercedes Benz",
+            'type' => 'Mercedes Benz',
             'number_plates' => 'B 2554 BBL',
             'capacity' => 4,
-            'status' => "Active",
-            'pic' => "BOD"
+            'status' => 'Active',
+            'pic' => 'BOD',
         ]);
     }
 }

@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Asset;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Asset\StoreLaptopRequest;
 use App\Models\Asset\Laptop;
-use App\Models\User;
 use Illuminate\Http\Request;
 
 class LaptopController extends Controller
@@ -16,8 +15,9 @@ class LaptopController extends Controller
     public function index()
     {
         $laptops = Laptop::paginate(5);
+
         return view('pages.laptop.index', [
-            'laptops' => $laptops
+            'laptops' => $laptops,
         ]);
     }
 
@@ -57,7 +57,7 @@ class LaptopController extends Controller
         $laptop = Laptop::where('id', $id)->first();
 
         return view('pages.laptop.show', [
-            'laptop' => $laptop
+            'laptop' => $laptop,
         ]);
     }
 
@@ -69,7 +69,7 @@ class LaptopController extends Controller
         $laptop = Laptop::where('id', $id)->first();
 
         return view('pages.laptop.edit', [
-            'laptop' => $laptop
+            'laptop' => $laptop,
         ]);
     }
 

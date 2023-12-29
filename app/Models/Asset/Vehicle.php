@@ -13,14 +13,16 @@ class Vehicle extends Model
         'number_plates',
         'capacity',
         'pic_id',
-        'pic_type'
+        'pic_type',
     ];
 
-    public function vehicleLoans() {
+    public function vehicleLoans()
+    {
         return $this->hasMany(VehicleLoans::class, 'vehicle_id');
     }
 
-    public function pic() {
+    public function pic()
+    {
         return $this->morphTo();
     }
 

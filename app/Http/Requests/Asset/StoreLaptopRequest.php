@@ -28,7 +28,7 @@ class StoreLaptopRequest extends FormRequest
             'main_storage' => 'required|string',
             'extend_storage' => 'string|nullable',
             'vga' => 'string|nullable',
-            'monitor' => 'string|nullable'
+            'monitor' => 'string|nullable',
         ];
     }
 }

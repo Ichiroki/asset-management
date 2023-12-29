@@ -13,7 +13,8 @@ class Button extends Component
     public function __construct(
         public string $color,
         public string $type
-    ) {}
+    ) {
+    }
 
     /**
      * Get the view / contents that represent the component.

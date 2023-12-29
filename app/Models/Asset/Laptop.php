@@ -16,7 +16,7 @@ class Laptop extends Model
         'main_storage',
         'extend_storage',
         'vga',
-        'monitor'
+        'monitor',
     ];
 
     use HasFactory;

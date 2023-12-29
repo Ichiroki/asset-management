@@ -14,21 +14,23 @@ class Department extends Model
     use HasRelationships, Searchable;
 
     protected $fillable = [
-        'name', 'status'
+        'name', 'status',
     ];
 
-    public function user() {
+    public function user()
+    {
         return $this->hasMany(User::class);
     }
 
-    public function vehicles() {
+    public function vehicles()
+    {
         return $this->morphMany(Vehicle::class, 'pic_id');
     }
 
     public function toSearchableArray()
     {
         return [
-            'name' => $this->name
+            'name' => $this->name,
         ];
     }
 

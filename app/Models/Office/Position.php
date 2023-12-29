@@ -8,11 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Position extends Model
 {
-    public function users() {
+    public function users()
+    {
         return $this->hasMany(User::class);
     }
 
-    public function departments() {
+    public function departments()
+    {
         return $this->hasMany(Department::class);
     }
 

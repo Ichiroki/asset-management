@@ -1,13 +1,10 @@
-@extends('layout.app')
-
-@section('main')
-
-<h1 class="pb-2 mb-6 text-3xl border-b-4 border-slate-800 w-fit dark:text-slate-200 dark:border-slate-200">Laptop</h1>
+<div>
+    <h1 class="pb-2 mb-6 text-3xl border-b-4 border-slate-800 w-fit dark:text-slate-200 dark:border-slate-200">Laptop</h1>
         <div class="flex flex-col justify-between">
             <div class="flex justify-between">
-                <a href="{{ route('laptop.create') }}" class="text-green-700 transition hover:text-white border border-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:border-green-500 dark:text-green-500 dark:hover:text-white dark:hover:bg-green-600 dark:focus:ring-green-800" type="button">
+                {{-- <a href="{{ route('laptop.create') }}" class="text-green-700 transition hover:text-white border border-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:border-green-500 dark:text-green-500 dark:hover:text-white dark:hover:bg-green-600 dark:focus:ring-green-800" type="button">
                     Create Laptop
-                </a>
+                </a> --}}
 
                 <x-input type="text" name="search" id="search" placeholder="search here" class="w-3/5 lg:w-4/12"/>
             </div>
@@ -106,7 +103,7 @@
                             {{ $laptop->monitor }}
                         </td>
                         <td class="px-6 py-4">
-                            <div class="flex items-center">
+                            {{-- <div class="flex items-center">
                                 <a href="{{ route('laptop.show', ['laptop' => $laptop->id]) }}" class="px-3 py-2 mb-2 mr-2 text-sm font-medium text-center text-green-700 transition border border-green-700 rounded-lg hover:text-white hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:border-green-500 dark:text-green-500 dark:hover:text-white dark:hover:bg-green-600 dark:focus:ring-green-800" type="button">
                                     Read
                                 </a>
@@ -132,7 +129,7 @@
                                         <button data-modal-hide="popup-modal-{{ $laptop->id }}" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">No, cancel</button>
                                     </form>
                                 </x-modal-box>
-                            </div>
+                            </div> --}}
                         </td>
                     </tr>
                     @endforeach
@@ -142,5 +139,4 @@
         <div>
             {{ $laptops->links() }}
         </div>
-
-@endsection
+</div>

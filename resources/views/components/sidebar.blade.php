@@ -122,7 +122,8 @@
                     <ul id="asset" class="hidden py-2 space-y-2">
                         <li>
                             <a href="{{ route('vehicle.index') }}"
-                                class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 {{ Request::is('vehicle') ? 'bg-gray-100 dark:bg-gray-700' : '' }}">
+                                class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 {{ Request::is('vehicle') ? 'bg-gray-100 dark:bg-gray-700' : '' }}"
+                                wire:navigate>
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                                     class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white {{ Request::is('vehicle') ? 'bg-gray-100 dark:bg-gray-700' : '' }}"
                                     viewBox="0 0 16 16">
@@ -136,7 +137,8 @@
                         </li>
                         <li>
                             <a href="{{ route('laptop.index') }}"
-                                class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                                class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                                wire:navigate>
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                                     class="bi bi-laptop w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white {{ Request::is('laptop') ? 'text-gray-900 dark:text-white' : '' }}"
                                     viewBox="0 0 16 16">
@@ -172,7 +174,8 @@
                     <ul id="header" class="hidden py-2 space-y-2">
                         <li>
                             <a href="{{ route('user.index') }}"
-                                class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 {{ Request::is('user') ? 'bg-gray-100 dark:bg-gray-700' : '' }}">
+                                class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 {{ Request::is('user') ? 'bg-gray-100 dark:bg-gray-700' : '' }}"
+                                wire:navigate>
                                 <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white {{ Request::is('user') ? 'text-gray-900 dark:text-white' : '' }}"
                                     aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                                     viewBox="0 0 20 18">

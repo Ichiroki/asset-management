@@ -15,62 +15,62 @@ class DepartmentSeeder extends Seeder
         // 1
         Department::create([
             'name' => 'BOD',
-            'status' => 'active'
+            'status' => 'active',
         ]);
         // 2
         Department::create([
             'name' => 'GM',
-            'status' => 'active'
+            'status' => 'active',
         ]);
         // 3
         Department::create([
             'name' => 'IT Support',
-            'status' => 'active'
+            'status' => 'active',
         ]);
         // 4
         Department::create([
             'name' => 'Operation',
-            'status' => 'active'
+            'status' => 'active',
         ]);
         // 5
         Department::create([
             'name' => 'Sekuritas',
-            'status' => 'active'
+            'status' => 'active',
         ]);
         // 6
         Department::create([
             'name' => 'ACLUB',
-            'status' => 'active'
+            'status' => 'active',
         ]);
         // 7
         Department::create([
             'name' => 'ORBI',
-            'status' => 'active'
+            'status' => 'active',
         ]);
         // 8
         Department::create([
             'name' => 'Research',
-            'status' => 'active'
+            'status' => 'active',
         ]);
         // 9
         Department::create([
             'name' => 'CAT',
-            'status' => 'active'
+            'status' => 'active',
         ]);
         // 10
         Department::create([
             'name' => 'IT',
-            'status' => 'active'
+            'status' => 'active',
         ]);
         // 11
         Department::create([
             'name' => 'Creative',
-            'status' => 'active'
+            'status' => 'active',
         ]);
         // 12
         Department::create([
             'name' => 'IT Developer',
-            'status' => 'active'
+            'status' => 'active',
         ]);
     }
 }

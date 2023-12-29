@@ -15,6 +15,7 @@ class PositionController extends Controller
     public function index()
     {
         $positions = Position::paginate(5);
+
         return view('pages.position.index', compact('positions'));
     }
 
@@ -45,8 +46,9 @@ class PositionController extends Controller
     public function show(Position $position)
     {
         $position::find($position->id);
+
         return view('pages.position.show', [
-            'position' => $position
+            'position' => $position,
         ]);
     }
 
@@ -57,9 +59,10 @@ class PositionController extends Controller
     {
         $status = ['Active', 'Inactive'];
         $position = Position::where('id', $id)->first();
+
         return view('pages.position.edit', [
             'position' => $position,
-            'status' => $status
+            'status' => $status,
         ]);
     }
 
@@ -70,7 +73,7 @@ class PositionController extends Controller
     {
         Position::where('id', $id)->update([
             'name' => $request->name,
-            'status' => $request->status
+            'status' => $request->status,
         ]);
 
         return redirect()->route('position.index')->with('success', 'Position successfully edited');
@@ -82,6 +85,7 @@ class PositionController extends Controller
     public function destroy(Position $position)
     {
         Position::where('id', $position->id)->delete();
+
         return redirect()->route('position.index')->with('success', 'Position successfully deleted');
     }
 }

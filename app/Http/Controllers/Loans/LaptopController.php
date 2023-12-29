@@ -21,14 +21,14 @@ class LaptopController extends Controller
         $search_param = $request->query('search');
         $laptops = LaptopLoans::paginate(5);
 
-        if($search_param !== '') {
+        if ($search_param !== '') {
             $laptops = LaptopLoans::search($search_param)->paginate(5);
         }
 
-        return view("pages.loans.laptop.index", [
+        return view('pages.loans.laptop.index', [
             'search_param' => $search_param,
             'laptops' => $laptops,
-            'title' => "Laptop Loans"
+            'title' => 'Laptop Loans',
         ]);
     }
 
@@ -38,7 +38,8 @@ class LaptopController extends Controller
     public function create()
     {
         $laptop = Laptop::all();
-        return view("pages.loans.laptop.create", compact("laptop"));
+
+        return view('pages.loans.laptop.create', compact('laptop'));
     }
 
     /**
@@ -49,8 +50,8 @@ class LaptopController extends Controller
         $user = Auth::user();
 
         $validated = $request->validate([
-            'user_id' =>  [
-                `required|integer|in:$user->id`
+            'user_id' => [
+                `required|integer|in:$user->id`,
             ],
             'loan_date' => 'required|date',
             'return_date' => 'required|date',
@@ -89,9 +90,10 @@ class LaptopController extends Controller
     public function edit(LaptopLoans $laptop)
     {
         $laptops = Laptop::all();
+
         return view('pages.loans.laptop.edit', [
             'laptop' => $laptop,
-            'laptops' => $laptops
+            'laptops' => $laptops,
         ]);
     }
 
@@ -103,7 +105,7 @@ class LaptopController extends Controller
         $user = Auth::user();
 
         $validated = $request->validate([
-            'user_id' =>  [`required|integer|in:$user->id`],
+            'user_id' => [`required|integer|in:$user->id`],
             'loan_date' => 'required|date',
             'return_date' => 'required|date',
             'status' => 'required|string',

@@ -11,13 +11,15 @@ class Login extends Component
 {
     public LoginForm $form;
 
-    public function login() {
+    public function login()
+    {
         $this->form->store();
     }
 
     public function render()
     {
-        $title = config('app.name') . "Login";
+        $title = config('app.name').'Login';
+
         return view('livewire.auth.login', compact('title'));
     }
 }

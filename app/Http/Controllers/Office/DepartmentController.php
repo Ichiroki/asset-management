@@ -19,21 +19,21 @@ class DepartmentController extends Controller
         $departments = Department::paginate(5);
         $search_param = $request->query('search');
 
-        if($search_param !== "") {
+        if ($search_param !== '') {
             $deparments = Department::search($search_param)->paginate(5);
         }
 
         return view('pages.department.index', [
-            "search_param" => $search_param,
+            'search_param' => $search_param,
             'departments' => $departments,
-            'title' => "Department"
+            'title' => 'Department',
         ]);
     }
 
     public function search(Request $request)
     {
         $query = $request->input('searchBar');
-        $department = Department::where('name','LIKE','%'.$query.'%')->get();
+        $department = Department::where('name', 'LIKE', '%'.$query.'%')->get();
 
         return response()->json($department);
     }
@@ -44,8 +44,9 @@ class DepartmentController extends Controller
     public function create()
     {
         $status = ['Active', 'Inactive'];
+
         return view('pages.department.create', [
-            'status' => $status
+            'status' => $status,
         ]);
     }
 
@@ -68,8 +69,9 @@ class DepartmentController extends Controller
     public function show($id)
     {
         $department = Department::find($id);
+
         return view('pages.department.show', [
-            'department' => $department
+            'department' => $department,
         ]);
     }
 
@@ -80,9 +82,10 @@ class DepartmentController extends Controller
     {
         $status = ['Active', 'Inactive'];
         $department = Department::where('id', $id)->first();
+
         return view('pages.department.edit', [
             'department' => $department,
-            'status' => $status
+            'status' => $status,
         ]);
     }
 
@@ -93,7 +96,7 @@ class DepartmentController extends Controller
     {
         Department::where('id', $id)->update([
             'name' => $request->name,
-            'status' => $request->status
+            'status' => $request->status,
         ]);
 
         return redirect()->route('department.index')->with('success', 'Department successfully edited');

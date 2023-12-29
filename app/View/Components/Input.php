@@ -6,16 +6,22 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class ModalBox extends Component
+class Input extends Component
 {
-    public string $value;
+    public $type;
+
+    public $id;
+
+    public $placeholder;
 
     /**
      * Create a new component instance.
      */
-    public function __construct($value)
+    public function __construct($type, $id, $placeholder)
     {
-        $this->value = $value;
+        $this->type = $type;
+        $this->placeholder = $placeholder;
+        $this->id = $id;
     }
 
     /**
@@ -23,6 +29,6 @@ class ModalBox extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.modal-box');
+        return view('components.input');
     }
 }

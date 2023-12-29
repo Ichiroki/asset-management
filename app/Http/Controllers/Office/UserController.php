@@ -16,14 +16,14 @@ class UserController extends Controller
         $users = User::paginate(5);
         $search_param = $request->query('search');
 
-        if ($search_param !== "") {
+        if ($search_param !== '') {
             $users = User::search($search_param)->paginate(5);
         }
 
-        return view("pages.user.index", [
+        return view('pages.user.index', [
             'search_param' => $search_param,
-            "users" => $users,
-            "title" => "Users"
+            'users' => $users,
+            'title' => 'Users',
         ]);
     }
 

@@ -25,20 +25,21 @@ class UpdateVehicleRequest extends FormRequest
             'type' => 'string|max:255',
             'number_plates' => 'string|max:255',
             'capacity' => 'integer|between:1,20',
-            'pic' => 'exists:vehicles,pic'
+            'pic' => 'exists:vehicles,pic',
         ];
     }
 
-    public function messages(): array {
+    public function messages(): array
+    {
         return [
-            'type.string' => "Type is must alphabet characters",
-            'type.max' => "Maximal Type is 255 characters",
-            'number_plates.string' => "Nomor Polisi is must alphabet characters",
-            'number_plates.max' => "Maximal Nomor Polisi is 255 characters",
-            'capacity.required' => "Capacity is required",
-            'capacity.integer' => "Capacity is must number",
-            'capacity.between' => "Allowed number for capacity between 1 - 20",
-            'capacity.max' => "Maximal capacity is 10 characters",
+            'type.string' => 'Type is must alphabet characters',
+            'type.max' => 'Maximal Type is 255 characters',
+            'number_plates.string' => 'Nomor Polisi is must alphabet characters',
+            'number_plates.max' => 'Maximal Nomor Polisi is 255 characters',
+            'capacity.required' => 'Capacity is required',
+            'capacity.integer' => 'Capacity is must number',
+            'capacity.between' => 'Allowed number for capacity between 1 - 20',
+            'capacity.max' => 'Maximal capacity is 10 characters',
         ];
     }
 }

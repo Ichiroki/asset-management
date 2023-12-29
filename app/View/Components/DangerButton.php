@@ -13,7 +13,8 @@ class DangerButton extends Component
      */
     public function __construct(
         public string $type
-    ) {}
+    ) {
+    }
 
     /**
      * Get the view / contents that represent the component.

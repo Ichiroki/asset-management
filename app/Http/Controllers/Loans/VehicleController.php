@@ -6,13 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Mail\Loans\VehicleLoansMail;
 use App\Models\Asset\Vehicle;
 use App\Models\Loans\VehicleLoans;
-use App\Notifications\VehicleLoanNotification;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Notification;
 use Illuminate\Validation\Rule;
-use App\Models\User;
 
 class VehicleController extends Controller
 {
@@ -24,7 +22,7 @@ class VehicleController extends Controller
         $search_param = $request->query('search');
         $vehicles = VehicleLoans::paginate(5);
 
-        if($search_param !== '') {
+        if ($search_param !== '') {
             $vehicles = VehicleLoans::search($search_param)->paginate(5);
         }
 
@@ -41,10 +39,11 @@ class VehicleController extends Controller
         $user = Auth::user();
         $department = $user->department;
         $vehicle = Vehicle::all();
+
         return view('pages.loans.vehicle.create', [
             'user' => $user,
             'department' => $department,
-            'vehicle' => $vehicle
+            'vehicle' => $vehicle,
         ]);
     }
 
@@ -61,7 +60,7 @@ class VehicleController extends Controller
             ],
             'department' => [
                 'required',
-                Rule::in([$user->department->name])
+                Rule::in([$user->department->name]),
             ],
             'vehicle_id' => 'required|integer',
             'loan_date' => 'required|date',
@@ -85,7 +84,7 @@ class VehicleController extends Controller
             'number_plate' => $validated['number_plate'],
             'capacity' => $validated['capacity'],
             'purpose' => $validated['purpose'],
-            'information' => $validated['information']
+            'information' => $validated['information'],
         ]);
 
         return redirect()->route('vehicleLoans.index')->with('success', 'Your submission to loan vehicle successfully sended, please wait to accept the submission');
@@ -98,6 +97,7 @@ class VehicleController extends Controller
     public function show(VehicleLoans $vehicle)
     {
         dd($vehicle);
+
         return view('pages.loans.vehicle.show', compact('vehicle'));
     }
 
@@ -106,13 +106,14 @@ class VehicleController extends Controller
      */
     public function edit(VehicleLoans $vehicle)
     {
-        $approve = ["Waiting Approval", "Approve", "Rejected"];
+        $approve = ['Waiting Approval', 'Approve', 'Rejected'];
         $vehicle->get();
         $vehicles = Vehicle::all();
+
         return view('pages.loans.vehicle.edit', [
             'vehicle' => $vehicle,
             'vehicles' => $vehicles,
-            'approve' => $approve
+            'approve' => $approve,
         ]);
     }
 
@@ -128,7 +129,7 @@ class VehicleController extends Controller
                 `required|integer|in:$user->name`,
             ],
             'department' => [
-                `required|in:$department`
+                `required|in:$department`,
             ],
             'vehicle_id' => 'required|integer',
             'loan_date' => 'required|date',
@@ -153,7 +154,7 @@ class VehicleController extends Controller
             'capacity' => $validate['capacity'],
             'purpose' => $validate['purpose'],
             'loan_status' => $validate['loan_status'],
-            'information' => $validate['information']
+            'information' => $validate['information'],
         ]);
 
         return redirect()->route('vehicleLoans.index')->with('success', 'Ticket successfully edited');

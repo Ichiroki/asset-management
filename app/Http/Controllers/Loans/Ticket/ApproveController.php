@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Loans\Ticket;
 use App\Http\Controllers\Controller;
 use App\Models\Loans\LaptopLoans;
 use App\Models\Loans\VehicleLoans;
-use Illuminate\Http\Request;
 
 class ApproveController extends Controller
 {

@@ -8,7 +8,6 @@ use App\Http\Requests\Asset\Vehicle\UpdateVehicleRequest;
 use App\Models\Asset\Vehicle;
 use App\Models\Office\Department;
 use App\Models\User;
-use Illuminate\Http\Request;
 
 class VehicleController extends Controller
 {
@@ -18,6 +17,7 @@ class VehicleController extends Controller
     public function index()
     {
         $vehicle = Vehicle::paginate(5);
+
         return view('pages/vehicle/index', [
             'vehicles' => $vehicle,
 
@@ -35,7 +35,7 @@ class VehicleController extends Controller
         return view('pages/vehicle/create', [
             'departments' => $department,
             'users' => $users,
-            'title' => "Add Vehicle"
+            'title' => 'Add Vehicle',
         ]);
     }
 
@@ -45,23 +45,22 @@ class VehicleController extends Controller
     public function store(StoreVehicleRequest $request)
     {
         dd($request);
-        if(is_string($request->capacity)) {
-            $capacity = (int)$request->capacity;
+        if (is_string($request->capacity)) {
+            $capacity = (int) $request->capacity;
         }
 
         $data = [
             'type' => $request->type,
             'number_plates' => $request->number_plates,
-            'capacity' => $capacity
+            'capacity' => $capacity,
         ];
 
-
-        if($request->has('pic_user') && !$request->has('pic_department')) {
+        if ($request->has('pic_user') && ! $request->has('pic_department')) {
             $user = User::find('id', $request->input('pic_user'));
 
             $data['pic_id'] = $user->id;
             $data['pic_type'] = $user;
-        } elseif ($request->has('pic_department') && !$request->has('pic_user')) {
+        } elseif ($request->has('pic_department') && ! $request->has('pic_user')) {
             $department = Department::find('id', $request->input('pic_department'));
 
             $data['pic_id'] = $department->id;
@@ -81,7 +80,7 @@ class VehicleController extends Controller
         $vehicle = Vehicle::where('id', $id)->first();
 
         return view('pages/vehicle/show', [
-            'vehicle' => $vehicle
+            'vehicle' => $vehicle,
         ]);
     }
 
@@ -92,9 +91,10 @@ class VehicleController extends Controller
     {
         $department = Department::all();
         $vehicle = Vehicle::where('id', $id)->first();
+
         return view('pages.vehicle.edit', [
             'vehicle' => $vehicle,
-            'department' => $department
+            'department' => $department,
         ]);
     }
 
@@ -103,16 +103,17 @@ class VehicleController extends Controller
      */
     public function update(UpdateVehicleRequest $request, $id)
     {
-        if(is_string($request->capacity)) {
-            $capacity = (int)$request->capacity;
+        if (is_string($request->capacity)) {
+            $capacity = (int) $request->capacity;
         }
 
         Vehicle::where('id', $id)->update([
             'type' => $request->type,
             'number_plates' => $request->number_plates,
             'capacity' => $capacity,
-            'pic' => $request->pic
+            'pic' => $request->pic,
         ]);
+
         return redirect()->route('vehicle.index')->with('success', 'Vehicle successfully edited');
     }
 

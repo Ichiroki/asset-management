@@ -4,13 +4,12 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-        <title>{{ $title || config('app.name') }}</title>
+        <title>{{ $title ?? config('app.name') }}</title>
         @vite(['resources/css/app.css','resources/js/app.js', 'resources/js/head.js'])
         @yield('script.head')
-        @livewireStyles
     </head>
     <body class="dark:bg-slate-800 bg-slate-100 dark:text-slate-200 text-slate-800" id="app_layout">
-            @include('layout.utils.sidebar')
+            <x-sidebar/>
 
             <div class="p-4 mt-24 sm:ml-64 lg:mt-18">
                 <div class="container mx-auto">
@@ -62,6 +61,5 @@
 
             });
         </script>
-        @livewireScripts
     </body>
 </html>

@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Office\Position;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class PositionSeeder extends Seeder
@@ -15,12 +14,12 @@ class PositionSeeder extends Seeder
     {
         Position::create([
             'name' => 'Leader',
-            'status' => 'active'
+            'status' => 'active',
         ]);
 
         Position::create([
             'name' => 'Head',
-            'status' => 'active'
+            'status' => 'active',
         ]);
     }
 }
