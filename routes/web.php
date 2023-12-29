@@ -11,6 +11,7 @@ use App\Http\Controllers\Loans\VehicleController as LoansVehicleController;
 use App\Http\Controllers\Loans\LaptopController as LoansLaptopController;
 use App\Http\Controllers\Office\{DepartmentController, PositionController, UserController};
 use App\Http\Controllers\Profile\ProfileController;
+use App\Livewire\Auth\Login;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,8 +27,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/welcome', [DashboardController::class, 'welcome']);
 
-Route::get('/login', [AuthenticationController::class, 'index'])->name('login.index');
-Route::post('/login', [AuthenticationController::class, 'login'])->name('login');
+Route::get('/login', Login::class)->name('login.index');
+// Route::post('/login', [AuthenticationController::class, 'login'])->name('login');
 
 Route::prefix('/')->middleware('auth')->group(function () {
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');

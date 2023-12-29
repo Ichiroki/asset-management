@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Loans;
 
 use App\Http\Controllers\Controller;
 use App\Mail\Loans\VehicleLoansMail;
+use App\Models\Asset\Vehicle;
 use App\Models\Loans\VehicleLoans;
-use App\Models\Office\Vehicle;
 use App\Notifications\VehicleLoanNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,11 +19,8 @@ class VehicleController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index($request)
     {
-<<<<<<< HEAD
-        $vehicles = VehicleLoans::paginate(5);
-=======
         $search_param = $request->query('search');
         $vehicles = VehicleLoans::paginate(5);
 
@@ -31,7 +28,6 @@ class VehicleController extends Controller
             $vehicles = VehicleLoans::search($search_param)->paginate(5);
         }
 
->>>>>>> 2420d4b1f586cc176623ee4d3ba9246112098e1b
         return view('pages.loans.vehicle.index', [
             'vehicles' => $vehicles,
         ]);

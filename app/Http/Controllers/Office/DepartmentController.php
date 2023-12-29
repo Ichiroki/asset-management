@@ -26,10 +26,7 @@ class DepartmentController extends Controller
         return view('pages.department.index', [
             "search_param" => $search_param,
             'departments' => $departments,
-<<<<<<< HEAD
-=======
             'title' => "Department"
->>>>>>> 2420d4b1f586cc176623ee4d3ba9246112098e1b
         ]);
     }
 

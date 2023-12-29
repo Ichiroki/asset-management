@@ -16,21 +16,6 @@ class AuthenticationController extends Controller
         return view('auth.login');
     }
 
-    public function login(Request $request) {
-        $credentials = $request->validate([
-            'email' => 'required|max:255|email:rfc,dns|exists:users,email',
-            'password' => 'required'
-        ]);
-
-        if(Auth::attempt($credentials, true)) {
-
-            Session::flash('success', 'Login success');
-            return redirect()->route('dashboard');
-        }
-
-        return redirect()->route('login')->withErrors(['email' => 'invalid credentials']);
-    }
-
     public function logout() {
         Auth::logout();
 

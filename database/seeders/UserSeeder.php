@@ -22,33 +22,25 @@ class UserSeeder extends Seeder
         ]);
 
         User::create([
-            'name' => "Gema Merdeka Goeyardi",
+            'name' => "Oman Narpati",
             'department_id' => 1,
-            'email' => "gema@astronacci.net",
+            'email' => "oman@gmail.com",
             'phone_number' => '089662690020',
             'password' => Hash::make('password'),
         ]);
 
         User::create([
-            'name' => "Dedi Setiadi",
+            'name' => "Panca Dongoran",
             'department_id' => 2,
-            'email' => "dedi@astronacci.net",
+            'email' => "panca@gmail.com",
             'phone_number' => '089662690020',
             'password' => Hash::make('password'),
         ]);
 
         User::create([
-            'name' => "Desta Arifta",
+            'name' => "Sidiq Mansur",
             'department_id' => 10,
-            'email' => "desta@astronacci.net",
-            'phone_number' => '089662690020',
-            'password' => Hash::make('password'),
-        ]);
-
-        User::create([
-            'name' => "Lery Budi Apriansyah",
-            'department_id' => 10,
-            'email' => "lery@astronacci.net",
+            'email' => "sidiq@gmail.com",
             'phone_number' => '089662690020',
             'password' => Hash::make('password'),
         ]);

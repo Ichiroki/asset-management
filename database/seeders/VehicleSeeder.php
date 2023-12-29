@@ -21,16 +21,14 @@ class VehicleSeeder extends Seeder
             'number_plates' => 'B 16 JET',
             'capacity' => 4,
             'status' => "Active",
-            'pic_id' => $bod->id,
-            'pic_type' => Department::class,
+            'pic' => "BOD"
         ]);
         Vehicle::create([
             'type' => "Luxio",
             'number_plates' => 'B 2956 TIQ',
             'capacity' => 8,
             'status' => "Active",
-            'pic_id' => $bod->id,
-            'pic_type' => Department::class,
+            'pic' => "BOD"
         ]);
         Vehicle::create([
             'type' => "BMW",
@@ -51,8 +49,7 @@ class VehicleSeeder extends Seeder
             'number_plates' => 'B 2554 BBL',
             'capacity' => 4,
             'status' => "Active",
-            'pic_id' => $bod->id,
-            'pic_type' => Department::class,
+            'pic' => "BOD"
         ]);
     }
 }

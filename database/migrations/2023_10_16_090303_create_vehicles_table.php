@@ -17,8 +17,7 @@ return new class extends Migration
             $table->string('number_plates');
             $table->integer('capacity');
             $table->string('status');
-            $table->unsignedBigInteger('pic_id');
-            $table->string('pic_type');
+            $table->string('pic');
             $table->timestamps();
         });
     }
