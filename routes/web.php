@@ -8,13 +8,15 @@ use App\Http\Controllers\Loans\Ticket\ApproveController;
 use App\Http\Controllers\Loans\Ticket\CheckAvailabilityController;
 use App\Http\Controllers\Loans\VehicleController as LoansVehicleController;
 use App\Http\Controllers\Office\DepartmentController;
-use App\Http\Controllers\Office\UserController;
 use App\Http\Controllers\Profile\ProfileController;
 use App\Http\Controllers\SearchController;
 use App\Livewire\Auth\Login;
 use App\Livewire\Pages\Assets\Laptop;
 use App\Livewire\Pages\Assets\Vehicle;
 use App\Livewire\Pages\Dashboard;
+use App\Livewire\Pages\Loans\LaptopLoans;
+use App\Livewire\Pages\Loans\VehicleLoans;
+use App\Livewire\Pages\Office\Department;
 use App\Livewire\Pages\Office\Users;
 use Illuminate\Support\Facades\Route;
 
@@ -43,13 +45,13 @@ Route::prefix('/')->middleware('auth')->group(function () {
     Route::get('vehicle', Vehicle::class)->name('vehicle.index');
     Route::get('laptop', Laptop::class)->name('laptop.index');
     Route::get('user', Users::class)->name('user.index');
-    Route::resource('department', DepartmentController::class);
+    Route::get('department', Department::class)->name('department.index');
 
     Route::get('/department/search', [DepartmentController::class, 'search'])->name('department.search');
 
     Route::prefix('/loans')->group(function () {
-        Route::resource('vehicle', LoansVehicleController::class)->names('vehicleLoans');
-        Route::resource('laptop', LoansLaptopController::class)->names('laptopLoans');
+        Route::get('vehicle', VehicleLoans::class)->name('vehicleLoans.index');
+        Route::get('laptop', LaptopLoans::class)->name('laptopLoans.index');
 
         Route::group(['middleware' => ['role:approval_bod', 'permission:approve vehicle loans']], function () {
             Route::patch('vehicle/{vehicle}/approve', [ApproveController::class, 'approveVehicleLoan'])->name('vehicleLoans.approve');

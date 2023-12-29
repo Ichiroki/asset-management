@@ -6,7 +6,7 @@
                 Create Vehicle
             </a> --}}
 
-            <x-input type="text" id="search" placeholder="search here" class="w-3/5 lg:w-4/12" wire:model.live.debounce.500ms="search"/>
+            {{-- <x-input type="text" id="search" placeholder="search here" class="w-3/5 lg:w-4/12" wire:model.live.debounce.500ms="search"/> --}}
         </div>
     </div>
 

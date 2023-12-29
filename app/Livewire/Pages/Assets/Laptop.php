@@ -2,8 +2,8 @@
 
 namespace App\Livewire\Pages\Assets;
 
-use Livewire\Component;
 use App\Models\Asset\Laptop as LaptopAsset;
+use Livewire\Component;
 
 class Laptop extends Component
 {
@@ -12,8 +12,8 @@ class Laptop extends Component
     public function render()
     {
         $laptops = $this->search ? LaptopAsset::where('type', 'LIKE', "%{$this->search}%")
-        ->orWhere('pic', 'LIKE', "%{$this->search}")
-        ->orWhere('number_plates', 'LIKE', "%{$this->search}%")
+            ->orWhere('pic', 'LIKE', "%{$this->search}")
+            ->orWhere('number_plates', 'LIKE', "%{$this->search}%")
         : LaptopAsset::paginate(5);
 
         return view('livewire.pages.assets.laptop', compact('laptops'));

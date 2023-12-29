@@ -1,6 +1,4 @@
-@extends('layout.app')
-
-@section('main')
+<div>
     <h1 class="pb-2 mb-6 text-3xl border-b-4 border-slate-800 w-fit dark:text-slate-200 dark:border-slate-200">Peminjaman
         Laptop</h1>
     <div class="flex flex-col justify-between">
@@ -150,13 +148,6 @@
                                     class="px-3 py-2 mb-2 mr-2 text-sm font-medium text-center text-blue-700 transition border border-blue-700 rounded-lg hover:text-white hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-600 dark:focus:ring-blue-800">
                                     Edit
                                 </a>
-<<<<<<< HEAD
-                                @can('approve laptop loans')
-                                    <form action="{{ route('laptopLoans.approve', ['laptop' => $laptop->id]) }}" method="POST">
-                                        @csrf
-                                        @method('PATCH')
-                                        <button type="submit" class="px-3 py-2 mb-2 mr-2 text-sm font-medium text-center transition border rounded-lg text-amber-700 border-amber-700 hover:text-white hover:bg-amber-800 focus:ring-4 focus:outline-none focus:ring-amber-300 dark:border-amber-500 dark:text-amber-500 dark:hover:text-white dark:hover:bg-amber-600 dark:focus:ring-amber-800">Approve</button>
-=======
                                 <button data-modal-target="popup-modal-{{ $laptop->id }}"
                                     data-modal-toggle="popup-modal-{{ $laptop->id }}"
                                     class="
@@ -190,7 +181,6 @@
                                         <button data-modal-hide="popup-modal-{{ $laptop->id }}" type="button"
                                             class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">No,
                                             cancel</button>
->>>>>>> 2420d4b1f586cc176623ee4d3ba9246112098e1b
                                     </form>
                                     <form action="{{ route('laptopLoans.reject', ['laptop' => $laptop->id]) }}" method="POST">
                                         @csrf
@@ -231,4 +221,4 @@
     {{-- <div>
             {{ $laptops->links() }}
         </div> --}}
-@endsection
+</div>
