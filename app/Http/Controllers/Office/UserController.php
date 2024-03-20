@@ -14,9 +14,6 @@ class UserController extends Controller
     public function index(Request $request)
     {
         $users = User::paginate(5);
-<<<<<<< HEAD
-        return view("pages.user.index", compact("users"));
-=======
         $search_param = $request->query('search');
 
         if ($search_param !== "") {
@@ -28,7 +25,6 @@ class UserController extends Controller
             "users" => $users,
             "title" => "Users"
         ]);
->>>>>>> 2420d4b1f586cc176623ee4d3ba9246112098e1b
     }
 
     /**

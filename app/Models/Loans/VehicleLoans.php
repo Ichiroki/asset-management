@@ -6,6 +6,7 @@ use App\Models\Asset\Vehicle;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Scout\Attributes\SearchUsingPrefix;
 
 class VehicleLoans extends Model
 {
@@ -45,8 +46,6 @@ class VehicleLoans extends Model
         $this->update(['loan_status' => 'Rejected']);
     }
 
-<<<<<<< HEAD
-=======
     protected $auditInclude = [
         'user_id',
         'vehicle_id',
@@ -66,6 +65,5 @@ class VehicleLoans extends Model
         ];
     }
 
->>>>>>> 2420d4b1f586cc176623ee4d3ba9246112098e1b
     use HasFactory;
 }

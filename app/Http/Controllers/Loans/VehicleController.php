@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Loans;
 
 use App\Http\Controllers\Controller;
 use App\Mail\Loans\VehicleLoansMail;
+use App\Models\Asset\Vehicle as AssetVehicle;
 use App\Models\Loans\VehicleLoans;
 use App\Models\Office\Vehicle;
 use App\Notifications\VehicleLoanNotification;
@@ -19,11 +20,8 @@ class VehicleController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index($request)
     {
-<<<<<<< HEAD
-        $vehicles = VehicleLoans::paginate(5);
-=======
         $search_param = $request->query('search');
         $vehicles = VehicleLoans::paginate(5);
 
@@ -31,7 +29,6 @@ class VehicleController extends Controller
             $vehicles = VehicleLoans::search($search_param)->paginate(5);
         }
 
->>>>>>> 2420d4b1f586cc176623ee4d3ba9246112098e1b
         return view('pages.loans.vehicle.index', [
             'vehicles' => $vehicles,
         ]);
@@ -44,7 +41,7 @@ class VehicleController extends Controller
     {
         $user = Auth::user();
         $department = $user->department;
-        $vehicle = Vehicle::all();
+        $vehicle = AssetVehicle::all();
         return view('pages.loans.vehicle.create', [
             'user' => $user,
             'department' => $department,
@@ -112,7 +109,7 @@ class VehicleController extends Controller
     {
         $approve = ["Waiting Approval", "Approve", "Rejected"];
         $vehicle->get();
-        $vehicles = Vehicle::all();
+        $vehicles = AssetVehicle::all();
         return view('pages.loans.vehicle.edit', [
             'vehicle' => $vehicle,
             'vehicles' => $vehicles,

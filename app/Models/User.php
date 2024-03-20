@@ -7,10 +7,7 @@ namespace App\Models;
 use App\Models\Asset\Vehicle;
 use App\Models\Loans\VehicleLoans;
 use App\Models\Office\Department;
-<<<<<<< HEAD
-=======
 use Illuminate\Contracts\Auth\CanResetPassword;
->>>>>>> 2420d4b1f586cc176623ee4d3ba9246112098e1b
 use Illuminate\Database\Eloquent\Concerns\HasRelationships;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;

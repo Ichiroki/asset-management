@@ -18,10 +18,6 @@ class LaptopController extends Controller
      */
     public function index(Request $request)
     {
-<<<<<<< HEAD
-        $laptops = LaptopLoans::all();
-        return view("pages.loans.laptop.index", compact("laptops"));
-=======
         $search_param = $request->query('search');
         $laptops = LaptopLoans::paginate(5);
 
@@ -34,7 +30,6 @@ class LaptopController extends Controller
             'laptops' => $laptops,
             'title' => "Laptop Loans"
         ]);
->>>>>>> 2420d4b1f586cc176623ee4d3ba9246112098e1b
     }
 
     /**
