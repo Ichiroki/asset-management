@@ -66,9 +66,9 @@ Route::prefix('/')->middleware('auth')->group(function () {
 
     // Search
     // Vehicle Loans
-    Route::get('/search', [SearchController::class, 'vehicleLoansSearch'])->name('search.vehicleLoans');
+    // Route::get('/search', [SearchController::class, 'vehicleLoansSearch'])->name('search.vehicleLoans');
 
-    Route::group(['middleware' => 'role:super_admin'], function() {
-        Route::get('/audit', [AuditController::class, 'index'])->name('audit');
-    });
+    // Route::group(['middleware' => 'role:super_admin'], function() {
+    //     Route::get('/audit', [AuditController::class, 'index'])->name('audit');
+    // });
 });

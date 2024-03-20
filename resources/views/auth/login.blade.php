@@ -8,23 +8,17 @@
             @csrf
                 <div class="flex flex-col gap-3">
                     <x-label for="email">{{ __('Email') }}</x-label>
-                    <x-input type="text" name="email" id="email" placeholder="email" value="{{ old('email') }}"></x-input>
+                    <x-input type="text" name="email" id="email" placeholder="Type your email" value="{{ old('email') }}"></x-input>
                     @error('email')
                         <p class="text-rose-600">{{ $message }}</p>
                     @enderror
                 </div>
                 <div class="flex flex-col gap-3 mt-4">
                     <x-label for="password">{{ __('Password') }}</x-label>
-                    <x-input type="password" name="password" id="password" placeholder="password" value="{{ old('password') }}"></x-input>
+                    <x-input type="password" name="password" id="password" placeholder="Type your password" value="{{ old('password') }}"></x-input>
                     @error('password')
                         <p class="text-rose-600">{{ $message }}</p>
                     @enderror
-                </div>
-                <div class="flex flex-col gap-3 mt-4">
-                    <div class="flex items-center mb-4">
-                        <input id="remember" type="checkbox" name="remember" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                        <label for="remember" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Remember Me</label>
-                    </div>
                 </div>
                 <div class="flex mb-6">
                     <button type="submit" class="w-4/12 px-3 py-2 text-sm font-medium text-center text-blue-700 transition border border-blue-700 rounded-lg hover:text-white hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-600 dark:focus:ring-blue-800">Login</button>
