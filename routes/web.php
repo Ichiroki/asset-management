@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\{DashboardController, SearchController};
+use App\Http\Controllers\{DashboardController, SearchController, VehiclePICController};
 use App\Http\Controllers\Admin\AuditController;
 use App\Http\Controllers\Asset\LaptopController;
 use App\Http\Controllers\Asset\VehicleController;
@@ -36,6 +36,7 @@ Route::prefix('/')->middleware('auth')->group(function () {
     Route::put('profile/{user}', [ProfileController::class, 'update'])->name('profile.update');
 
     Route::resource('vehicle', VehicleController::class);
+    Route::resource('vehicle-pic', VehiclePICController::class)->names('vehicle-pic');
     Route::resource('laptop', LaptopController::class);
     Route::resource('user', UserController::class);
     Route::resource('department', DepartmentController::class);

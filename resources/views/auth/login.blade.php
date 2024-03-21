@@ -20,7 +20,7 @@
                         <p class="text-rose-600">{{ $message }}</p>
                     @enderror
                 </div>
-                <div class="flex mb-6">
+                <div class="flex my-6">
                     <button type="submit" class="w-4/12 px-3 py-2 text-sm font-medium text-center text-blue-700 transition border border-blue-700 rounded-lg hover:text-white hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-600 dark:focus:ring-blue-800">Login</button>
                 </div>
             </form>

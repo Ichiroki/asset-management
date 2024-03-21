@@ -196,6 +196,16 @@
                                 <span class="ml-3">Department</span>
                             </a>
                         </li>
+                        <li>
+                            <a href="{{ route('vehicle-pic.index') }}"
+                                class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 {{ Request::is('vehicle-pic') ? 'bg-gray-100 dark:bg-gray-700' : '' }}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-bounding-box" viewBox="0 0 16 16">
+                                    <path d="M1.5 1a.5.5 0 0 0-.5.5v3a.5.5 0 0 1-1 0v-3A1.5 1.5 0 0 1 1.5 0h3a.5.5 0 0 1 0 1zM11 .5a.5.5 0 0 1 .5-.5h3A1.5 1.5 0 0 1 16 1.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 1-.5-.5M.5 11a.5.5 0 0 1 .5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 1 0 1h-3A1.5 1.5 0 0 1 0 14.5v-3a.5.5 0 0 1 .5-.5m15 0a.5.5 0 0 1 .5.5v3a1.5 1.5 0 0 1-1.5 1.5h-3a.5.5 0 0 1 0-1h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 1 .5-.5"/>
+                                    <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm8-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+                                  </svg>
+                                <span class="ml-3">Vehicle Pic</span>
+                            </a>
+                        </li>
                     </ul>
                 </li>
             @endrole
@@ -246,7 +256,7 @@
                     </li>
                 </ul>
             </li>
-            @role('super_admin')
+            {{-- @role('super_admin')
                 <li>
                     <a href="{{ route('audit') }}"
                         class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group {{ Request::is('audit') ? 'bg-gray-100 dark:bg-gray-700' : '' }}">
@@ -263,7 +273,7 @@
                         <span class="ml-3">Audit Log</span>
                     </a>
                 </li>
-            @endrole
+            @endrole --}}
         </ul>
     </div>
 </aside>
