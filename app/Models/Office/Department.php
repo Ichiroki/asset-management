@@ -11,7 +11,7 @@ use Laravel\Scout\Searchable;
 
 class Department extends Model
 {
-    use HasRelationships, Searchable;
+    use HasRelationships, Searchable, HasFactory;
 
     protected $fillable = [
         'name', 'status'
@@ -31,6 +31,4 @@ class Department extends Model
             'name' => $this->name
         ];
     }
-
-    use HasFactory;
 }

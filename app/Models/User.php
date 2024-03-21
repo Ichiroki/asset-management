@@ -71,7 +71,7 @@ class User extends Authenticatable
     {
         return [
             'name' => $this->name,
-            'department' => $this->department->name
+            // 'department' => $this->department->name
         ];
     }
 }

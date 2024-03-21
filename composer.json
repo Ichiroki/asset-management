@@ -10,7 +10,7 @@
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.2",
-        "laravel/scout": "*",
+        "laravel/scout": "^10.8",
         "laravel/tinker": "^2.8",
         "laravel/ui": "*",
         "spatie/laravel-permission": "^6.0",
