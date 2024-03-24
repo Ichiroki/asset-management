@@ -53,7 +53,7 @@ class VehicleController extends Controller
 
         Vehicle::create($data);
 
-        return redirect()->route('vehicle.index');
+        return redirect()->route('vehicle.index')->with('success', 'Vehicle successfully added');
     }
 
     /**
@@ -73,11 +73,15 @@ class VehicleController extends Controller
      */
     public function edit($id)
     {
-        $department = Department::all();
-        $vehicle = Vehicle::where('id', $id)->first();
+        $status = [
+            'Active',
+            'Deactive'
+        ];
+
+        $vehicle = Vehicle::find($id);
         return view('pages.vehicle.edit', [
             'vehicle' => $vehicle,
-            'department' => $department
+            'status' => $status
         ]);
     }
 
@@ -86,16 +90,12 @@ class VehicleController extends Controller
      */
     public function update(UpdateVehicleRequest $request, $id)
     {
-        if(is_string($request->capacity)) {
-            $capacity = (int)$request->capacity;
-        }
-
-        Vehicle::where('id', $id)->update([
+        Vehicle::find($id)->update([
             'type' => $request->type,
             'number_plates' => $request->number_plates,
-            'capacity' => $capacity,
-            'pic' => $request->pic
+            'capacity' => $request->capacity,
         ]);
+
         return redirect()->route('vehicle.index')->with('success', 'Vehicle successfully edited');
     }
 

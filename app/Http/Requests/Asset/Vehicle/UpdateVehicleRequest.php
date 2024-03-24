@@ -25,7 +25,6 @@ class UpdateVehicleRequest extends FormRequest
             'type' => 'string|max:255',
             'number_plates' => 'string|max:255',
             'capacity' => 'integer|between:1,20',
-            'pic' => 'exists:vehicles,pic'
         ];
     }
 
