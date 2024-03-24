@@ -7,9 +7,12 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Scout\Attributes\SearchUsingPrefix;
+use Laravel\Scout\Searchable;
 
 class VehicleLoans extends Model
 {
+    use Searchable;
+
     protected $table = 'user_loans_vehicle';
 
     protected $fillable = [

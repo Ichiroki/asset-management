@@ -17,13 +17,10 @@ use App\Models\User;
 
 class VehicleController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index($request)
+    public function index($request = null)
     {
-        $search_param = $request->query('search');
-        $vehicles = VehicleLoans::paginate(5);
+        $vehicles = VehicleLoans::latest()->paginate(5);
+        $search_param = $request ? $request->query('search') : '';
 
         if($search_param !== '') {
             $vehicles = VehicleLoans::search($search_param)->paginate(5);
@@ -68,8 +65,6 @@ class VehicleController extends Controller
             'loan_date' => 'required|date',
             'return_date' => 'required|date',
             'status' => 'required|string',
-            'number_plate' => 'required|string',
-            'capacity' => 'required|integer',
             'purpose' => 'required|string',
             'information' => 'nullable|string',
         ]);
@@ -83,8 +78,6 @@ class VehicleController extends Controller
             'loan_date' => $validated['loan_date'],
             'return_date' => $validated['return_date'],
             'status' => $validated['status'],
-            'number_plate' => $validated['number_plate'],
-            'capacity' => $validated['capacity'],
             'purpose' => $validated['purpose'],
             'information' => $validated['information']
         ]);
@@ -135,8 +128,6 @@ class VehicleController extends Controller
             'loan_date' => 'required|date',
             'return_date' => 'required|date',
             'status' => 'required|string',
-            'number_plate' => 'required|string',
-            'capacity' => 'required|integer',
             'purpose' => 'required|string',
             'information' => 'nullable|string',
             'loan_status' => 'required|string',
@@ -150,8 +141,6 @@ class VehicleController extends Controller
             'loan_date' => $validate['loan_date'],
             'return_date' => $validate['return_date'],
             'status' => $validate['status'],
-            'number_plate' => $validate['number_plate'],
-            'capacity' => $validate['capacity'],
             'purpose' => $validate['purpose'],
             'loan_status' => $validate['loan_status'],
             'information' => $validate['information']

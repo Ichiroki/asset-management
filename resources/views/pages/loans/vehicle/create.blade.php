@@ -78,28 +78,6 @@
                     @enderror
                 </div>
                 <div class="mb-6">
-                    <label for="number_plate" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Plate
-                        Number</label>
-                    <input type="text" id="number_plate" name="number_plate"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="" value="" autocomplete="off" autofocus required readonly>
-                    @error('number_plate')
-                        <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}
-                        </p>
-                    @enderror
-                </div>
-                <div class="mb-6">
-                    <label for="capacity"
-                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Capacity</label>
-                    <input type="text" id="capacity" name="capacity"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="" value="" autocomplete="off" autofocus required readonly>
-                    @error('capacity')
-                        <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}
-                        </p>
-                    @enderror
-                </div>
-                <div class="mb-6">
                     <label for="purpose"
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tujuan</label>
                     <textarea id="purpose" name="purpose" rows="4"
@@ -153,12 +131,8 @@
 
                         if (veh.available) {
                             availText.value = data.message
-                            nomorPolText.value = veh.number_plates
-                            capacityText.value = veh.capacity
                         } else {
                             availText.value = data.message
-                            nomorPolText.value = veh.number_plates
-                            capacityText.value = veh.capacity
                         }
                     }
 

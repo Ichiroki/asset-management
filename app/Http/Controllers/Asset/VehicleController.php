@@ -44,29 +44,12 @@ class VehicleController extends Controller
      */
     public function store(StoreVehicleRequest $request)
     {
-        dd($request);
-        if(is_string($request->capacity)) {
-            $capacity = (int)$request->capacity;
-        }
-
         $data = [
             'type' => $request->type,
             'number_plates' => $request->number_plates,
-            'capacity' => $capacity
+            'capacity' => $request->capacity,
+            'status' => $request->status
         ];
-
-
-        // if($request->has('pic_user') && !$request->has('pic_department')) {
-        //     $user = User::find('id', $request->input('pic_user'));
-
-        //     $data['pic_id'] = $user->id;
-        //     $data['pic_type'] = $user;
-        // } elseif ($request->has('pic_department') && !$request->has('pic_user')) {
-        //     $department = Department::find('id', $request->input('pic_department'));
-
-        //     $data['pic_id'] = $department->id;
-        //     $data['pic_type'] = $department;
-        // }
 
         Vehicle::create($data);
 

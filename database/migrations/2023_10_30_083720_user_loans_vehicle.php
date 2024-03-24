@@ -19,8 +19,6 @@ return new class extends Migration
             $table->date('loan_date');
             $table->date('return_date');
             $table->string('status');
-            $table->string('number_plate');
-            $table->integer('capacity');
             $table->text('purpose')->nullable();
             $table->text('information')->nullable();
             $table->string('loan_status')->nullable()->default('Waiting Approval');

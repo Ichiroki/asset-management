@@ -9,7 +9,17 @@
                     Create Ticket For Loan
                 </a>
 
-                <x-input type="text" name="search" id="search" placeholder="search here" class="w-3/5 lg:w-4/12"/>
+                <form action="{{ route('vehicleLoans.index', request()->query()) }}" class="flex gap-3">
+                    <x-input type="text" name="search" id="search" placeholder="search here" />
+                    <button type="submit"
+                        class="text-green-700 transition hover:text-white border border-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:border-green-500 dark:text-green-500 dark:hover:text-white dark:hover:bg-green-600 dark:focus:ring-green-800">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-search" viewBox="0 0 16 16">
+                            <path
+                                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+                        </svg>
+                    </button>
+                </form>
             </div>
         </div>
 

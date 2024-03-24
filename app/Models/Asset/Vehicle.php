@@ -9,19 +9,14 @@ use Illuminate\Database\Eloquent\Model;
 class Vehicle extends Model
 {
     protected $fillable = [
-        'jenis',
+        'type',
         'number_plates',
         'capacity',
-        'pic_id',
-        'pic_type'
+        'status'
     ];
 
     public function vehicleLoans() {
         return $this->hasMany(VehicleLoans::class, 'vehicle_id');
-    }
-
-    public function pic() {
-        return $this->morphTo();
     }
 
     use HasFactory;
