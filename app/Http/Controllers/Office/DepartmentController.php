@@ -91,7 +91,7 @@ class DepartmentController extends Controller
      */
     public function update(UpdateDepartmentReq $request, $id)
     {
-        Department::where('id', $id)->update([
+        Department::find($id)->update([
             'name' => $request->name,
             'status' => $request->status
         ]);

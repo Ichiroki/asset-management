@@ -104,7 +104,7 @@ class VehicleController extends Controller
      */
     public function destroy($id)
     {
-        Vehicle::where('id', $id)->delete();
+        Vehicle::find($id)->delete();
 
         return redirect()->route('vehicle.index')->with('success', 'Vehicle successfully deleted');
     }

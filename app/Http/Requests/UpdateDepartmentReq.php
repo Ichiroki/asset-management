@@ -22,17 +22,15 @@ class UpdateDepartmentReq extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'sometimes|required|string|max:255|unique:departments,name'
+            'name' => 'sometimes|string|max:255'
         ];
     }
 
     public function messages() : array
     {
         return [
-            'name.required' => 'Name is required',
             'name.string' => 'Number is not allowed to type in Name',
             'name.max' => 'Maximum character for name is 255',
-            'name.unique' => 'This Name is already exist'
         ];
     }
 }
