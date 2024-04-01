@@ -14,11 +14,9 @@ return new class extends Migration
         Schema::create('user_loans_vehicle', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->string('department');
             $table->unsignedBigInteger('vehicle_id');
             $table->date('loan_date');
             $table->date('return_date');
-            $table->string('status');
             $table->text('purpose')->nullable();
             $table->text('information')->nullable();
             $table->string('loan_status')->nullable()->default('Waiting Approval');

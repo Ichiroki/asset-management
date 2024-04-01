@@ -17,13 +17,9 @@ class VehicleLoans extends Model
 
     protected $fillable = [
         'user_id',
-        'department',
         'vehicle_id',
         'loan_date',
         'return_date',
-        'status',
-        'number_plate',
-        'capacity',
         'purpose',
         'loan_status',
         'notes'

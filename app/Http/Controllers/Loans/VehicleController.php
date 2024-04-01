@@ -3,17 +3,14 @@
 namespace App\Http\Controllers\Loans;
 
 use App\Http\Controllers\Controller;
-use App\Mail\Loans\VehicleLoansMail;
+use App\Mail\VehicleLoansMail as MailVehicleLoansMail;
 use App\Models\Asset\Vehicle as AssetVehicle;
 use App\Models\Loans\VehicleLoans;
-use App\Models\Office\Vehicle;
-use App\Notifications\VehicleLoanNotification;
+use App\Models\Office\Department;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Notification;
-use Illuminate\Validation\Rule;
 use App\Models\User;
+use Illuminate\Support\Facades\Mail;
 
 class VehicleController extends Controller
 {
@@ -31,73 +28,51 @@ class VehicleController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        $user = Auth::user();
-        $department = $user->department;
-        $vehicle = AssetVehicle::all();
+        $user = User::all();
+        $department = Department::all();
+        $vehicle = AssetVehicle::whereNot('status', 'Inactive')->get();
         return view('pages.loans.vehicle.create', [
-            'user' => $user,
-            'department' => $department,
-            'vehicle' => $vehicle
+            'users' => $user,
+            'departments' => $department,
+            'vehicles' => $vehicle
         ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $user = Auth::user();
 
         $validated = $request->validate([
-            'user_id' => [
+            'user' => [
                 `required|integer|in:$user->id`,
             ],
-            'department' => [
-                'required',
-                Rule::in([$user->department->name])
-            ],
-            'vehicle_id' => 'required|integer',
+            'vehicle' => 'required|integer',
             'loan_date' => 'required|date',
             'return_date' => 'required|date',
-            'status' => 'required|string',
             'purpose' => 'required|string',
             'information' => 'nullable|string',
         ]);
 
-        Mail::to(User::role('approval_bod')->all())->send(new VehicleLoansMail());
-
         VehicleLoans::create([
             'user_id' => $user->id,
-            'department' => $validated['department'],
-            'vehicle_id' => (int) $validated['vehicle_id'],
+            'vehicle_id' => $validated['vehicle'],
             'loan_date' => $validated['loan_date'],
             'return_date' => $validated['return_date'],
-            'status' => $validated['status'],
             'purpose' => $validated['purpose'],
             'information' => $validated['information']
         ]);
 
         return redirect()->route('vehicleLoans.index')->with('success', 'Your submission to loan vehicle successfully sended, please wait to accept the submission');
-
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(VehicleLoans $vehicle)
     {
         dd($vehicle);
         return view('pages.loans.vehicle.show', compact('vehicle'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(VehicleLoans $vehicle)
     {
         $approve = ["Waiting Approval", "Approve", "Rejected"];
@@ -110,9 +85,6 @@ class VehicleController extends Controller
         ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, VehicleLoans $vehicle)
     {
         $user = $vehicle->user;
@@ -149,9 +121,6 @@ class VehicleController extends Controller
         return redirect()->route('vehicleLoans.index')->with('success', 'Ticket successfully edited');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(VehicleLoans $vehicle)
     {
         $vehicle->delete();

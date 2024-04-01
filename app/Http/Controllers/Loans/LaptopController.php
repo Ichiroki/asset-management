@@ -16,17 +16,17 @@ class LaptopController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function index()
     {
-        $search_param = $request->query('search');
+        // $search_param = $request->query('search');
         $laptops = LaptopLoans::paginate(5);
 
-        if($search_param !== '') {
-            $laptops = LaptopLoans::search($search_param)->paginate(5);
-        }
+        // if($search_param !== '') {
+        //     $laptops = LaptopLoans::search($search_param)->paginate(5);
+        // }
 
         return view("pages.loans.laptop.index", [
-            'search_param' => $search_param,
+            // 'search_param' => $search_param,
             'laptops' => $laptops,
             'title' => "Laptop Loans"
         ]);
@@ -59,8 +59,6 @@ class LaptopController extends Controller
             'laptop_id' => 'required|integer',
             'information' => 'nullable|string',
         ]);
-
-        Mail::to(User::where('email', 'fahrezirizqiawan12649@gmail.com'))->send(new LaptopLoansMail());
 
         LaptopLoans::create([
             'user_id' => $user->id,

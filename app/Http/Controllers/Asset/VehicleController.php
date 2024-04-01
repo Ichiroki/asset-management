@@ -75,7 +75,7 @@ class VehicleController extends Controller
     {
         $status = [
             'Active',
-            'Deactive'
+            'Inactive'
         ];
 
         $vehicle = Vehicle::find($id);

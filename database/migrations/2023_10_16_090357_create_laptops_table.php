@@ -15,14 +15,14 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('no_asset')->nullable();
-            $table->string('status');
+            $table->string('status')->default('Active');
             $table->date('date_used')->nullable();
             $table->string('processor');
             $table->string('ram');
             $table->string('main_storage');
             $table->string('extend_storage')->nullable();
             $table->string('vga')->nullable();
-            $table->string('monitor');
+            $table->string('monitor')->nullable();
 
             $table->timestamps();
         });

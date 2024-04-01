@@ -15,8 +15,8 @@ class RolesToUserSeeder extends Seeder
     {
         {
             // Assign to users
-            $gema = User::where('email', 'oman@gmail.com')->first();
-            $gema->assignRole('approval_bod');
+            $oman = User::where('email', 'oman@gmail.com')->first();
+            $oman->assignRole('approval_bod');
 
             $ezi = User::where('email', 'fahrezirizqiawan12649@gmail.com')->first();
             $ezi->assignRole('approval_it');
